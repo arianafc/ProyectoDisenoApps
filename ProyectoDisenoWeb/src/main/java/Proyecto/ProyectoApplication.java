@@ -1,4 +1,4 @@
-package Proyecto.demo;
+package Proyecto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

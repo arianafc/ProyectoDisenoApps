@@ -2,12 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Proyecto.dao;
+package Proyecto.service.impl;
 
 /**
  *
- * @author Ariana
+ * @author feru0
  */
-public class ProductoDAO {
-    
-}

@@ -62,7 +62,7 @@ public class UsuarioController {
 
     @PostMapping("/guardar")
     public String guardar(Usuario usuario){
-        usuario.setDireccion("NA");
+        usuario.setDireccion(null);
         usuario.setRol("3");
         usuarioService.save(usuario);
         return "redirect:/usuario/inicioSesion";

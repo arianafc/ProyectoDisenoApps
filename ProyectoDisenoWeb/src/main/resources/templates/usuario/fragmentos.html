@@ -51,11 +51,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <hr></hr>
                                     <p style="text-align: center">No tienes una cuenta? </p>
                                     <div style="text-align: center" class="pt-1 mb-4" >
-                                        <button class="btn btn-lg  "  type="button" style="background: black; color: white; text-align: center; font-size: 17px"><a th:href="@{/usuario/crearCuenta}">Crear Cuenta</a></button>
+                                        <button class="btn btn-lg" type="button" style="background: black; color: white; text-align: center; font-size: 17px"><a th:href="@{/usuario/crearCuenta}">Crear Cuenta</a></button>
                                     </div>
                                 </form>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div th:if="${param.error != null}">
+                        <h3>Error</h3>
                     </div>
             </section>
 
@@ -72,10 +76,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                         <div class="col-sm-6 text-black" style="align-items: center">
                             <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-                                <input type="hidden" name="direccion" th:field=""/>
+
                                 <form th:action="@{/usuario/guardar}"  th:object="${usuario}"  method="POST"  class="was-validated" 
                                       style="width: 23rem;">
-         
+
                                     <h3 class="fw-normal " style="letter-spacing: 1px;">Crear Cuenta</h3>
                                     <p></p>
                                     <div class="form-outline mb-4">
@@ -101,10 +105,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                         <label class="form-label" for="password">Contraseña</label>
                                         <input type="password" th:name="password" id="password" class="form-control form-control-lg" required="true"/>
                                     </div>
-
+                                    <input type="hidden" id="direccion" th:name="direccion" class="form-control form-control-lg" value="" />
                                     <div class="pt-2 mb-4">
                                         <button class="btn btn-lg btn-block" name="btnIngresar" type="submit" style="width: 368px; background-color: #cccccc">Crear Cuenta</button>
-                                    </div>                           
+                                    </div>     
+
                                 </form>
 
                             </div>

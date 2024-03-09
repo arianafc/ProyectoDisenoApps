@@ -17,7 +17,7 @@ public interface FirebaseStorageService {
     public String imagen(MultipartFile archivoLocalCliente, String carpeta, Long id);
 
     //El BuketName es el <id_del_proyecto> + ".appspot.com"
-    final String BucketName = "aqui va el codigo del firebase";
+    final String BucketName = "proyecto-9ba72";
 
     //Esta es la ruta básica de este proyecto FAEJ
     final String rutaSuperiorStorage = "Proyecto";
@@ -26,5 +26,5 @@ public interface FirebaseStorageService {
     final String rutaJsonFile = "firebase";
     
     //El nombre del archivo Json
-    final String archivoJsonFile = "-firebase-adminsdk-jfatk-2f5d8ed679.json";
+    final String archivoJsonFile = "proyecto-9ba72-firebase-adminsdk-jfatk-2f5d8ed679.json";
 }

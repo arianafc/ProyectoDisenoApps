@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Proyecto.controller;
+package com.proyecto.controller;
 
 /**
  *
  * @author Ariana
  */
-import Proyecto.dao.UsuarioDao;
-import Proyecto.domain.Usuario;
+import com.proyecto.dao.UsuarioDao;
+import com.proyecto.domain.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import Proyecto.service.UsuarioService;
+import com.proyecto.service.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import Proyecto.service.UsuarioService;
+import com.proyecto.service.UsuarioService;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

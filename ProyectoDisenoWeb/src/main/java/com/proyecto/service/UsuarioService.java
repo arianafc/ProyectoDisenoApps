@@ -14,7 +14,7 @@ import java.util.List;
 public interface UsuarioService {
     public List<Usuario> getUsuarios();
     // Se obtiene un Categoria, a partir del id de un categoria     
-    public Usuario getUsuario(String email);   
+    public Usuario getUsuario(Usuario usuario);   
     
     // Se inserta un nuevo categoria si el id del categoria esta vacío    
     // Se actualiza un categoria si el id del categoria NO esta vacío     
@@ -22,6 +22,12 @@ public interface UsuarioService {
     
 // Se elimina el categoria que tiene el id pasado por parámetro     
     public void delete(Usuario usuario); 
+    
+    public Usuario getUsuarioporEmail(String email);
+    
+    public Usuario getUsuarioPorEmailYPassword(String email, String password);
+    
+    public boolean existeUsuarioPorEmail(String email);
     
     
 }

@@ -29,32 +29,33 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
+   
     @Autowired
     private UsuarioService usuarioService;
-    private UsuarioDao usuarioDao;
+ 
 
-    @GetMapping("/inicioSesion")
-    private String inicioSesion(Model model) {
-        return "/usuario/inicioSesion";
+    @GetMapping("/login")
+    private String login(Model model) {
+        return "/usuario/login";
     }
 
-    @PostMapping("/inicioSesion")
-    private String inicioSesion(Model model, @RequestParam(value = "email") String email, @RequestParam(value = "password") String pass) {
-        Usuario usuario = usuarioService.getUsuario(email);
-        if (!email.equals(usuario.getEmail()) && !pass.equals(usuario.getPassword())) {
+    @PostMapping("/inicio")
+    private String inicio(Model model, @RequestParam(value = "email") String email, @RequestParam(value = "password") String pass) {
+        Usuario usuario = usuarioService.getUsuarioporEmail(email);
+        if(usuario==null){
             model.addAttribute("error", "Correo o usuario incorrecto");
-            return "index";
+             return "/usuario/login";
+        }
+        if (!email.equals(usuarioService.getUsuarioporEmail(email).getEmail()) || !pass.equals(usuarioService.getUsuarioporEmail(email).getPassword())) {
+            model.addAttribute("error", "Correo o usuario incorrecto");
+            return "/usuario/login";
         } else {
-            return "/usuario/inicioSesion";
+            return "/usuario/inicio";
         }
 
     }
 
-    @GetMapping("/index")
-    private String mostrarInicio() {
-        return "index";
-    }
-
+    
     @GetMapping("/crearCuenta")
     private String crearCuenta() {
         return "/usuario/crearCuenta";
@@ -62,10 +63,10 @@ public class UsuarioController {
 
     @PostMapping("/guardar")
     public String guardar(Usuario usuario){
-        usuario.setDireccion(null);
+        usuario.setDireccion("");
         usuario.setRol("3");
         usuarioService.save(usuario);
-        return "redirect:/usuario/inicioSesion";
+        return "redirect:/usuario/login";
     }
     
 

@@ -28,7 +28,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <div class="col-sm-6 text-black" style="align-items: center">
                             <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-                                <form th:action="@{/usuario/inicioSesion}"  th:object="${usuario}"  method="POST"  class="was-validated" 
+                                <form th:action="@{/usuario/inicio}"  method="POST"  class="was-validated" 
                                       style="width: 23rem;">
 
                                     <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Iniciar Sesión</h3>
@@ -56,11 +56,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div th:if="${param.error != null}">
+                        <div th:if="${param.error != null}">
                         <h3>Error</h3>
                     </div>
+                    </div>
+                </div>
+                
             </section>
 
 

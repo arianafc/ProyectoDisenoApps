@@ -41,7 +41,7 @@ public class UsuarioController {
     @PostMapping("/inicioSesion")
     private String inicioSesion(Model model, @RequestParam(value = "email") String email, @RequestParam(value = "password") String pass) {
         Usuario usuario = usuarioService.getUsuario(email);
-        if (email.equals(usuario.getEmail()) && pass.equals(usuario.getPassword())) {
+        if (!email.equals(usuario.getEmail()) && !pass.equals(usuario.getPassword())) {
             model.addAttribute("error", "Correo o usuario incorrecto");
             return "index";
         } else {

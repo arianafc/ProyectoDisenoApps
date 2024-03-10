@@ -13,16 +13,14 @@
     </head>
     <body>
         <header th:replace="~{layout/plantillaAdmin :: header}"/>
-        <section>
-             <div th:replace="~{layout/plantillaAdmin :: sideBar}">
-             <div class="d-flex">
-                 <h1>hola</h1>
-                 
-             </div>
-             </div>
-        </section>
-       
+        <section class="container d-flex" style="margin: 0px">
+            <div th:replace="~{layout/plantillaAdmin :: sideBar}"/>
+            <div style="width: 90%; padding: 20px"><h1>holaa</h1></div>
+        </section>   
         
+           
+
+
         <footer th:replace="~{layout/plantillaAdmin :: footer }"/>          
     </body>
 </html>

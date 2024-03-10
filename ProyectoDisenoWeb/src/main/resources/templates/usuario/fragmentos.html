@@ -57,11 +57,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </div>
                         </div>
                         <div th:if="${param.error != null}">
-                        <h3>Error</h3>
-                    </div>
+                            <h3>Error</h3>
+                        </div>
                     </div>
                 </div>
-                
+
             </section>
 
 
@@ -117,5 +117,96 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                     </div>
             </section>
+
+            <section th:fragment="carrusel"class="vh-100" >
+                
+                <div id="template-mo-Ecolekua-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#template-mo-Ecolekua-hero-carousel" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#template-mo-Ecolekua-hero-carousel" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#template-mo-Ecolekua-hero-carousel" data-bs-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="container-fluid">
+                                <div class="row p-5">
+                                    <div class="col-sm-6 px-0 d-none d-sm-block">
+                                    
+                                        <img class="img-fluid"
+                                             src="https://images.pexels.com/photos/20019043/pexels-photo-20019043/free-photo-of-calcetines-mariposas-fotografia-de-moda-entrenadores.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                             alt="">
+                                    </div>
+                                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="background-color: ">
+                                        <div class="text-align-left align-self-center">
+                                            <h4>LO MEJOR EN SNEAKERS</h4>
+                                            <h1><b>CONOCÉ LOS NUEVOS ESTILOS DISPONIBLES</b></h1>
+                                            <h3 class="h2">Juego sin reglas</h3>
+                 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container">
+                                <div class="row p-5">
+                                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                                        <img class="img-fluid"
+                                             src="https://mamaluzcajasdeluz.es/wp-content/uploads/2022/03/juguetes-madera.jpg"
+                                             alt="">
+                                    </div>
+                                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                                        <div class="text-align-left">
+                                            <h1 class="h1 text-success">Personitas</h1>
+                                            <h3 class="h2">Ecolekuakids</h3>
+                                            <p>
+                                                Un juguete tiene como objetivo ser un instrumento de juego y al mismo tiempo ser un
+                                                medio de aprendizaje.
+                                                La madera de pino en crudo, tiene por si sola propiedades
+                                                <strong>antimicrobianas</strong> así que podemos estar
+                                                seguros de un juguete al natural, solamente debemos mantenerlo limpio.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container">
+                                <div class="row p-5">
+                                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                                        <img class="img-fluid"
+                                             src="https://m.media-amazon.com/images/I/71sWwJGa5wL._AC_UF894,1000_QL80_.jpg" alt="">
+                                    </div>
+                                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                                        <div class="text-align-left">
+                                            <h1 class="h1">Bosque</h1>
+                                            <h3 class="h2">Arcoíris </h3>
+                                            <p>
+                                                Árboles de madera con colores que darán vida a muchos juegos en las manos de los
+                                                pequeños.
+                                                Que vivan los colores
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-Ecolekua-hero-carousel"
+                       role="button" data-bs-slide="prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-Ecolekua-hero-carousel"
+                       role="button" data-bs-slide="next">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+               
+           
+            </section>
+
+
+
         </body>
     </html>

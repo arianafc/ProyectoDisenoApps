@@ -54,7 +54,7 @@
                             </header>
                             
                             <div th:fragment="sideBar">
-                                    <div class="d-flex flex-column flex-shrink-0 vh-100 shadow collapse" style="width: 10%; position: sticky; display: inline-block; vertical-align: top">
+                                <div class="d-flex flex-column flex-shrink-0 vh-100 shadow collapse" style="margin-left: -11px">
                                         <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" >
                                             <li class="nav-item text-black"> <a th:href="@{/usuario/adminInicio}" class="nav-link active py-3 border-bottom text-white bg-dark"> <i class="fa fa-dashboard"></i> <b>Dashboard</b> </a> </li>             
                                             <li> <a href="#" class="nav-link icon-link-hover py-3 border-bottom text-black"> <i class="fa fa-plus"></i> Registro de productos </a> </li>
@@ -64,8 +64,6 @@
                                             <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-sign-in"></i> Cerrar Sesión </a> </li>
                                         </ul>
                                     </div>
-
-             
                             </div>
 
                             <footer th:fragment="footer" class="text-center text-lg-start bg-body-tertiary text-muted " style="margin-top: auto" >

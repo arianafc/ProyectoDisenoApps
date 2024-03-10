@@ -28,7 +28,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <div class="col-sm-6 text-black" style="align-items: center">
                             <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-                                <form th:action="@{/usuario/inicio}"  method="POST"  class="was-validated" 
+                                <form th:action="@{/usuario/login}" method="POST" class="was-validated" 
                                       style="width: 23rem;">
 
                                     <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Iniciar Sesión</h3>
@@ -84,11 +84,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <h3 class="fw-normal " style="letter-spacing: 1px;">Crear Cuenta</h3>
                                     <p></p>
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="email">Número de Cédula</label>
-                                        <input type="num" id="idUsuario" th:name="idUsuario" class="form-control form-control-lg" required="true" />
+                                        <label class="form-label" for="cedula">Número de Cédula</label>
+                                        <input type="num" id="cedula" th:name="cedula" class="form-control form-control-lg" required="true" />
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="email">Nombre Completo</label>
+                                        <label class="form-label" for="nombre">Nombre Completo</label>
                                         <input type="text" id="nombre" th:name="nombre" class="form-control form-control-lg" required="true" />
                                     </div>
 
@@ -98,7 +98,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="email">Número de Teléfono</label>
+                                        <label class="form-label" for="telefono">Número de Teléfono</label>
                                         <input type="text" id="telefono" th:name="telefono" class="form-control form-control-lg" required="true" />
                                     </div>
 

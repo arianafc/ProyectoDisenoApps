@@ -24,12 +24,13 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Los valores generados que estrategia usan, identico a la BD 
     @Column(name = "id_usuario") 
     private long idUsuario;
+    private int cedula;
     private String nombre;
     private String email;
     private String password;
     private String telefono;
     private String direccion;
-    private String rol;
+    private int rol;
     
     
     public long getIdUsuario(){
@@ -40,8 +41,9 @@ public class Usuario implements Serializable {
         return email;
     }
 
-    public Usuario(long idUsuario, String nombre, String email, String password, String telefono, String direccion, String rol) {
+    public Usuario(long idUsuario, int cedula, String nombre, String email, String password, String telefono, String direccion, int rol) {
         this.idUsuario = idUsuario;
+        this.cedula = cedula;
         this.nombre = nombre;
         this.email = email;
         this.password = password;
@@ -49,6 +51,8 @@ public class Usuario implements Serializable {
         this.direccion = direccion;
         this.rol = rol;
     }
+
+    
 
     public Usuario() {
     }

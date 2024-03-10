@@ -29,47 +29,69 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-   
     @Autowired
     private UsuarioService usuarioService;
- 
 
     @GetMapping("/login")
     private String login(Model model) {
         return "/usuario/login";
     }
 
-    @PostMapping("/inicio")
-    private String inicio(Model model, @RequestParam(value = "email") String email, @RequestParam(value = "password") String pass) {
+    @PostMapping("/login")
+    private String login(Model model, @RequestParam(value = "email") String email, @RequestParam(value = "password") String pass) {
         Usuario usuario = usuarioService.getUsuarioporEmail(email);
-        if(usuario==null){
+        if (usuario == null) {
             model.addAttribute("error", "Correo o usuario incorrecto");
-             return "/usuario/login";
+            return "/usuario/login";
         }
         if (!email.equals(usuarioService.getUsuarioporEmail(email).getEmail()) || !pass.equals(usuarioService.getUsuarioporEmail(email).getPassword())) {
             model.addAttribute("error", "Correo o usuario incorrecto");
             return "/usuario/login";
         } else {
-            return "/usuario/inicio";
+            if (usuario.getRol() == 3) {
+                return "redirect:/usuario/inicio";
+            } else if (usuario.getRol() == 1) {
+                return "redirect:/usuario/adminInicio";
+            } else if (usuario.getRol()==2){
+                return "redirect:/usuario/vendedorInicio";
+            } else {
+                return "/usuario/login";
+            }
         }
-
     }
 
+   @GetMapping("/inicio")
+    private String inicio() {
+        return "/usuario/inicio";
+    }
     
+    @GetMapping("/adminInicio")
+    private String adminInicio() {
+        return "/usuario/adminInicio";
+    }
+
+     @GetMapping("/vendedorInicio")
+    private String vendedorInicio() {
+        return "/usuario/vendedorInicio";
+    }
+
     @GetMapping("/crearCuenta")
     private String crearCuenta() {
         return "/usuario/crearCuenta";
     }
 
     @PostMapping("/guardar")
-    public String guardar(Usuario usuario){
-        usuario.setDireccion("");
-        usuario.setRol("3");
-        usuarioService.save(usuario);
-        return "redirect:/usuario/login";
-    }
-    
+    public String guardar(Usuario usuario, Model model) {
+        if (usuarioService.existeUsuarioPorEmail(usuario.getEmail())) {
+            model.addAttribute("error", "Correo registrado");
+            return "/usuario/crearCuenta";
+        } else {
+            usuario.setDireccion("");
+            usuario.setRol(3);
+            usuarioService.save(usuario);
+            return "redirect:/usuario/login";
+        }
 
     }
 
-
+}

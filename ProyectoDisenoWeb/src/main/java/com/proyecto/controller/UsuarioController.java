@@ -79,6 +79,12 @@ public class UsuarioController {
     private String crearCuenta() {
         return "/usuario/crearCuenta";
     }
+    
+    @GetMapping("/asignarRol")
+    private String asignarRol(){
+        return "/usuario/asignarRol";
+    }
+
 
     @PostMapping("/guardar")
     public String guardar(Usuario usuario, Model model) {

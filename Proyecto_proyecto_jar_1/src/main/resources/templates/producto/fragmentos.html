@@ -4,23 +4,22 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>FAEJ</title>
+        <title>TechShop</title>
     </head>
     <body>
         <!-- Sección para crear el botón de agregar productos -->
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="d-flex">
-                        <div class="ms-auto">
-                            <button 
-                                type="button" 
-                                class="btn btn-dark" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#agregarProducto">
-                                <i class="fas fa-plus"></i> Agregar Nuevo
-                            </button>
-                        </div>
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-dark btn-block"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarProducto">
+                            <i class="fas fa-plus"></i> Agregar Nuevo
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -35,8 +34,8 @@
                  aria-hidden="true">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
-                        <div class="modal-header bg-dark text-white">
-                            <h5 class="modal-title">Agregar Nuevo</h5>
+                        <div class="modal-header bg-dark text-white"> <!-- Cambiado a bg-dark para fondo negro -->
+                            <h5 class="modal-title">Agregar Nuevo</h5> <!-- Texto actualizado -->
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
@@ -48,27 +47,36 @@
                                     <input type="text" class="form-control" name="nombre" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="nombre">Status</label>
-                                    <input type="text" class="form-control" name="status" required="true"/>
+                                    <label for="nombre">Nombre del Producto</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="nombre">Descripcion</label>
-                                    <input type="text" class="form-control" name="descripcion" required="true"/>
+                                    <label for="nombre">Nombre del Producto</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="nombre">Precio</label>
+                                    <label for="nombre">Nombre del Producto</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nombre">Nombre del Producto</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nombre">Nombre del Producto</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nombre">Nombre del Producto</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="precio">Precio</label>
                                     <input type="text" class="form-control" name="precio" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="nombre">Cantidad</label>
-                                    <input type="text" class="form-control" name="cantidad" required="true"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="nombre">Categoria</label>
-                                    <input type="text" class="form-control" name="categoria" required="true"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="imagen">Imagen</label>
+                                    <label for="imagen">Imagen del Producto</label>
                                     <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
                                     <img id="blah" src="#" alt="your image" height="200"/>
                                 </div>

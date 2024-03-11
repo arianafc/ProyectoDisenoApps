@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FirebaseStorageServiceImpl implements FirebaseStorageService {
+    
     public String cargaImagen(MultipartFile archivoLocalCliente, String carpeta, Long id) {
         try {
             // El nombre original del archivo local del cliene
@@ -72,8 +73,4 @@ public class FirebaseStorageServiceImpl implements FirebaseStorageService {
         return String.format("%019d", id);
     }
 
-    @Override
-    public String imagen(MultipartFile archivoLocalCliente, String carpeta, Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

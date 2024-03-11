@@ -1,6 +1,394 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
+
+
+    <style>
+        .order-history {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 38px;
+            padding: 15px 57px 63px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 143%;
+            border: 1px solid rgba(228, 231, 233, 1);
+            border-radius: 4px;
+            background-color: var(--Gray-00, #fff);
+        }
+
+        @media (max-width: 991px) {
+            .order-history {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+        }
+
+        .order-history-title {
+            width: 422px;
+            max-width: 100%;
+            padding: 22px 60px 22px 24px;
+            font-family: Public Sans, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--Gray-900, #191c1f);
+            text-transform: uppercase;
+            white-space: nowrap;
+            border-radius: 4px 4px 0px 0px;
+        }
+
+        @media (max-width: 991px) {
+            .order-history-title {
+                padding: 0 20px;
+                white-space: initial;
+            }
+        }
+
+        .order-history-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 25px;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 150%;
+            color: var(--Gray-700, #475156);
+            text-transform: uppercase;
+            white-space: nowrap;
+            background-color: var(--Gray-50, #f2f4f5);
+            border: 1px solid rgba(228, 231, 233, 1);
+        }
+
+        @media (max-width: 991px) {
+            .order-history-header {
+                flex-wrap: wrap;
+                padding: 0 20px;
+                white-space: initial;
+            }
+        }
+
+        .order-number-header,
+        .order-status-header,
+        .order-date-header,
+        .order-total-header,
+        .order-customer-header {
+            font-family: Public Sans, sans-serif;
+            flex: 1;
+        }
+
+        @media (max-width: 991px) {
+            .order-number-header {
+                white-space: initial;
+            }
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 12px 26px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 991px) {
+            .order-item {
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+        }
+
+        .order-number {
+            font-family: Public Sans, sans-serif;
+            font-weight: 500;
+            color: var(--Gray-900, #191c1f);
+            flex: 1;
+        }
+
+        .order-status {
+            font-family: Public Sans, sans-serif;
+            color: var(--Primary-500, #fa8232);
+            flex: 1;
+        }
+
+        .order-date {
+            font-family: Public Sans, sans-serif;
+            font-weight: 400;
+            color: var(--Gray-600, #5f6c72);
+            flex: 1;
+        }
+
+        .order-total {
+            font-family: Public Sans, sans-serif;
+            font-weight: 400;
+            color: var(--Gray-700, #475156);
+            flex: 1;
+        }
+
+        .order-customer {
+            font-family: Public Sans, sans-serif;
+            color: var(--Secondary-500, #2da5f3);
+            flex: 1;
+        }
+
+        .sales-graphics {
+            background-color: #fff;
+            margin-top: 75px;
+        }
+
+        @media (max-width: 991px) {
+            .sales-graphics {
+                max-width: 100%;
+                margin-top: 40px;
+            }
+        }
+
+        .sales-graphics-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media (max-width: 991px) {
+            .sales-graphics-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+        }
+
+        .sales-chart-column {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 67%;
+            margin-left: 0;
+        }
+
+        @media (max-width: 991px) {
+            .sales-chart-column {
+                width: 100%;
+            }
+        }
+
+        .sales-chart-wrapper {
+            align-self: stretch;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            background-color: #fff;
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+            font-size: 20px;
+            color: #000;
+            font-weight: 500;
+            width: 100%;
+            padding: 31px 20px;
+        }
+
+        @media (max-width: 991px) {
+            .sales-chart-wrapper {
+                max-width: 100%;
+                margin-top: 14px;
+            }
+        }
+
+        .sales-chart-title {
+            font-family: Poppins, sans-serif;
+        }
+
+        @media (max-width: 991px) {
+            .sales-chart-title {
+                max-width: 100%;
+            }
+        }
+
+        .sales-chart-image {
+            aspect-ratio: 2.78;
+            object-fit: auto;
+            object-position: center;
+            width: 100%;
+            margin-top: 53px;
+        }
+
+        @media (max-width: 991px) {
+            .sales-chart-image {
+                max-width: 100%;
+                margin-top: 40px;
+            }
+        }
+
+        .best-sellers-column {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 33%;
+            margin-left: 20px;
+        }
+
+        @media (max-width: 991px) {
+            .best-sellers-column {
+                width: 100%;
+            }
+        }
+
+        .best-sellers-wrapper {
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            background-color: #fff;
+            display: flex;
+            width: 100%;
+            flex-grow: 1;
+            flex-direction: column;
+            color: #000;
+            font-weight: 600;
+            margin: 0 auto;
+            padding: 26px 16px;
+        }
+
+        @media (max-width: 991px) {
+            .best-sellers-wrapper {
+                margin-top: 14px;
+            }
+        }
+
+        .best-sellers-header {
+            display: flex;
+            justify-content: space-between;
+            padding-right: 10px;
+            gap: 20px;
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        .best-sellers-title {
+            font-family: Poppins, sans-serif;
+            flex-grow: 1;
+            flex-basis: auto;
+        }
+
+        .best-sellers-icon {
+            aspect-ratio: 1;
+            object-fit: auto;
+            object-position: center;
+            width: 24px;
+            margin: auto 0;
+        }
+
+        .best-seller-item {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 36px;
+            width: 100%;
+            padding-right: 10px;
+            gap: 20px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 991px) {
+            .best-seller-item {
+                white-space: initial;
+            }
+        }
+
+        .best-seller-info {
+            display: flex;
+            gap: 16px;
+        }
+
+        @media (max-width: 991px) {
+            .best-seller-info {
+                white-space: initial;
+            }
+        }
+
+        .best-seller-image {
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.2);
+            width: 64px;
+            height: 64px;
+        }
+
+        .best-seller-details {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            flex-basis: 0%;
+            margin: auto 0;
+        }
+
+        @media (max-width: 991px) {
+            .best-seller-details {
+                white-space: initial;
+            }
+        }
+
+        .best-seller-name {
+            font: 16px Open Sans, sans-serif;
+        }
+
+        @media (max-width: 991px) {
+            .best-seller-name {
+                white-space: initial;
+            }
+        }
+
+        .best-seller-price {
+            margin-top: 4px;
+            font: 14px Open Sans, sans-serif;
+        }
+
+        .best-seller-stats {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            margin: auto 0;
+        }
+
+        @media (max-width: 991px) {
+            .best-seller-stats {
+                white-space: initial;
+            }
+        }
+
+        .best-seller-amount {
+            font: 16px Rubik, sans-serif;
+        }
+
+        .best-seller-sales {
+            margin-top: 4px;
+            font: 14px Open Sans, sans-serif;
+        }
+
+        @media (max-width: 991px) {
+            .best-seller-sales {
+                white-space: initial;
+            }
+        }
+
+        .report-button {
+            justify-content: center;
+            align-self: start;
+            border-radius: 8px;
+            background-color: #333;
+            margin-top: 16px;
+            color: #fff;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.25px;
+            padding: 12px 16px;
+            font: 500 14px Rubik, sans-serif;
+        }
+
+        @media (max-width: 991px) {
+            .report-button {
+                white-space: initial;
+            }
+        }
+    </style>
+
+
+
+
     <head th:fragment="head"> <!-- th:fragment darle nombres a las secciones para llamarlas en otras partes-->
         <meta charset="UTF-8"/>
         <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/> <!-- agrega las referencias de las dependencias que agregamos -->
@@ -14,9 +402,245 @@
     <body>
         <header th:replace="~{layout/plantillaAdmin :: header}"/>
         <section class="container d-flex" style="margin: 0px">
-            <div th:replace="~{layout/plantillaAdmin :: sideBar}"/>
-            <div style="width: 90%; padding: 20px"><h1>holaa</h1></div>
-        </section>   
+            <div th:replace="~{layout/plantillaAdmin :: sideBar}" style="height:250vh"/>
+
+            <!-- Algunas de las clases presentes no estan creadas aun. -->
+            <!-- contenido de la pagina -->
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col">
+                        <section class="card bg-light mb-3" style="max-width: 18rem; justify-content: center" >
+
+                            <header class="card-header">Información de la Cuenta</header>
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/63fb472cb2fb9f16011580ff3f78ce8a1d22f122f6e6235ad622f2e1b59e6528?apiKey=3985c52de56d473dbef26e6c027f5b71&" class="user-avatar" alt="User avatar" />
+                                    <div class="user-details">
+                                        <h2 class="card-title">Admin Ejemplo</h2>
+                                        <p class="user-location">Región - País </p>
+                                    </div>
+                                </div>
+                                <div class="user-email">
+                                    <span class="email-label">Email:</span>
+                                    <span class="email-value">emailtest@gmail.com</span>
+                                </div>
+                                <div class="user-email-secondary">
+                                    <span class="email-secondary-label">Email 2:</span>
+                                    <span class="email-secondary-value">email2test@gmail.com</span>
+                                </div>
+                                <div class="user-phone">
+                                    <span class="phone-label">Teléfono</span>
+                                    <span class="phone-value">+1-000-000-0000</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-light">Editar Cuenta</button>
+                        </section>
+                    </div>
+                    <div class="col">
+                        <section class="card bg-light mb-3" style="max-width: 18rem;">
+                            <header class="card-header">Dirección de Admin</header>
+                            <div class="card-body">
+                                <h3 class="card-title">Admin Ejemplo</h3>
+                                <p class="card-text">
+                                    Dirección de Cliente Ejemplo , Provincia, Canton, Distrito
+                                </p>
+                                <div class="card-body">
+                                    <span class="contact-label">Phone Number:</span>
+                                    <span class="contact-value">+1-000-000-0000</span>
+                                </div>
+                                <div class="card-body">
+                                    <span class="card-text">Email:</span>
+                                    <span class="card-text">emailtest@gmail.com</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-light">Editar Dirección</button>
+                        </section>
+
+                        <div> 
+                        </div>
+                    </div>
+                    <div class="col">
+                        <section class="container">
+                            <section class="stats-container">
+                                <div class="total-orders">
+                                    <div class="total-orders-icon">
+                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/86918e56bd72d68a849e56fbef7f286d4f8dcf62f0868a5e9fa01fd2c3b4a196?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Total Orders Icon" class="icon" />
+                                    </div>
+                                    <div class="total-orders-info">
+                                        <div class="total-orders-count">154</div>
+                                        <div class="total-orders-label">Ordenes Totales en la Página</div>
+                                    </div>
+                                </div>
+
+                                <div class="pending-orders">
+                                    <div class="pending-orders-icon">
+                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/326c2a4d1209c95773eb057c3ed767f4ea06578c3db47ccc7a8c3428ae9afbc7?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Pending Orders Icon" class="icon" />
+                                    </div>
+                                    <div class="pending-orders-info">
+                                        <div class="pending-orders-count">05</div>
+                                        <div class="pending-orders-label">Ordenes Pendientes en la Página</div>
+                                    </div>
+                                </div>
+
+                                <div class="completed-orders">
+                                    <div class="completed-orders-icon">
+                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ae77913fa6f44c7ac47f22671bcdee5c5fe065ecd020993dbc569dc4e079b6fa?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Completed Orders Icon" class="icon" />
+                                    </div>
+                                    <div class="completed-orders-info">
+                                        <div class="completed-orders-count">149</div>
+                                        <div class="completed-orders-label">Ordenes Completas en la Página</div>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                    </div>
+                </div>
+                <!-- grafico de ventas y lo mas vendido -->
+                <div class="row">
+                    <div class="col">
+                        <section class="sales-graphics">
+                            <div class="sales-graphics-container">
+                                <div class="sales-chart-column">
+                                    <div class="sales-chart-wrapper">
+                                        <h2 class="sales-chart-title">Gráficos de ventas</h2>
+                                        <!-- eventualmente se remplazara por una grafica -->
+                                        <img src="" alt="grafico de ventas" class="sales-chart-image" loading="lazy" />
+                                    </div>
+                                </div>
+                                <div class="best-sellers-column">
+                                    <div class="best-sellers-wrapper">
+                                        <header class="best-sellers-header">
+                                            <h2 class="best-sellers-title">Los más vendidos</h2>
+                                            <img src="mas_vendido.png" alt="Best Sellers Icon" class="best-sellers-icon" loading="lazy" />
+                                        </header>
+                                        <article class="best-seller-item">
+                                            <div class="best-seller-info">
+                                                <div class="best-seller-image"></div>
+                                                <div class="best-seller-details">
+                                                    <h3 class="best-seller-name">Lorem Ipsum</h3>
+                                                    <p class="best-seller-price">₹126.500</p>
+                                                </div>
+                                            </div>
+                                            <div class="best-seller-stats">
+                                                <p class="best-seller-amount">₹126.50</p>
+                                                <p class="best-seller-sales">999 sales</p>
+                                            </div>
+                                        </article>
+                                        <article class="best-seller-item">
+                                            <div class="best-seller-info">
+                                                <div class="best-seller-image"></div>
+                                                <div class="best-seller-details">
+                                                    <h3 class="best-seller-name">Lorem Ipsum</h3>
+                                                    <p class="best-seller-price">₹126.500</p>
+                                                </div>
+                                            </div>
+                                            <div class="best-seller-stats">
+                                                <p class="best-seller-amount">₹126.50</p>
+                                                <p class="best-seller-sales">999 sales</p>
+                                            </div>
+                                        </article>
+                                        <article class="best-seller-item">
+                                            <div class="best-seller-info">
+                                                <div class="best-seller-image"></div>
+                                                <div class="best-seller-details">
+                                                    <h3 class="best-seller-name">Lorem Ipsum</h3>
+                                                    <p class="best-seller-price">₹126.500</p>
+                                                </div>
+                                            </div>
+                                            <div class="best-seller-stats">
+                                                <p class="best-seller-amount">₹126.50</p>
+                                                <p class="best-seller-sales">999 sales</p>
+                                            </div>
+                                        </article>
+                                        <button class="report-button">Report</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <section class="order-history">
+                                <h2 class="order-history-title">HISTORIAL DE PEDIDOS EN LA PAGINA</h2>
+
+                                <header class="order-history-header">
+                                    <div class="order-number-header">Número de Orden</div>
+                                    <div class="order-status-header">Status</div>
+                                    <div class="order-date-header">Día</div>
+                                    <div class="order-total-header">Total</div>
+                                    <div class="order-customer-header">CLIENTE</div>
+                                </header>
+
+                                <article class="order-item">
+                                    <div class="order-number">#96459761</div>
+                                    <div class="order-status">IN PROGRESS</div>
+                                    <div class="order-date">Dec 30, 2019 07:52</div>
+                                    <div class="order-total">$80 (5 Products)</div>
+                                    <div class="order-customer">Username</div>
+                                </article>
+
+                                <article class="order-item">  
+                                    <div class="order-number">#96459761</div>
+                                    <div class="order-status">IN PROGRESS</div>
+                                    <div class="order-date">Dec 30, 2019 07:52</div>
+                                    <div class="order-total">$80 (5 Products)</div>
+                                    <div class="order-customer">Username</div>
+                                </article>
+
+                                <article class="order-item">
+                                    <div class="order-number">#96459761</div>
+                                    <div class="order-status">IN PROGRESS</div>
+                                    <div class="order-date">Dec 30, 2019 07:52</div>
+                                    <div class="order-total">$80 (5 Products)</div>
+                                    <div class="order-customer">Username</div>
+                                </article>
+
+                                <article class="order-item">
+                                    <div class="order-number">#96459761</div>
+                                    <div class="order-status">IN PROGRESS</div>
+                                    <div class="order-date">Dec 30, 2019 07:52</div>
+                                    <div class="order-total">$80 (5 Products)</div>
+                                    <div class="order-customer">Username</div>
+                                </article>
+
+                                <article class="order-item">
+                                    <div class="order-number">#96459761</div>
+                                    <div class="order-status">IN PROGRESS</div>
+                                    <div class="order-date">Dec 30, 2019 07:52</div>
+                                    <div class="order-total">$80 (5 Products)</div>
+                                    <div class="order-customer">Username</div>
+                                </article>
+
+                                <article class="order-item">
+                                    <div class="order-number">#96459761</div>
+                                    <div class="order-status">IN PROGRESS</div>
+                                    <div class="order-date">Dec 30, 2019 07:52</div>
+                                    <div class="order-total">$80 (5 Products)</div>
+                                    <div class="order-customer">Username</div>
+                                </article>
+
+                                <article class="order-item">
+                                    <div class="order-number">#96459761</div>
+                                    <div class="order-status">IN PROGRESS</div>
+                                    <div class="order-date">Dec 30, 2019 07:52</div>
+                                    <div class="order-total">$80 (5 Products)</div>
+                                    <div class="order-customer">Username</div>
+                                </article>
+
+                                <article class="order-item">
+                                    <div class="order-number">#96459761</div>
+                                    <div class="order-status">IN PROGRESS</div>
+                                    <div class="order-date">Dec 30, 2019 07:52</div>
+                                    <div class="order-total">$80 (5 Products)</div>
+                                    <div class="order-customer">Username</div>
+                                </article>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <footer th:replace="~{layout/plantillaAdmin :: footer }"/>          
     </body>
 </html>

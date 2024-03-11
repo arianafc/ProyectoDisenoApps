@@ -59,4 +59,5 @@ public class ProductoController {
         model.addAttribute("producto", producto);
         return "producto/modificar";
     }
+    
 }

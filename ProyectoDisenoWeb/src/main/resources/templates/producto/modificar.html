@@ -11,38 +11,45 @@
             <div th:replace="~{layout/plantillaAdmin :: sideBar}"/>
 
             <section>
-                <div class="container mt-5">
-                    <h2>Modificar Producto</h2>
+                <div class="container mt-5" style="margin-left: 130px">
+                    <h2 style="text-align: center">Modificar Producto</h2>
+                    <hr>
                     <form th:action="@{/producto/guardar}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
                         <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="nombreProducto">Nombre del Producto</label>
-                                <input type="text" class="form-control" id="nombreProducto" th:field="*{nombreProducto}" required/>
+                            <div class="row">
+                            <div class=" col mb-3">
+                                <label for="nombreProducto"><h5>Nombre del Producto</h5></label>
+                                <input type="text" class="form-control" id="nombreProducto" th:field="*{nombreProducto}" style="height: 70px" required/>
                             </div>
-                            <div class="mb-3">
-                                <label for="descripcion">Descripción</label>
-                                <textarea class="form-control" id="descripcion" th:field="*{descripcion}" required></textarea>
+                            <div class=" col mb-3">
+                                <label for="descripcion"><h5>Descripción</h5></label>
+                                <textarea class="form-control" id="descripcion" th:field="*{descripcion}"  style="height: 70px" required></textarea>
                             </div>
-                            <div class="mb-3">
-                                <label for="precio">Precio</label>
-                                <input type="number" class="form-control" id="precio" th:field="*{precio}" required/>
+                           
+                            <div class=" col mb-3">
+                                <label for="precio"><h5>Precio</h5></label>
+                                <input type="number" class="form-control" id="precio" th:field="*{precio}"  style="height: 70px" required/>
                             </div>
-                            <div class="mb-3">
-                                <label for="cantidad">Cantidad</label>
-                                <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required/>
                             </div>
-                            <div class="mb-3">
-                                <label for="categoria">Categoría</label>
-                                <input type="text" class="form-control" id="categoria" th:field="*{categoria}" required/>
+                            <div class="row">
+                            <div class="col mb-3">
+                                <label for="cantidad"><h5>Cantidad</h5></label>
+                                <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}"  style="height: 70px" required/>
                             </div>
-                            <div class="mb-3">
-                                <label for="imagen">Imagen del Producto</label>
-                                <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
+                                
+                            <div class="col mb-3">
+                                <label for="categoria"><h5>Categoria</h5></label>
+                                <input type="text" class="form-control" id="categoria" th:field="*{categoria}"  style="height: 70px" required/>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="imagen"><h5>Imagen del producto</h5></label>
+                                <input class="form-control" type="file" name="imagenFile"  style="height: 70px" onchange="readURL(this);"/>
                                 <img id="blah" src="#" alt="your image" height="200"/>
                             </div>
+                                </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" type="submit">Guardar</button>
+                            <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
                         </div>
                     </form>
 

@@ -26,12 +26,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                  alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
                         </div>
                         <div class="col-sm-6 text-black" style="align-items: center">
-                            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-
+                            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5" style="justify-content: center">
                                 <form th:action="@{/usuario/login}" method="POST" class="was-validated" 
                                       style="width: 23rem;">
 
-                                    <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Iniciar Sesión</h3>
+                                    <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;"><h2>Iniciar Sesión</h2></h3>
                                     <div style="text-align: end; color: black"><a href="#!" >Olvidé mi contraseña</a></div>
                                     <p></p>
                                     <div class="form-outline mb-4">
@@ -51,7 +50,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <hr></hr>
                                     <p style="text-align: center">No tienes una cuenta? </p>
                                     <div style="text-align: center" class="pt-1 mb-4" >
-                                        <button class="btn btn-lg" type="button" style="background: black; color: white; text-align: center; font-size: 17px"><a th:href="@{/usuario/crearCuenta}">Crear Cuenta</a></button>
+                                        <button class="btn btn-lg" type="button" style="background: black; color: white; text-align: center; font-size: 17px"><a th:href="@{/usuario/crearCuenta}" style="color: white">Crear Cuenta</a></button>
                                     </div>
                                 </form>
                             </div>
@@ -76,12 +75,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                  alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
                         </div>
                         <div class="col-sm-6 text-black" style="align-items: center">
-                            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+                            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5" style="justify-content: center">
 
                                 <form th:action="@{/usuario/guardar}"  th:object="${usuario}"  method="POST"  class="was-validated" 
                                       style="width: 23rem;">
 
-                                    <h3 class="fw-normal " style="letter-spacing: 1px;">Crear Cuenta</h3>
+                                    <h3 class="fw-normal " style="letter-spacing: 1px;"><h2>Crear Cuenta</h2></h3>
                                     <p></p>
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="cedula">Número de Cédula</label>
@@ -206,7 +205,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </section>
 
             <section th:fragment="marcas"class="vh-100" style="margin-bottom: 50%">
-                
                 <h1 class="text-black" style="font-size: 50px; text-align: center">LAS MEJORES MARCAS DEL MERCADO</h1>
                 <p></p>
                 

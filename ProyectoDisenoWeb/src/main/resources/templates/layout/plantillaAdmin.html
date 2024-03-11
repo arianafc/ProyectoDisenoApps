@@ -17,7 +17,7 @@
                         </head>
                         <body >
                             <header th:fragment="header" class="header">
-                                <nav class="navbar navbar-expand-lg">
+                                <nav class="navbar navbar-expand-lg shadow">
                                     <div class="container-fluid">
                                         <h1>FAEJ</h1>
                                         <a style="margin-left: 100px" class="navbar-brand" href="#">
@@ -57,7 +57,7 @@
                                 <div class="d-flex flex-column flex-shrink-0 vh-100 shadow collapse" style="margin-left: -11px">
                                         <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" >
                                             <li class="nav-item text-black"> <a th:href="@{/usuario/adminInicio}" class="nav-link active py-3 border-bottom text-white bg-dark"> <i class="fa fa-dashboard"></i> <b>Dashboard</b> </a> </li>             
-                                            <li> <a href="#" class="nav-link icon-link-hover py-3 border-bottom text-black"> <i class="fa fa-plus"></i> Registro de productos </a> </li>
+                                            <li> <a th:href="@{/producto/listado}" class="nav-link icon-link-hover py-3 border-bottom text-black"> <i class="fa fa-plus"></i> Registro de productos </a> </li>
                                             <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-shopping-cart"></i> Control de ventas </a> </li>
                                             <li> <a th:href="@{/usuario/asignarRol}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-spinner"></i> Asignar un rol</a> </li>
                                             <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-cog"></i> Ajustes </a> </li>

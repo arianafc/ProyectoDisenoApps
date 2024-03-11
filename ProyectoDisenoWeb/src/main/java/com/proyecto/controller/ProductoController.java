@@ -60,4 +60,10 @@ public class ProductoController {
         return "producto/modificar";
     }
     
+
+    @GetMapping("busquedaProducto")
+    public String busquedaProducto(Model model){
+        return "/producto/busquedaProducto";
+    }
+
 }

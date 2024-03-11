@@ -97,7 +97,18 @@ public class UsuarioController {
             usuarioService.save(usuario);
             return "redirect:/usuario/login";
         }
-
     }
 
+    
+    @PostMapping("/guardarAdmin")
+    public String guardarAdmin(Usuario usuario, Model model, @RequestParam(value = "rol") String rol) {
+        if (usuarioService.existeUsuarioPorEmail(usuario.getEmail())) {
+            model.addAttribute("error", "Correo registrado");
+            return "/usuario/asignarRol";
+        } else {
+            
+            usuarioService.save(usuario);
+            return "redirect:/usuario/asignarRol";
+        }
+    }
 }

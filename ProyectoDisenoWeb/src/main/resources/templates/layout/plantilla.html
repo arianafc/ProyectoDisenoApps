@@ -11,7 +11,7 @@
     </head>
     <body >
         <header th:fragment="header" class="header">
-            <nav class="navbar navbar-expand-lg">
+            <nav class="navbar navbar-expand-lg shadow">
                 <div class="container-fluid">
                     <a style="margin-left: 100px" class="navbar-brand" href="#">
                         <img src="FAEJ-NEGRO.png" alt="" width="100px"/> </a>
@@ -209,7 +209,7 @@
 
                     <ul class="navbar-nav d-flex flex-row">
                         <li class="nav-item me-3 me-lg-0">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" th:href="@{/producto/busquedaProducto}">
                                 <i class="fas fa-magnifying-glass"></i>
                             </a>
                         </li>
@@ -246,12 +246,8 @@
 
         </header>
 
-
-
         <footer th:fragment="footer" class="text-center text-lg-start bg-body-tertiary text-muted " style="margin-top: auto" >
-
-
-            <section style="background-color: #333333; color: white; border-bottom: 2px; border-top: 2px; border-bottom-color: white; border-top-color: white; padding-top: 10px">
+          <section style="background-color: #333333; color: white; border-bottom: 2px; border-top: 2px; border-bottom-color: white; border-top-color: white; padding-top: 10px">
                 <div>
                     <hr></hr>
                     <div class="container text-center text-md-start mt-2" > 

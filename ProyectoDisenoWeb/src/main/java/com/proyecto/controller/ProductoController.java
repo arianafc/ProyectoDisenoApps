@@ -59,4 +59,9 @@ public class ProductoController {
         model.addAttribute("producto", producto);
         return "producto/modificar";
     }
+    
+    @GetMapping("busquedaProducto")
+    public String busquedaProducto(Model model){
+        return "/producto/busquedaProducto";
+    }
 }

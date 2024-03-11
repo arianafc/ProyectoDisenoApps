@@ -3,11 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.proyecto.controller;
+
 /**
  *
  * @author Jorge
  */
 import com.proyecto.domain.Producto;
+import com.proyecto.service.FirebaseStorageService;
 import com.proyecto.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,15 +36,26 @@ public class ProductoController {
         return "producto/listado";
     }
 
-    @GetMapping("/nuevo")
-    public String productoNuevo(Model model) {
+    @GetMapping("/agregarProducto")
+    public String agregarProducto(Model model) {
         model.addAttribute("producto", new Producto());
         return "producto/agregarProducto";
     }
+    @Autowired
+    private FirebaseStorageService firebaseStorageService;
 
     @PostMapping("/guardar")
     public String productoGuardar(Producto producto,
             @RequestParam("imagenFile") MultipartFile imagenFile) {
+        if (!imagenFile.isEmpty()) {
+            productoService.saveProducto(producto);
+            producto.setImagen(
+                    firebaseStorageService.cargaImagen(
+                            imagenFile,
+                            "producto",
+                            producto.getIdProducto()));
+        }
+
         productoService.saveProducto(producto);
         return "redirect:/producto/listado";
     }
@@ -59,9 +72,14 @@ public class ProductoController {
         model.addAttribute("producto", producto);
         return "producto/modificar";
     }
-    
+
     @GetMapping("busquedaProducto")
-    public String busquedaProducto(Model model){
+    public String busquedaProducto(Model model) {
         return "/producto/busquedaProducto";
+    }
+
+    @GetMapping("/Carrito")
+    private String Carrito() {
+        return "/producto/Carrito";
     }
 }

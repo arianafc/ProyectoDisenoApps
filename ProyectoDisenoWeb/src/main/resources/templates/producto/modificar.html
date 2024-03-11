@@ -1,44 +1,56 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/plantilla :: head">
-    <title>Modificar Producto</title>
-</head>
-<body>
-    <div class="container mt-5">
-        <h2>Modificar Producto</h2>
-        <form th:action="@{/producto/guardar}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
-    <div class="modal-body">
-        <div class="mb-3">
-            <label for="nombreProducto">Nombre del Producto</label>
-            <input type="text" class="form-control" id="nombreProducto" th:field="*{nombreProducto}" required/>
-        </div>
-        <div class="mb-3">
-            <label for="descripcion">Descripción</label>
-            <textarea class="form-control" id="descripcion" th:field="*{descripcion}" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="precio">Precio</label>
-            <input type="number" class="form-control" id="precio" th:field="*{precio}" required/>
-        </div>
-        <div class="mb-3">
-            <label for="cantidad">Cantidad</label>
-            <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required/>
-        </div>
-        <div class="mb-3">
-            <label for="categoria">Categoría</label>
-            <input type="text" class="form-control" id="categoria" th:field="*{categoria}" required/>
-        </div>
-        <div class="mb-3">
-            <label for="imagen">Imagen del Producto</label>
-            <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
-            <img id="blah" src="#" alt="your image" height="200"/>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="submit">Guardar</button>
-    </div>
-</form>
+    <head th:replace="layout/plantilla :: head">
+        <title>Modificar Producto</title>
+    </head>
+    <body>
 
-    </div>
-</body>
+        <header th:replace="~{layout/plantillaAdmin :: header}"/>
+
+        <section class="container d-flex" style="margin: 0px">
+            <div th:replace="~{layout/plantillaAdmin :: sideBar}"/>
+
+            <section>
+                <div class="container mt-5">
+                    <h2>Modificar Producto</h2>
+                    <form th:action="@{/producto/guardar}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="nombreProducto">Nombre del Producto</label>
+                                <input type="text" class="form-control" id="nombreProducto" th:field="*{nombreProducto}" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcion">Descripción</label>
+                                <textarea class="form-control" id="descripcion" th:field="*{descripcion}" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="precio">Precio</label>
+                                <input type="number" class="form-control" id="precio" th:field="*{precio}" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cantidad">Cantidad</label>
+                                <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="categoria">Categoría</label>
+                                <input type="text" class="form-control" id="categoria" th:field="*{categoria}" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="imagen">Imagen del Producto</label>
+                                <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
+                                <img id="blah" src="#" alt="your image" height="200"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </section>
+        </section>
+        
+         <footer th:replace="~{layout/plantillaAdmin :: footer}"/>      
+    </body>
+    </body>
 </html>

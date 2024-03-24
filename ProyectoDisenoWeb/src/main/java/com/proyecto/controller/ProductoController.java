@@ -10,6 +10,7 @@ package com.proyecto.controller;
  */
 import com.proyecto.domain.Producto;
 import com.proyecto.service.CategoriaService;
+import com.proyecto.service.EstiloService;
 import com.proyecto.service.FirebaseStorageService;
 import com.proyecto.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,18 @@ public class ProductoController {
     private ProductoService productoService;
     @Autowired
     private CategoriaService categoriaService;
+    @Autowired
+    private EstiloService estiloService;
 
     @GetMapping("/listado")
     public String listado(Model model) {
         var productos = productoService.getProductos();
         var categorias = categoriaService.getCategorias();
+        var estilos = estiloService.getEstilos();
         model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
         model.addAttribute("categorias", categorias);
+        model.addAttribute("estilos", estilos);
         return "producto/listado";
     }
 
@@ -53,7 +58,7 @@ public class ProductoController {
     public String productoGuardar(Producto producto,
             @RequestParam("imagenFile") MultipartFile imagenFile) {
         if (!imagenFile.isEmpty()) {
-            productoService.save(producto);
+            producto.setIdProducto(0L);
             producto.setRutaImagen(
                     firebaseStorageService.cargaImagen(
                             imagenFile,
@@ -76,6 +81,7 @@ public class ProductoController {
         producto = productoService.getProducto(producto);
         model.addAttribute("producto", producto);
         model.addAttribute("categorias", categoriaService.getCategorias());
+        model.addAttribute("estilos", estiloService.getEstilos());
         return "producto/modificar";
     }
 
@@ -88,12 +94,14 @@ public class ProductoController {
     private String Carrito() {
         return "/producto/Carrito";
     }
-    
+
     @GetMapping("/agregarProducto")
     private String agregarProducto(Model model, Producto producto) {
         model.addAttribute("producto", producto);
         model.addAttribute("categorias", categoriaService.getCategorias());
+        model.addAttribute("estilos", estiloService.getEstilos());
         return "/producto/agregarProducto";
     }
-
+    
+    
 }

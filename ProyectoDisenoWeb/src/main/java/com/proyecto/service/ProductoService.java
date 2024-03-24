@@ -25,4 +25,6 @@ public interface ProductoService {
     
     // Eliminar un producto
     public void deleteProducto(Long id);
+    
+    public List<Producto> findByEstiloAndCategoria(String estil, String categoria);
 }

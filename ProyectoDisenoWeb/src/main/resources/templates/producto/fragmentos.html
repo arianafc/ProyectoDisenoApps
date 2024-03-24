@@ -6,7 +6,7 @@
         <title>TechShop</title>
     </head>
     <body>
-       <section th:fragment="listadoProductos">
+        <section th:fragment="listadoProductos">
             <div class="row" style="text-align: right; flex-direction: row-reverse">
                 <div class="col mb-3" style="text-align: right">
                     <div class="input-group rounded" style="align-content: right">
@@ -20,8 +20,8 @@
                     <button 
                         type="button" 
                         class="btn btn-dark" >
-                        <i class="fas fa-plus"></i> <a th:href="@{/producto/agregarProducto}">Agregar Nuevo</a>
-                            </button>
+                        <i class="fas fa-plus"></i> <a th:href="@{/producto/agregarProducto}" style="color: white">Agregar Nuevo</a>
+                    </button>
                 </div>
             </div>
             <div class="container">
@@ -39,9 +39,11 @@
                                             <th>Nombre Producto</th>
                                             <th>Status</th>
                                             <th>Descripcion</th>
+                                            <th>Marca</th>
                                             <th>Precio</th>
                                             <th>Cantidad</th>
                                             <th>Categoria</th>
+                                            <th>Estilo</th>
                                             <th>Imagen</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -52,9 +54,11 @@
                                             <td th:text="${producto.nombre}"></td>
                                             <td th:text="${producto.status}"></td>
                                             <td th:text="${producto.descripcion}"></td>
+                                            <td th:text="${producto.marca}"></td>
                                             <td th:text="${producto.precio}"></td>
                                             <td th:text="${producto.cantidad}"></td>
                                             <td th:text="${producto.categoria.nombre}"></td>
+                                            <td th:text="${producto.estilo.nombre}"></td>
                                             <td>
                                                 <img th:src="${producto.rutaImagen}" height="50" alt="Imagen del producto" />
                                             </td>
@@ -79,58 +83,85 @@
                 </div>
             </div>
         </section>
-       
-        
+
+
         <section th:fragment="agregarProducto">
-                <div class="container mt-5" style="margin-left: 130px">
-                    <h2 style="text-align: center">Registrar Nuevo Producto</h2>
-                    <hr>
-                        <form th:action="@{/producto/guardar}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
-                            <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class=" col mb-3">
-                                        <label for="nombreProducto"><h5>Nombre del Producto</h5></label>
-                                        <input type="text" class="form-control" id="nombre" th:field="*{nombre}" style="height: 70px" required/>
-                                    </div>
-                                    <div class=" col mb-3">
-                                        <label for="descripcion"><h5>Descripción</h5></label>
-                                        <textarea class="form-control" id="descripcion" th:field="*{descripcion}"  style="height: 70px" required></textarea>
-                                    </div>
-
-                                    <div class=" col mb-3">
-                                        <label for="precio"><h5>Precio</h5></label>
-                                        <input type="number" class="form-control" id="precio" th:field="*{precio}"  style="height: 70px" required/>
-                                    </div>
+            <div class="container mt-5" style="margin-left: 130px">
+                <h2 style="text-align: center">Registrar Nuevo Producto</h2>
+                <hr>
+                    <form th:action="@{/producto/guardar}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
+                        <div class="row">
+                            <!-- Primera columna -->
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="mb-1" for="nombre" style="font-size: 20px"><h5>Nombre</h5></label>
+                                    <input type="text" class="form-control" id="nombre" th:field="*{nombre}" style="height: 50px" required/>
                                 </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <label for="cantidad"><h5>Cantidad</h5></label>
-                                        <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}"  style="height: 70px" required/>
-                                    </div>
-
-                                    <div class="col mb-3">
-                                        <label for="idCategoria">Categoria</label>
-                                        <select name="idCategoria" th:field ="*{categoria.idCategoria}" class="form-control">
-                                            <option th:each="item : ${categorias}" th:value="${item.idCategoria}">
-                                                [[${item.nombre}]]
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col mb-3">
-                                        <label for="imagen"><h5>Imagen del producto</h5></label>
-                                        <input class="form-control" type="file" name="imagenFile"  style="height: 70px" onchange="readURL(this);"/>
-                                        <img id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" height="200"/>
-                                    </div>
+                                <div class="form-group mb-3 mt-3">
+                                    <label class="mb-1" for="descripcion" style="font-size: 20px"><h5>Descripción</h5></label>
+                                    <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" style="height: 70px" required/>
+                                </div>
+                                <div class="form-group mb-3 mt-3">
+                                    <label style="font-size: 20px" for="categoria" class="mb-1"><h5>Categoría</h5></label>
+                                    <select name="categoria" th:field="*{categoria}" class="form-control" style="height: 50px">
+                                        <option th:each="item : ${categorias}" th:value="${item.idCategoria}">
+                                            [[${item.nombre}]]
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3 mt-3">
+                                    <label style="font-size: 20px" for="estilo" class="mb-1"><h5>Estilo</h5></label>
+                                    <select name="estilo" th:field="*{estilo}" class="form-control" style="height: 50px">
+                                        <option th:each="item : ${estilos}" th:value="${item.idEstilo}">
+                                            [[${item.nombre}]]
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="estilo"><h5>Marca</h5></label>
+                                    <select style="height: 50px" name="marca" th:field ="*{marca}" class="form-control">
+                                        <option th:value="Nike">Nike </option>
+                                        <option th:value="Adidas">Adidas</option>
+                                        <option th:value="Vans">Vans</option>
+                                        <option th:value="Puma">Puma</option>
+                                        <option th:value="NewBalance">New Balance</option>
+                                        <option th:value="Saucony">Saucony</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3 mt-3">
+                                    <label for="precio" class="mb-1" style="font-size: 20px"><h5>Precio</h5></label>
+                                    <input type="number" class="form-control" id="precio" th:field="*{precio}" required style="height: 50px"/>
+                                </div>
+                                <div class="form-group mb-3 mt-3">
+                                    <label for="cantidad"  class="mb-1" style="font-size: 20px" ><h5>Cantidad</h5></label>
+                                    <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required style="height: 50px"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="status"><h5>Status</h5></label>
+                                    <select style="height: 50px" name="status" th:field ="*{status}" class="form-control">
+                                        <option th:value="Activo">
+                                            Activo
+                                        </option>
+                                        <<option th:value="Inactivo">Inactivo</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
+                            <!-- Segunda columna -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="imagen"><h5>Imagen del producto</h5></label>
+                                    <input class="form-control" type="file" name="imagenFile"  style="height: 70px" onchange="readURL(this);"/>
+                                    <p></p>                         
+                                </div>
                             </div>
-                        </form>
-                </div>
-            </section>
-        
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
+                        </div>
+                    </form>
+            </div>
+        </section>
+
         <section th:fragment="buscarProductos">
             <div class="container mt-5">
                 <div class="row d-flex justify-content-center ">
@@ -182,60 +213,113 @@
                 </div>
             </div>
         </section>
-        
+
         <section th:fragment="editarProductos">
-                <div class="container mt-5" style="margin-left: 130px">
-                    <h2 style="text-align: center">Modificar Producto</h2>
-                    <hr>
-                        <form th:action="@{/producto/guardar}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
-                            <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
-                            <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class=" col mb-3">
-                                        <label for="nombreProducto"><h5>Nombre del Producto</h5></label>
-                                        <input type="text" class="form-control" id="nombre" th:field="*{nombre}" style="height: 70px" required/>
-                                    </div>
-                                    <div class=" col mb-3">
-                                        <label for="descripcion"><h5>Descripción</h5></label>
-                                        <textarea class="form-control" id="descripcion" th:field="*{descripcion}"  style="height: 70px" required></textarea>
-                                    </div>
-
-                                    <div class=" col mb-3">
-                                        <label for="precio"><h5>Precio</h5></label>
-                                        <input type="number" class="form-control" id="precio" th:field="*{precio}"  style="height: 70px" required/>
-                                    </div>
+            <div class="container mt-5" style="margin-left: 130px">
+                <h2 style="text-align: center">Modificar Producto</h2>
+                <hr>
+                    <form th:action="@{/producto/guardar}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
+                        <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
+                        <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="nombreProducto"><h5>Nombre del Producto</h5></label>
+                                    <input type="text" class="form-control" id="nombre" th:field="*{nombre}" style="height: 50px" required/>
                                 </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <label for="cantidad"><h5>Cantidad</h5></label>
-                                        <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}"  style="height: 70px" required/>
-                                    </div>
+                                <div class="form-group mb-3">
+                                    <label for="descripcion"><h5>Descripción</h5></label>
+                                    <textarea class="form-control" id="descripcion" th:field="*{descripcion}"  style="height: 70px" required></textarea>
+                                </div>
 
-                                    <div class="col mb-3">
-                                        <label for="idCategoria">Categoria</label>
-                                        <select name="idCategoria" th:field ="*{categoria.idCategoria}" class="form-control">
-                                            <option th:each="item : ${categorias}" th:value="${item.idCategoria}">
-                                                [[${item.nombre}]]
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col mb-3">
-                                        <label for="imagen"><h5>Imagen del producto</h5></label>
-                                        <input class="form-control" type="file" name="imagenFile"  style="height: 70px" onchange="readURL(this);"/>
-                                        <img id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" height="200"/>
-                                    </div>
+                                <div class="form-group mb-3">
+                                    <label for="precio"><h5>Precio</h5></label>
+                                    <input type="number" class="form-control" id="precio" th:field="*{precio}"  style="height: 50px" required/>
+                                </div>
+
+
+                                <div class="form-group mb-3">
+                                    <label for="cantidad"><h5>Cantidad</h5></label>
+                                    <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}"  style="height: 50px" required/>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="idCategoria" style="font: 20px"><h5>Categoria</h5></label>
+                                    <select name="idCategoria" th:field ="*{categoria.idCategoria}" class="form-control" style="height: 50px">
+                                        <option th:each="item : ${categorias}" th:value="${item.idCategoria}">
+                                            [[${item.nombre}]]
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3 mt-3">
+                                    <label style="font-size: 20px" for="estilo" class="mb-1"><h5>Estilo</h5></label>
+                                    <select name="estilo" th:field="*{estilo.idEstilo}" class="form-control" style="height: 50px">
+                                        <option th:each="item : ${estilos}" th:value="${item.idEstilo}">
+                                            [[${item.nombre}]]
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="estilo"><h5>Marca</h5></label>
+                                    <select style="height: 50px" name="marca" th:field ="*{marca}" class="form-control">
+                                        <option th:value="Nike">Nike </option>
+                                        <option th:value="Adidas">Adidas</option>
+                                        <option th:value="Vans">Vans</option>
+                                        <option th:value="Puma">Puma</option>
+                                        <option th:value="NewBalance">New Balance</option>
+                                        <option th:value="Saucony">Saucony</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="status"><h5>Status</h5></label>
+                                    <select style="height: 50px" name="status" th:field ="*{status}" class="form-control">
+                                        <option th:value="Activo">
+                                            Activo
+                                        </option>
+                                        <<option th:value="Inactivo">Inactivo</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="imagen"><h5>Imagen del producto</h5></label>
+                                    <input class="form-control" type="file" name="imagenFile"  style="height: 70px" onchange="readURL(this);"/>
+                                    <p></p>
+                                    <img class="mb-1" id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" width="400" height="400"/>
+                                </div>
                             </div>
-                        </form>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
+                        </div>
+                    </form>
+
+            </div>
+        </section>
+
+        <!-- 2 Sección principal para mostrar la informaccion de las productos -->
+        <section th:fragment="listadoProductosFiltrado" id="productos">
+            <div class="row row-cols-4">
+                <div class="card" th:each="p : ${productos}">
+                    <figure><img th:src="${p.rutaImagen}" 
+                                 class="card-img-top" alt="..."
+                                 height="200"/>
+                        <figcaption>[[${p.precio}+' ('+${p.existencias}+')']]
+                        </figcaption>
+                    </figure>
+                    <div class="card-header">
+                        <h4 class="card-title">[[${p.descripcion}]]</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">[[${p.detalle}]]</p>                    
+                    </div>
                 </div>
-            </section>
-        
-        
-        
-        
+            </div>
+        </section>
+
+
     </body>
 </html>

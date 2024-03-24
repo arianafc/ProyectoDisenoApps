@@ -9,11 +9,12 @@ package com.proyecto.dao;
  * @author feru0
  */
 import com.proyecto.domain.Producto;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
  @Repository
 public interface ProductoDao extends JpaRepository <Producto,Long> {
-    
+     public List<Producto> findByEstiloAndCategoria(String estilo, String categoria);
 }

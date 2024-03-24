@@ -17,6 +17,7 @@ public class Producto implements Serializable {
     @Column(name = "id_producto")
     private Long idProducto;
     private String nombre;
+    private String marca;
     private String descripcion;
     private double precio;
     private int cantidad;
@@ -26,6 +27,10 @@ public class Producto implements Serializable {
     @ManyToOne //aqui se realiza la asociacion con la otra tabla
     @JoinColumn(name = "id_categoria")
     Categoria categoria;
+    
+    @ManyToOne //aqui se realiza la asociacion con la otra tabla
+    @JoinColumn(name = "id_estilo")
+    Estilo estilo;
     
     public Producto() {
     }

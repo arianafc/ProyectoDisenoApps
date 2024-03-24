@@ -48,4 +48,10 @@ public class ProductoServiceImpl implements ProductoService {
     public void deleteProducto(Long id) {
         productoDao.deleteById(id);
     }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<Producto> findByEstiloAndCategoria(String estilo, String categoria){
+        return productoDao.findByEstiloAndCategoria(estilo, categoria);
+    }
 }

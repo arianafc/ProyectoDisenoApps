@@ -33,13 +33,13 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     @Transactional(readOnly = true)
-    public Producto getProducto(Long id) {
-        return productoDao.findById(id).orElse(null);
+    public Producto getProducto(Producto producto) {
+        return productoDao.findById(producto.getIdProducto()).orElse(null);
     }
 
     @Override
     @Transactional
-    public void saveProducto(Producto producto) {
+    public void save(Producto producto) {
         productoDao.save(producto);
     }
 

@@ -6,21 +6,22 @@ package com.proyecto.service;
 
 import com.proyecto.domain.Producto;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Ariana / Jorge
  */
-
+@Service
 public interface ProductoService {
     // Obtener todos los productos
     public List<Producto> getProductos();
     
     // Obtener un producto por su ID
-    public Producto getProducto(Long id);
+    public Producto getProducto(Producto producto);
     
     // Guardar un nuevo producto o actualizar uno existente
-    public void saveProducto(Producto producto);
+    public void save(Producto producto);
     
     // Eliminar un producto
     public void deleteProducto(Long id);

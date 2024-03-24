@@ -30,20 +30,16 @@ public class ListaDeseosController {
         return "listaDeseos/listado"; // Asegúrate de que este es el nombre correcto de tu plantilla
     }
 
-    // Temporalmente removemos el uso de idUsuario para simplificar
     @GetMapping("/agregar/{idProducto}")
     public String agregarProductoDeseado(@PathVariable Long idProducto) {
-        // Implementación temporal que ignora el usuario
-        // Deberás modificar esta lógica para asociar correctamente el producto con un usuario
-        listaDeseosService.agregarProductoDeseado(null, idProducto); // Ajustar según la implementación real
+        listaDeseosService.agregarProductoDeseado(null, idProducto);
         return "redirect:/listaDeseos/listado";
     }
 
     @GetMapping("/eliminar/{idProducto}")
     public String eliminarProductoDeseado(@PathVariable Long idProducto) {
-        // Implementación temporal que ignora el usuario
-        // Deberás modificar esta lógica para asociar correctamente el producto con un usuario
-        listaDeseosService.eliminarProductoDeseado(null, idProducto); // Ajustar según la implementación real
+
+        listaDeseosService.eliminarProductoDeseado(null, idProducto);
         return "redirect:/listaDeseos/listado";
     }
 }

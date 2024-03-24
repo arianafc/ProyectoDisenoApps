@@ -102,6 +102,5 @@ public class ProductoController {
         model.addAttribute("estilos", estiloService.getEstilos());
         return "/producto/agregarProducto";
     }
-    
-    
+
 }

@@ -48,10 +48,16 @@ public class ProductoServiceImpl implements ProductoService {
     public void deleteProducto(Long id) {
         productoDao.deleteById(id);
     }
+
+//    @Override
+//    @Transactional(readOnly=true)
+//    public List<Producto> findByEstiloAndCategoria(String estilo, String categoria){
+//        return productoDao.findByEstiloAndCategoria(estilo, categoria);
+//    }
     
     @Override
-    @Transactional(readOnly=true)
-    public List<Producto> findByEstiloAndCategoria(String estilo, String categoria){
-        return productoDao.findByEstiloAndCategoria(estilo, categoria);
+    @Transactional(readOnly = true)
+    public List<Producto> findByEstiloAndCategoria(String estiloNombre, String categoriaNombre) {
+        return productoDao.findByEstilo_NombreAndCategoria_Nombre(estiloNombre, categoriaNombre);
     }
 }

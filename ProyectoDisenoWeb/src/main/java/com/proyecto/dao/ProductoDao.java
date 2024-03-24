@@ -16,5 +16,6 @@ import org.springframework.stereotype.Repository;
 
  @Repository
 public interface ProductoDao extends JpaRepository <Producto,Long> {
-     public List<Producto> findByEstiloAndCategoria(String estilo, String categoria);
+//     public List<Producto> findByEstiloAndCategoria(String estilo, String categoria);
+    List<Producto> findByEstilo_NombreAndCategoria_Nombre(String estiloNombre, String categoriaNombre);
 }

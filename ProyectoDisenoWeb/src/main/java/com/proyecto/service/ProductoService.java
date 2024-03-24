@@ -14,17 +14,20 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface ProductoService {
+
     // Obtener todos los productos
     public List<Producto> getProductos();
-    
+
     // Obtener un producto por su ID
     public Producto getProducto(Producto producto);
-    
+
     // Guardar un nuevo producto o actualizar uno existente
     public void save(Producto producto);
-    
+
     // Eliminar un producto
     public void deleteProducto(Long id);
-    
-    public List<Producto> findByEstiloAndCategoria(String estil, String categoria);
+
+    //public List<Producto> findByEstiloAndCategoria(String estil, String categoria);
+    //Buscar Estilo y Categoria 
+    List<Producto> findByEstiloAndCategoria(String estiloNombre, String categoriaNombre);
 }

@@ -39,15 +39,7 @@ public class ListaDeseosServiceImpl implements ListaDeseosService {
     @Override
     @Transactional
     public void agregarProductoDeseado(Long idUsuario, Long idProducto) {
-        Producto producto = productoService.getProducto(idProducto);
-        ListaDeseos listaDeseos = listaDeseosDao.findByIdUsuario(idUsuario)
-                .orElseGet(() -> {
-                    ListaDeseos nuevaLista = new ListaDeseos();
-                    nuevaLista.setIdUsuario(idUsuario);
-                    return nuevaLista;
-                });
-        listaDeseos.getProductosDeseados().add(producto);
-        listaDeseosDao.save(listaDeseos);
+                // Implementación pendiente.
     }
 
     @Override

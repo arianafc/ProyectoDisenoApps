@@ -3,11 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.proyecto.controller;
+
 /**
  *
  * @author Jorge
  */
 import com.proyecto.domain.Producto;
+import com.proyecto.service.CategoriaService;
+import com.proyecto.service.FirebaseStorageService;
 import com.proyecto.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,25 +28,40 @@ public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
+    @Autowired
+    private CategoriaService categoriaService;
 
     @GetMapping("/listado")
     public String listado(Model model) {
         var productos = productoService.getProductos();
+        var categorias = categoriaService.getCategorias();
         model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
+        model.addAttribute("categorias", categorias);
         return "producto/listado";
     }
 
     @GetMapping("/nuevo")
-    public String productoNuevo(Model model) {
-        model.addAttribute("producto", new Producto());
-        return "producto/agregarProducto";
+    public String productoNuevo(Producto producto) {
+        return "producto/modificar";
     }
+
+    @Autowired
+    private FirebaseStorageService firebaseStorageService;
 
     @PostMapping("/guardar")
     public String productoGuardar(Producto producto,
             @RequestParam("imagenFile") MultipartFile imagenFile) {
-        productoService.saveProducto(producto);
+        if (!imagenFile.isEmpty()) {
+            productoService.save(producto);
+            producto.setRutaImagen(
+                    firebaseStorageService.cargaImagen(
+                            imagenFile,
+                            "producto",
+                            producto.getIdProducto())
+            );
+        }
+        productoService.save(producto);
         return "redirect:/producto/listado";
     }
 
@@ -54,21 +72,28 @@ public class ProductoController {
     }
 
     @GetMapping("/modificar/{idProducto}")
-    public String productoModificar(@PathVariable("idProducto") Long idProducto, Model model) {
-        Producto producto = productoService.getProducto(idProducto);
+    public String productoModificar(@PathVariable("idProducto") Producto producto, Model model) {
+        producto = productoService.getProducto(producto);
         model.addAttribute("producto", producto);
+        model.addAttribute("categorias", categoriaService.getCategorias());
         return "producto/modificar";
     }
-    
 
     @GetMapping("busquedaProducto")
-    public String busquedaProducto(Model model){
+    public String busquedaProducto(Model model) {
         return "/producto/busquedaProducto";
     }
-    
-      @GetMapping("/Carrito")
+
+    @GetMapping("/Carrito")
     private String Carrito() {
         return "/producto/Carrito";
+    }
+    
+    @GetMapping("/agregarProducto")
+    private String agregarProducto(Model model, Producto producto) {
+        model.addAttribute("producto", producto);
+        model.addAttribute("categorias", categoriaService.getCategorias());
+        return "/producto/agregarProducto";
     }
 
 }

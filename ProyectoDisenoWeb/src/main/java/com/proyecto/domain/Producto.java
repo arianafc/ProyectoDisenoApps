@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "productos")
+@Table(name = "producto")
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -15,39 +15,19 @@ public class Producto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
-    private long idProducto;
-    
-    @Column(name = "nombre_producto")
-    private String nombreProducto;
-    
-     @Column(name = "status")
-    private String status;
-    
-    @Column(name = "descripcion")
+    private Long idProducto;
+    private String nombre;
     private String descripcion;
-    
-    @Column(name = "precio")
     private double precio;
-    
-    @Column(name = "cantidad")
     private int cantidad;
+    private String status;
+    private String rutaImagen;
     
-    @Column(name = "categoria")
-    private String categoria;
+    @ManyToOne //aqui se realiza la asociacion con la otra tabla
+    @JoinColumn(name = "id_categoria")
+    Categoria categoria;
     
-    @Column(name = "imagen")
-    private String imagen;
-
     public Producto() {
     }
 
-    public Producto(String nombreProducto, String descripcion, double precio, int stock, String categoria, String imagen) {
-        this.nombreProducto = nombreProducto;
-        this.status = status;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.cantidad = cantidad;
-        this.categoria = categoria;
-        this.imagen = imagen;
-    }
 }

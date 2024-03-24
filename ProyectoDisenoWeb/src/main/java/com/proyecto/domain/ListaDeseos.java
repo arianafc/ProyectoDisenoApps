@@ -16,8 +16,6 @@ import java.util.List;
 @Table(name = "deseos", schema = "FAEJ")
 public class ListaDeseos {
 
-    
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

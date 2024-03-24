@@ -26,9 +26,9 @@ public class ListaDeseosController {
     @GetMapping("/listado")
     public String listado(Model model) {
         var listasDeseos = listaDeseosService.obtenerTodasLasListasDeseos();
-
+        System.out.println(listasDeseos); // Imprime para verificar los datos
         model.addAttribute("listasDeseos", listasDeseos);
-        return "listaDeseos/listado"; 
+        return "listaDeseos/listado";
     }
 
     @GetMapping("/agregar/{idProducto}")

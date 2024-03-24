@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package com.proyecto.service.impl;
 
 /**
  *
  * @author Jorge
  */
-
 import com.proyecto.dao.ProductoDao;
+import com.proyecto.domain.Categoria;
+import com.proyecto.domain.Estilo;
 import com.proyecto.domain.Producto;
 import com.proyecto.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,12 +49,6 @@ public class ProductoServiceImpl implements ProductoService {
         productoDao.deleteById(id);
     }
 
-//    @Override
-//    @Transactional(readOnly=true)
-//    public List<Producto> findByEstiloAndCategoria(String estilo, String categoria){
-//        return productoDao.findByEstiloAndCategoria(estilo, categoria);
-//    }
-    
     @Override
     @Transactional(readOnly = true)
     public List<Producto> findByEstiloAndCategoria(String estiloNombre, String categoriaNombre) {

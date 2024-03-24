@@ -10,14 +10,20 @@ package com.proyecto.domain;
  */
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "deseos", schema = "FAEJ")
 public class ListaDeseos {
 
+    
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @OneToMany(mappedBy = "listaDeseos")
+    private List<Producto> productos;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -49,5 +55,13 @@ public class ListaDeseos {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+    
+    public List<Producto> getProductos() {
+        return productos;
+    }
+    
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
 }

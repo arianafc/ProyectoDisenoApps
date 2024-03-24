@@ -25,9 +25,10 @@ public class ListaDeseosController {
 
     @GetMapping("/listado")
     public String listado(Model model) {
-        var listaDeseos = listaDeseosService.obtenerTodasLasListasDeseos();
-        model.addAttribute("listaDeseos", listaDeseos);
-        return "listaDeseos/listado"; // Asegúrate de que este es el nombre correcto de tu plantilla
+        var listasDeseos = listaDeseosService.obtenerTodasLasListasDeseos();
+
+        model.addAttribute("listasDeseos", listasDeseos);
+        return "listaDeseos/listado"; 
     }
 
     @GetMapping("/agregar/{idProducto}")
@@ -38,7 +39,6 @@ public class ListaDeseosController {
 
     @GetMapping("/eliminar/{idProducto}")
     public String eliminarProductoDeseado(@PathVariable Long idProducto) {
-
         listaDeseosService.eliminarProductoDeseado(null, idProducto);
         return "redirect:/listaDeseos/listado";
     }

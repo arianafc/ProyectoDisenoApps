@@ -22,7 +22,6 @@ public class ListaDeseosServiceImpl implements ListaDeseosService {
     @Autowired
     private ListaDeseosDao listaDeseosDao;
 
-    // Implementación del método para obtener todas las listas de deseos
     @Override
     @Transactional(readOnly = true)
     public List<ListaDeseos> obtenerTodasLasListasDeseos() {
@@ -32,16 +31,19 @@ public class ListaDeseosServiceImpl implements ListaDeseosService {
     @Override
     @Transactional
     public void agregarProductoDeseado(Long idUsuario, Long idProducto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Implementación pendiente
     }
 
     @Override
+    @Transactional
     public void eliminarProductoDeseado(Long idUsuario, Long idProducto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Implementación pendiente
     }
 
     @Override
+    @Transactional
     public void transferirProductoACarrito(Long idUsuario, Long idProducto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Implementación específica dependiendo de cómo se maneje el carrito de compras
     }
+
 }

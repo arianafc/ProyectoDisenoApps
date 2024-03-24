@@ -10,6 +10,10 @@ import lombok.Data;
 @Table(name = "producto")
 public class Producto implements Serializable {
 
+    @ManyToOne
+    @JoinColumn(name = "id_lista_deseos")
+    private ListaDeseos listaDeseos;
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -23,15 +27,15 @@ public class Producto implements Serializable {
     private int cantidad;
     private String status;
     private String rutaImagen;
-    
+
     @ManyToOne //aqui se realiza la asociacion con la otra tabla
     @JoinColumn(name = "id_categoria")
     Categoria categoria;
-    
+
     @ManyToOne //aqui se realiza la asociacion con la otra tabla
     @JoinColumn(name = "id_estilo")
     Estilo estilo;
-    
+
     public Producto() {
     }
 

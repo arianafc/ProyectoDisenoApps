@@ -2,17 +2,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>FAEJ</title>
+        <title>Lista de Deseos</title>
     </head>
     <body>
         <header th:replace="~{layout/plantillaAdmin :: header}"/>
-
         <section class="container d-flex" style="margin: 0px">
             <div th:replace="~{layout/plantillaAdmin :: sideBar}"/>
-         
-            <section th:replace="~{producto/fragmentos :: agregarProducto}"/> 
+
+
             <div style="width: 90%; padding: 20px">
-                <section th:replace="~{producto/fragmentos :: listadoProductos}"/>
+                <section>
+                    <h2>Lista de Deseos</h2>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Imagen</th>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Status</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="producto : ${productos}">
+                                    <td><img th:src="@{${producto.rutaImagen}}" alt="Imagen Producto" width="50"/></td>
+                                    <td th:text="${producto.nombre}"></td>
+                                    <td th:text="${producto.precio}"></td>
+                                    <td th:text="${producto.status}"></td>
+                                    <td>
+                                        <a th:href="@{/carrito/agregar/{idProducto}(idProducto=${producto.id})}">Agregar al Carrito</a>
+                                        <a th:href="@{/listaDeseos/eliminar/{idProducto}(idProducto=${producto.id})}">Eliminar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
             </div>
         </section>    
         <footer th:replace="~{layout/plantillaAdmin :: footer}"/>      

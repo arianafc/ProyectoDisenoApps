@@ -3,49 +3,51 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.proyecto.domain;
+
 /**
  *
  * @author jorge
  */
-import jakarta.persistence.*;
-import java.io.Serializable;
-import java.util.List;
-import lombok.Data;
 
-@Data
+import jakarta.persistence.*;
+
 @Entity
-@Table(name = "lista_deseos")
-public class ListaDeseos implements Serializable {
-       
-    private static final long serialVersionUID = 1L;
-    
+@Table(name = "deseos", schema = "FAEJ")
+public class ListaDeseos {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_lista_deseos")
-    private Long idListaDeseos;
-    
-    @Column(name = "id_usuario")
-    private Long idUsuario; // Suponiendo que tienes una entidad de Usuario.
-    
-    @ManyToMany
-    @JoinTable(
-        name = "lista_deseos_productos",
-        joinColumns = @JoinColumn(name = "id_lista_deseos"),
-        inverseJoinColumns = @JoinColumn(name = "id_producto")
-    )
-    private List<Producto> productosDeseados;
+    private Long id;
 
-    public ListaDeseos() {
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto")
+    private Producto producto;
+
+    public Long getId() {
+        return id;
     }
 
-    public ListaDeseos(Long idListaDeseos, Long idUsuario, List<Producto> productosDeseados) {
-        this.idListaDeseos = idListaDeseos;
-        this.idUsuario = idUsuario;
-        this.productosDeseados = productosDeseados;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public Usuario getUsuario() {
+        return usuario;
     }
-   
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
 }

@@ -302,24 +302,89 @@
 
         <!-- 2 Sección principal para mostrar la informaccion de las productos -->
         <section th:fragment="listadoProductosFiltrado" id="productos">
-            <div class="row row-cols-4">
+            <div class="row row-cols-3 mb-5" style="margin-right: 10px">
                 <div class="card" th:each="p : ${productos}">
                     <figure><img th:src="${p.rutaImagen}" 
-                                 class="card-img-top" alt="..."
-                                 height="200"/>
-                        <figcaption>[[${p.precio}+' ('+${p.existencias}+')']]
-                        </figcaption>
+                                 class="card-img" alt="..."
+                                 width="50" height="300"/>
                     </figure>
-                    <div class="card-header">
-                        <h4 class="card-title">[[${p.descripcion}]]</h4>
-                    </div>
                     <div class="card-body">
-                        <p class="card-text">[[${p.detalle}]]</p>                    
+                        <h5 class="card-title">[[${p.nombre}]]</h5>
+                        <p class="card-text">[['$'+${p.precio}]]</p> 
                     </div>
                 </div>
             </div>
         </section>
 
+        <aside th:fragment="filtros">
+            <div class="p-3">
+                <h3>Filtros</h3>
+                <form>
+                    <div class="form-group">
+                        <h5 for="estilo">Estilo</h5>
+                        <div th:each="estilo : ${estilos}">
+                            <input class="form-check-input" type="checkbox" value="${estilo}" id="estilo">
+                                <label class="form-check-label" for="apple-filter">
+                                    [[${estilo.nombre}]]
+                                </label>    
+                                <p><p/>
+                        </div>
+                        
+                        <h5 for="estilo" class="mt-2">Marcas</h5>
+                        <div>
+                        <input class="form-check-input" type="checkbox" value="${marca}" id="estilo">
+                            <label class="form-check-label" for="apple-filter">
+                                Nike
+                            </label> 
+                            <p><p/>
+                        <input class="form-check-input" type="checkbox" value="${marca}" id="estilo">
+                            <label class="form-check-label" for="apple-filter">
+                                Vans
+                            </label>
+                            <p><p/>
+                        <input class="form-check-input" type="checkbox" value="${marca}" id="estilo">
+                            <label class="form-check-label" for="apple-filter">
+                                Adidas
+                            </label>
+                            <p><p/>
+                        <input class="form-check-input" type="checkbox" value="${marca}" id="estilo">
+                            <label class="form-check-label" for="apple-filter">
+                                Saucony
+                            </label>
+                            <p><p/>
+                            <input class="form-check-input" type="checkbox" value="${marca}" id="estilo">
+                            <label class="form-check-label" for="apple-filter">
+                                Puma
+                            </label>
+                                <p><p/>
+                        <input class="form-check-input" type="checkbox" value="${marca}" id="estilo">
+                            <label class="form-check-label" for="apple-filter">
+                                New Balance
+                            </label>
+                            <p><p/>
+                        </div>
+                    </div>
+                   <h5 for="estilo" class="mt-2">Precio</h5>
+                   <div class="card">                            
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="precioInf">Precio Inferior</label>
+                                    <input type="number" class="form-control" 
+                                           th:value="${precioInf}"
+                                           th:name="precioInf" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precioSup">Precio Superior</label>
+                                    <input type="number" class="form-control" 
+                                           th:value="${precioSup}"
+                                           th:name="precioSup" required="true"/>
+                                </div>
+                            </div>
+                   </div>
+                    <button type="submit" class="btn btn-dark mt-3">Aplicar Filtros</button>
+                </form>
+            </div>
+        </aside>
 
     </body>
 </html>

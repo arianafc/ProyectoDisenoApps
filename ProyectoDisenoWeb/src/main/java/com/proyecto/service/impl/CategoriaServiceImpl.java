@@ -40,4 +40,9 @@ public class CategoriaServiceImpl implements CategoriaService {
         categoriaDao.delete(categoria);
     }
 
+    @Override
+    @Transactional
+    public Categoria getCategoriaByName(String nombre) {
+        return categoriaDao.findByNombre(nombre);
+    }
 }

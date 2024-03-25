@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>FAEJ</title>        
+    </head>
+    <body>
+        <header th:replace="~{layout/plantillaInicio :: headerInicio}"/>
+        <div class="container-fluid mt-5">
+            <div class="row">
+                <div class="col-md-2">
+                    <aside th:replace="~{producto/fragmentos :: filtros}"/> 
+                </div>
+                <div class="col-md-9">
+                    <section th:replace="~{producto/fragmentos :: listadoProductosFiltrado}"/> 
+                </div>
+                
+            </div>
+        </div>
+        
+        <footer th:replace="~{layout/plantilla :: footer }"/>          
+    </body>
+</html>

@@ -1,7 +1,7 @@
 package com.proyecto.service.impl;
 
-
 import com.proyecto.dao.EstiloDao;
+import com.proyecto.domain.Categoria;
 import com.proyecto.domain.Estilo;
 import com.proyecto.service.EstiloService;
 import java.util.List;
@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service 
-public class EstiloServiceImpl implements EstiloService { 
+@Service
+public class EstiloServiceImpl implements EstiloService {
 
     @Autowired
     private EstiloDao estiloDao; //
@@ -40,4 +40,9 @@ public class EstiloServiceImpl implements EstiloService {
         estiloDao.delete(estilo);
     }
 
+    @Override
+    @Transactional
+    public Estilo getEstiloByName(String nombre) {
+        return estiloDao.findByNombre(nombre);
+    }
 }

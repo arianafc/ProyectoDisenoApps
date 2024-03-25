@@ -19,4 +19,5 @@ public interface EstiloService {
     public void save(Estilo categoria);          
   
     public void delete(Estilo categoria); 
+    public Estilo getEstiloByName(String name);
 }

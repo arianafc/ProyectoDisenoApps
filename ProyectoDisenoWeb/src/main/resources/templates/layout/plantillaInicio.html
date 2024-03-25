@@ -19,9 +19,11 @@
                             <header th:fragment="headerInicio" class="header">
                                 <nav class="navbar navbar-expand-lg shadow">
                                     <div class="container-fluid">
-                                        <a style="margin-left: 100px" class="navbar-brand" href="#">
-                                            <img src="FAEJ-NEGRO.png" alt="" width="100px"/> </a>
-
+                                        <a style="margin-left: 100px" class="navbar-brand" th:href="@{/usuario/inicio}">
+                                            <h1 class="text-uppercase fw-bold mt-1" style="font-size: 30px; color: black">
+                                                FAEJ
+                                            </h1>
+                                        </a>
                                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                                             <span class="navbar-toggler-icon"></span>
                                         </button>
@@ -35,24 +37,25 @@
                                                             <div class="container">
                                                                 <div class="row" style="flex-wrap: nowrap">
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                                        <img src="FAEJ-NEGRO.png" width="100px" alt=""/>
-
+                                                                        <h1 class="text-uppercase fw-bold mt-1" style="font-size: 70px; color: black">
+                                                                            FAEJ
+                                                                        </h1>
                                                                     </div>
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                                        <a href="#"><h5>Todos</h5></a>
+                                                                        <a th:href="@{/producto/vistaProducto/Mujer}"><h5>Todos</h5></a>
                                                                         <div class="list-group">
-                                                                            <a class="list-group-item" href="#">Lifestyle</a>
-                                                                            <a class="list-group-item" href="#">Running</a>
-                                                                            <a class="list-group-item" href="#">Trail Running</a>
-                                                                            <a class="list-group-item" href="#">Training & Gym</a>
-                                                                            <a class="list-group-item" href="#">Sportswear</a>
-                                                                            <a class="list-group-item" href="#">Skateboarding</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Lifestyle}">Lifestyle</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Running}">Running</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Trail Running}">Trail Running</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Training & Gym}">Training & Gym</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Sportswear}">Sportswear</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Skateboarding}">Skateboarding</a>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
                                                                         <a href="#"><h5>Marcas</h5></a>
                                                                         <div class="list-group">
-                                                                            <a class="list-group-item" href="#">Nike</a>
+                                                                                <a class="list-group-item" href="#">Nike</a>
                                                                             <a class="list-group-item" href="#">Adidas</a>
                                                                             <a class="list-group-item" href="#">Vans</a>
                                                                             <a class="list-group-item" href="#">Puma</a>
@@ -81,24 +84,25 @@
                                                             <div class="container">
                                                                 <div class="row" style="flex-wrap: nowrap">
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                                        <img src="FAEJ-NEGRO.png" width="100px" alt=""/>
-
+                                                                        <h1 class="text-uppercase fw-bold mt-1" style="font-size: 70px; color: black">
+                                                                            FAEJ
+                                                                        </h1>
                                                                     </div>
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                                        <a href="#"><h5>Todos</h5></a>
+                                                                        <a th:href="@{/producto/vistaProducto/Hombre}"><h5>Todos</h5></a>
                                                                         <div class="list-group">
-                                                                            <a class="list-group-item" href="#">Lifestyle</a>
-                                                                            <a class="list-group-item" href="#">Running</a>
-                                                                            <a class="list-group-item" href="#">Trail Running</a>
-                                                                            <a class="list-group-item" href="#">Training & Gym</a>
-                                                                            <a class="list-group-item" href="#">Sportswear</a>
-                                                                            <a class="list-group-item" href="#">Skateboarding</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Lifestyle}">Lifestyle</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Running}">Running</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Trail Running}">Trail Running</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Training & Gym}">Training & Gym</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Sportswear}">Sportswear</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Skateboarding}">Skateboarding</a>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
                                                                         <a href="#"><h5>Marcas</h5></a>
                                                                         <div class="list-group">
-                                                                            <a class="list-group-item" href="#">Nike</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/(catgeoriaName: 'Hombre')/Nike}">Nike</a>
                                                                             <a class="list-group-item" href="#">Adidas</a>
                                                                             <a class="list-group-item" href="#">Vans</a>
                                                                             <a class="list-group-item" href="#">Puma</a>
@@ -127,22 +131,23 @@
                                                             <div class="container">
                                                                 <div class="row" style="flex-wrap: nowrap">
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                                        <img src="FAEJ-NEGRO.png" width="100px" alt=""/>
-
+                                                                        <h1 class="text-uppercase fw-bold mt-1" style="font-size: 70px; color: black">
+                                                                            FAEJ
+                                                                        </h1>
                                                                     </div>
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                                        <a href="#"><h5>Todos</h5></a>
+                                                                        <a th:href="@{/producto/vistaProducto/Niñ@}"><h5>Todos</h5></a>
                                                                         <div class="list-group">
-                                                                            <a class="list-group-item" href="#">Lifestyle</a>
-                                                                            <a class="list-group-item" href="#">Running</a>
-                                                                            <a class="list-group-item" href="#">Trail Running</a>
-                                                                            <a class="list-group-item" href="#">Training & Gym</a>
-                                                                            <a class="list-group-item" href="#">Sportswear</a>
-                                                                            <a class="list-group-item" href="#">Skateboarding</a>
+                                                                           <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Lifestyle}">Lifestyle</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Running}">Running</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Trail Running}">Trail Running</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Training & Gym}">Training & Gym</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Sportswear}">Sportswear</a>
+                                                                            <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Skateboarding}">Skateboarding</a>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                                        <a href="#"><h5>Marcas</h5></a>
+                                                                        <a th:href="@{/producto/vistaProducto/Mujer}"><h5>Marcas</h5></a>
                                                                         <div class="list-group">
                                                                             <a class="list-group-item" href="#">Nike</a>
                                                                             <a class="list-group-item" href="#">Adidas</a>
@@ -173,8 +178,9 @@
                                                             <div class="container">
                                                                 <div class="row" style="flex-wrap: nowrap">
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                                        <img src="FAEJ-NEGRO.png" width="100px" alt=""/>
-
+                                                                        <h1 class="text-uppercase fw-bold mt-1" style="font-size: 70px; color: black">
+                                                                            FAEJ
+                                                                        </h1>
                                                                     </div>
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
                                                                         <a href="#"><h5>Marcas</h5></a>
@@ -205,8 +211,8 @@
                                                 </li>
                                             </ul>
                                             <ul class="navbar-nav">
-                                                <li class="nav-item dropdown">
-                                                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" th:href="@{/contacto/contacto}" role="button">
                                                         Contacto
                                                     </a>
                                                 </li>

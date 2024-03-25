@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>TechShop</title>
+    </head>
+    <body>
+        <section th:fragment="principal" id="productos">
+            <h1 class="text-center mt-3">Preguntas Frecuentes</h1>
+            <div class="row" style="justify-content: center">
+                <div class="col-md-4">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    ¿Cómo realizo mi pedido?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>Text</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    ¿Cuánto tiempo tarda un pedido en llegar?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>Text</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    ¿Qué hago si no me queda la talla que solicité?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>Text</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <form th:action="@{/usuario/guardarAdmin}"  th:object="${usuario}"  method="POST"  class="was-validated" 
+                          style="width: 23rem; border: solid; border-color: #cccccc">
+
+                        <h5 class="fw-normal" style="letter-spacing: 1px;"><h5>No encuentras la respuesta.</h5></h5>
+                        <h6>Contáctanos!</h6>
+                        <p></p>
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="email">Correo Electrónico</label>
+                            <input type="email" id="email" th:name="email" class="form-control form-control-lg" required="true" />
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="telefono">Sujeto</label>
+                            <input type="text" id="telefono" th:name="telefono" class="form-control form-control-lg" required="true" />
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="telefono">Mensaje</label>
+                            <textarea type="text" id="telefono" th:name="telefono" class="form-control form-control-lg" required="true"></textarea>
+                        </div>
+
+                        <div class="pt-2 mb-4">
+                            <button class="btn btn-lg btn-block" name="btnIngresar" type="submit" style="width: 150px; background-color: #cccccc">Crear Cuenta</button>
+                        </div>     
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+    </body>
+</html>

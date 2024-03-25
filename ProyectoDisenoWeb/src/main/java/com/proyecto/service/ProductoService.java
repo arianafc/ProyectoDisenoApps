@@ -4,6 +4,8 @@
  */
 package com.proyecto.service;
 
+import com.proyecto.domain.Categoria;
+import com.proyecto.domain.Estilo;
 import com.proyecto.domain.Producto;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -27,7 +29,9 @@ public interface ProductoService {
     // Eliminar un producto
     public void deleteProducto(Long id);
 
-    //public List<Producto> findByEstiloAndCategoria(String estil, String categoria);
-    //Buscar Estilo y Categoria 
-    List<Producto> findByEstiloAndCategoria(String estiloNombre, String categoriaNombre);
+
+    
+    List<Producto> findByCategoria(Categoria categoria);
+    List<Producto> findByCategoriaAndEstilo(Categoria categoria, Estilo estilo);
+    List<Producto> findByCategoriaAndMarca(Categoria categoria, String marca);
 }

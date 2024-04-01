@@ -52,18 +52,18 @@
                                     </div>
                                 </nav>
                             </header>
-                            
+
                             <aside th:fragment="sideBar">
                                 <div class="d-flex flex-column flex-shrink-0 vh-100 shadow collapse" style="margin-left: -11px">
-                                        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" >
-                                            <li class="nav-item text-black"> <a th:href="@{/usuario/adminInicio}" class="nav-link active py-3 border-bottom text-white bg-dark"> <i class="fa fa-dashboard"></i> <b>Dashboard</b> </a> </li>             
-                                            <li> <a th:href="@{/producto/listado}" class="nav-link icon-link-hover py-3 border-bottom text-black"> <i class="fa fa-plus"></i> Registro de productos </a> </li>
-                                            <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-shopping-cart"></i> Control de ventas </a> </li>
-                                            <li> <a th:href="@{/usuario/asignarRol}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-spinner"></i> Asignar un rol</a> </li>
-                                            <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-cog"></i> Ajustes </a> </li>
-                                            <li> <a th:href="@{/usuario/login}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-sign-in"></i> Cerrar Sesión </a> </li>
-                                        </ul>
-                                    </div>
+                                    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" >
+                                        <li class="nav-item text-black"> <a th:href="@{/usuario/adminInicio}" class="nav-link active py-3 border-bottom text-white bg-dark"> <i class="fa fa-dashboard"></i> <b>Dashboard</b> </a> </li>             
+                                        <li> <a th:href="@{/producto/listado}" class="nav-link icon-link-hover py-3 border-bottom text-black"> <i class="fa fa-plus"></i> Registro de productos </a> </li>
+                                        <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-shopping-cart"></i> Control de ventas </a> </li>
+                                        <li> <a th:href="@{/usuario/asignarRol}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-spinner"></i> Asignar un rol</a> </li>
+                                        <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-cog"></i> Ajustes </a> </li>
+                                        <li> <a th:href="@{/usuario/login}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-sign-in"></i> Cerrar Sesión </a> </li>
+                                    </ul>
+                                </div>
                             </aside>
 
                             <footer th:fragment="footer" class="text-center text-lg-start bg-body-tertiary text-muted " style="margin-top: auto" >
@@ -91,8 +91,13 @@
                                 </section>
                                 <div class="p-1" style="background-color: #333333; color: white">
                                     <hr></hr>
-                                    <p style="margin-left: 10px">Derechos Reservados FAEJ © 2024</p>
-                                </div>
+                                    <div class="row mx-auto">
+                                        <div class="col">
+                                            <p style="margin-left: 10px">Derechos Reservados FAEJ © 2024</p></div>
+                                        <div class="col">
+                                            <p class="text-right" style="justify-content: end; align-content: end"><a class="text-white" th:href="@{/(lang=es)}">ES </a><a class="text-white" th:href="@{/(lang=en)}">EN</a></p>
+                                        </div>
+                                    </div>
                             </footer>
                         </body>
                         </html>

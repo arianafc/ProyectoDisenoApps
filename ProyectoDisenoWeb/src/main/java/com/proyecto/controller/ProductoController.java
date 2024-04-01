@@ -53,6 +53,8 @@ public class ProductoController {
 
     @GetMapping("/vistaProducto")
     public String producto(Model model) {
+        var estilos = estiloService.getEstilos();
+        model.addAttribute("estilos", estilos);
         var productos = productoService.getProductos();
         model.addAttribute("productos", productos);
         return "/producto/vistaProducto";
@@ -162,7 +164,7 @@ public class ProductoController {
         return "/producto/vistaProducto";
     }
 
-    @PostMapping("/query1")
+    @GetMapping("/query1")
     public String consultaQuery1(@RequestParam(value = "precioInf") double precioInf,
             @RequestParam(value = "precioSup") double precioSup, @RequestParam(value = "nombreEstilo") String nombreEstilo,
             @RequestParam(value = "marca") String marca, Model model) {

@@ -52,7 +52,7 @@ public class UsuarioController {
                 return "redirect:/usuario/inicio";
             } else if (usuario.getRol() == 1) {
                 return "redirect:/usuario/adminInicio";
-            } else if (usuario.getRol()==2){
+            } else if (usuario.getRol() == 2) {
                 return "redirect:/usuario/vendedorInicio";
             } else {
                 return "/usuario/login";
@@ -60,17 +60,17 @@ public class UsuarioController {
         }
     }
 
-   @GetMapping("/inicio")
+    @GetMapping("/inicio")
     private String inicio() {
         return "/usuario/inicio";
     }
-    
+
     @GetMapping("/adminInicio")
     private String adminInicio() {
         return "/usuario/adminInicio";
     }
 
-     @GetMapping("/vendedorInicio")
+    @GetMapping("/vendedorInicio")
     private String vendedorInicio() {
         return "/usuario/vendedorInicio";
     }
@@ -79,12 +79,16 @@ public class UsuarioController {
     private String crearCuenta() {
         return "/usuario/crearCuenta";
     }
-    
+
     @GetMapping("/asignarRol")
-    private String asignarRol(){
+    private String asignarRol() {
         return "/usuario/asignarRol";
     }
 
+    @GetMapping("/miCuenta")
+    private String miCuenta() {
+        return "/usuario/miCuenta";
+    }
 
     @PostMapping("/guardar")
     public String guardar(Usuario usuario, Model model) {
@@ -99,14 +103,12 @@ public class UsuarioController {
         }
     }
 
-    
     @PostMapping("/guardarAdmin")
     public String guardarAdmin(Usuario usuario, Model model, @RequestParam(value = "rol") String rol) {
         if (usuarioService.existeUsuarioPorEmail(usuario.getEmail())) {
             model.addAttribute("error", "Correo registrado");
             return "/usuario/asignarRol";
         } else {
-            
             usuarioService.save(usuario);
             return "redirect:/usuario/asignarRol";
         }

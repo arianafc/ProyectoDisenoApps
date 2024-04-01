@@ -53,7 +53,7 @@
                                 </nav>
                             </header>
                             
-                            <div th:fragment="sideBar">
+                            <aside th:fragment="sideBar">
                                 <div class="d-flex flex-column flex-shrink-0 vh-100 shadow collapse" style="margin-left: -11px">
                                         <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" >
                                             <li class="nav-item text-black"> <a th:href="@{/usuario/adminInicio}" class="nav-link active py-3 border-bottom text-white bg-dark"> <i class="fa fa-dashboard"></i> <b>Dashboard</b> </a> </li>             
@@ -64,11 +64,9 @@
                                             <li> <a th:href="@{/usuario/login}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-sign-in"></i> Cerrar Sesión </a> </li>
                                         </ul>
                                     </div>
-                            </div>
+                            </aside>
 
                             <footer th:fragment="footer" class="text-center text-lg-start bg-body-tertiary text-muted " style="margin-top: auto" >
-
-
                                 <section style="background-color: #333333; color: white; border-bottom: 2px; border-top: 2px; border-bottom-color: white; border-top-color: white; padding-top: 10px">
                                     <div>
                                         <hr></hr>
@@ -91,10 +89,6 @@
                                             </div>
                                         </div>          
                                 </section>
-
-                                <!-- Section: Links  -->
-
-                                <!-- Copyright -->
                                 <div class="p-1" style="background-color: #333333; color: white">
                                     <hr></hr>
                                     <p style="margin-left: 10px">Derechos Reservados FAEJ © 2024</p>

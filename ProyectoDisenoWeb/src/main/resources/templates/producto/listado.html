@@ -6,15 +6,17 @@
     </head>
     <body>
         <header th:replace="~{layout/plantillaAdmin :: header}"/>
-
-        <section class="container d-flex" style="margin: 0px">
-            <div th:replace="~{layout/plantillaAdmin :: sideBar}"/>
-
-
-            <div style="width: 90%; padding: 20px">
-                <section th:replace="~{producto/fragmentos :: listadoProductos}"/>
-                    </div>
-                </section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2" style="width: 10%">
+                    <aside th:replace="~{layout/plantillaAdmin :: sideBar}"/>
+                </div>
+                <div class="col-md-9">
+                    <br>
+                     <section th:replace="~{producto/fragmentos :: listadoProductos}"/>
+                </div>
+            </div>
+        </div>
         <footer th:replace="~{layout/plantillaAdmin :: footer}"/>      
     </body>
 </html>

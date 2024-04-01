@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>FAEJ</title>        
+    </head>
+    <body>
+        <header th:replace="~{layout/plantillaInicio :: headerInicio}"/>
+        <br>
+            <section >
+                <div id="template-mo-faej-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="2"></li>
+                        <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="3"></li>
+                        <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="4"></li>
+                        <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="5"></li>
+                    </ol>
+                    <div class="carousel-inner" >
+                        <div class="carousel-item active">
+                            <div class="container-fluid">
+                                <div class="row" style="justify-content: center">
+                                    <img  style=" width: 50%;"
+                                          src="https://shoelab.cr/wp-content/uploads/2023/11/NewBalance.jpg"
+                                          alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container-fluid">
+                                <div class="row" style="justify-content: center">
+                                    <img  style=" width: 50%;"
+                                          src="https://shoelab.cr/wp-content/uploads/2023/11/Puma.jpg"
+                                          alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container-fluid">
+                                <div class="container-fluid">
+                                    <div class="row" style="justify-content: center">
+                                        <img  style=" width: 50%;"
+                                              src="https://shoelab.cr/wp-content/uploads/2023/11/saucony.jpg"
+                                              alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container-fluid">
+                                <div class="container-fluid">
+                                    <div class="row" style="justify-content: center">
+                                        <img  style=" width: 50%;"
+                                              src="https://shoelab.cr/wp-content/uploads/2023/11/adidas.jpg"
+                                              alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container-fluid">
+                                <div class="container-fluid">
+                                    <div class="row" style="justify-content: center">
+                                        <img  style=" width: 50%;"
+                                              src="https://shoelab.cr/wp-content/uploads/2023/11/Nike.jpg"
+                                              alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container-fluid">
+                                <div class="container-fluid">
+                                    <div class="row" style="justify-content: center">
+                                        <img  style=" width: 50%;"
+                                              src="https://shoelab.cr/wp-content/uploads/2023/11/Vans.jpg"
+                                              alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="carousel-control-prev  w-auto ps-3" href="#template-mo-faej-hero-carousel"
+                       role="button" data-bs-slide="prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                    <a class="carousel-control-next w-auto pe-3" href="#template-mo-faej-hero-carousel"
+                       role="button" data-bs-slide="next">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+                <hr>
+                    <p></p>
+            </section>
+            <footer th:replace="~{layout/plantilla :: footer }"/>          
+    </body>
+</html>

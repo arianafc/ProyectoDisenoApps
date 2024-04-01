@@ -7,9 +7,23 @@
     </head>
     <body>
         <section th:fragment="principal" id="productos">
-            <h1 class="text-center mt-3">Preguntas Frecuentes</h1>
+            <h2 class="text-center mt-3">Preguntas Frecuentes</h2>
+            <p></p>
+            <style>
+                .accordion-button:focus,
+                .accordion-button:active {
+                    background-color: #333333;
+                    color: #fff;
+                    box-shadow: none;
+                }
+
+                .accordion-button:not(.collapsed) {
+                    background-color:  #333333;
+                    color: #fff;
+                }
+            </style>
             <div class="row" style="justify-content: center">
-                <div class="col-md-4">
+                <div class="col-md-5" style="margin-left: 50px">
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
@@ -49,9 +63,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <form th:action="@{/usuario/guardarAdmin}"  th:object="${usuario}"  method="POST"  class="was-validated" 
-                          style="width: 23rem; border: solid; border-color: #cccccc">
+                          style="width: 23rem; border: solid; border-color: #333333; padding: 10px;">
 
                         <h5 class="fw-normal" style="letter-spacing: 1px;"><h5>No encuentras la respuesta.</h5></h5>
                         <h6>Contáctanos!</h6>
@@ -59,26 +73,101 @@
 
                         <div class="form-outline mb-4">
                             <label class="form-label" for="email">Correo Electrónico</label>
-                            <input type="email" id="email" th:name="email" class="form-control form-control-lg" required="true" />
+                            <input type="email" id="email" th:name="email" class="form-control form-control-lg" style="border-radius: 0" required="true" />
                         </div>
 
                         <div class="form-outline mb-4">
                             <label class="form-label" for="telefono">Sujeto</label>
-                            <input type="text" id="telefono" th:name="telefono" class="form-control form-control-lg" required="true" />
+                            <input type="text" id="telefono" th:name="telefono" class="form-control form-control-lg" style="border-radius: 0" required="true" />
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="telefono">Mensaje</label>
-                            <textarea type="text" id="telefono" th:name="telefono" class="form-control form-control-lg" required="true"></textarea>
+                            <textarea type="text" id="telefono" th:name="telefono" class="form-control form-control-lg" style="border-radius: 0" required="true"></textarea>
                         </div>
 
                         <div class="pt-2 mb-4">
-                            <button class="btn btn-lg btn-block" name="btnIngresar" type="submit" style="width: 150px; background-color: #cccccc">Crear Cuenta</button>
+                            <button class="btn btn-lg btn-block text-white" name="btnIngresar" type="submit" style="width: 150px; background-color: #333333; border-radius: 0">Envíar <i class="fas fa-angle-right"></i></button>
                         </div>     
                     </form>
                 </div>
             </div>
         </section>
-
+        <section th:fragment="ayudas" id="productos">
+            <p></p>
+            <br></br>
+            <h2 class="text-center">¿Cómo podemos ayudarte hoy?</h2>
+            <div class="row mx-auto" style="margin-top: 2rem;">
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">   
+                            <h5 class="card-title"><i class="fas fa-truck" ></i> Rastrear Orden</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-credit-card"></i> Pago/Direcciones</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">      
+                            <h5 class="card-title"> <i class="fas fa-user"></i> Mi Cuenta</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">                    
+                            <h5 class="card-title"><i class="fas fa-heart"></i> Lista de Deseos</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br></br>
+        <section th:fragment="contacto" id="productos" style="background: #f2f4f5">
+            <br></br>
+            <h2 class="text-center">Nuestros centros de contacto!</h2>
+            <div class="row mx-auto" style="margin-top: 2rem;justify-content: center">
+                <div class="col-md-3">
+                    <div class="card text-center">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <i class="fas fa-phone fa-4x" style="color: #2da5f3"></i> 
+                            </div>
+                            <div class="col-md-8">
+                                <h5 class="card-title">Llamanos ahora!</h5>
+                                <p>Horario: L-D 8 AM - 7 PM</p>
+                                <h4>+506 748475896</h4>
+                                <button class="btn btn-lg btn-block text-white" name="btnIngresar" type="submit" style="width: 150px; background-color: #2da5f3; border-radius: 0">Llamar <i class="fas fa-angle-right"></i></button>
+                            </div>                    </div>
+                    </div>
+                    </div>
+                    </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <i class="fa fa-comments fa-4x" style="color: #009900"></i> 
+                            </div>
+                            <div class="col-md-8">
+                                <h5 class="card-title">Chatea con nosotros</h5>
+                                <p>Horario: L-D 8 AM - 7 PM</p>
+                                <h4>+506 748475896</h4>
+                                <button class="btn btn-lg btn-block text-white" name="btnIngresar" type="submit" style="width: 150px; background-color: #009900; border-radius: 0">Whatsapp <i class="fas fa-angle-right"></i></button>
+                            </div>                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            <br><br>
+                <br><!-- <br> -->
+        </section>
 
     </body>
 </html>

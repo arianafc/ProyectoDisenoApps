@@ -18,10 +18,30 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
- @Repository
-public interface ProductoDao extends JpaRepository <Producto,Long> {
+@Repository
+public interface ProductoDao extends JpaRepository<Producto, Long> {
 
-    List<Producto> findByCategoria(Categoria categoria);
-    List<Producto> findByCategoriaAndEstilo(Categoria categoria, Estilo estilo);
-    List<Producto> findByCategoriaAndMarca(Categoria categoria, String marca);
+    public List<Producto> findByCategoria(Categoria categoria);
+
+    public List<Producto> findByCategoriaAndEstilo(Categoria categoria, Estilo estilo);
+
+    public List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf, double precioSup);
+
+    @Query(nativeQuery = true,
+            value = "SELECT * FROM producto where producto.id_categoria = :idCategoria AND producto.marca = :marca ORDER BY producto.descripcion ASC")
+    public List<Producto> filtrarMarcaYCategoria(@Param("idCategoria") Long idCategoria, @Param("marca") String marca);
+
+    @Query(nativeQuery = true,
+            value = "SELECT * FROM producto where producto.id_estilo = :idEstilo ORDER BY producto.descripcion ASC")
+    public List<Producto> findByEstilo(@Param("idEstilo") Long idEstilo);
+
+    @Query(nativeQuery = true,
+            value = "SELECT * FROM producto where producto.marca = :marca ORDER BY producto.descripcion ASC")
+    public List<Producto> findByMarca(@Param("marca") String marca);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM producto WHERE producto.precio BETWEEN :precioInf AND :precioSup AND producto.id_estilo= :idEstilo AND producto.marca = :marca ORDER BY p.descripcion ASC")
+    List<Producto> findByFiltros(@Param("precioInf") double precioInf,
+            @Param("precioSup") double precioSup,
+            @Param("idEstilo") Long idEstilo, @Param("marca") String marca);
+
 }

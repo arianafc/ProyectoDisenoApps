@@ -49,20 +49,42 @@ public class ProductoServiceImpl implements ProductoService {
         productoDao.deleteById(id);
     }
 
-    
     @Transactional(readOnly = true)
     public List<Producto> findByCategoria(Categoria categoria) {
         return productoDao.findByCategoria(categoria);
     }
 
-   @Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     public List<Producto> findByCategoriaAndEstilo(Categoria categoria, Estilo estilo) {
         return productoDao.findByCategoriaAndEstilo(categoria, estilo);
     }
-    
+
     @Transactional(readOnly = true)
-    public List<Producto> findByCategoriaAndMarca(Categoria categoria, String marca) {
-        return productoDao.findByCategoriaAndMarca(categoria, marca);
+    public List<Producto> filtrarMarcaYCategoria(Long idCategoria, String marca) {
+        return productoDao.filtrarMarcaYCategoria(idCategoria, marca);
     }
 
+    @Transactional(readOnly = true)
+    public List<Producto> findByMarca(String marca) {
+        return productoDao.findByMarca(marca);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf, double precioSup) {
+        return productoDao.findByPrecioBetweenOrderByDescripcion(precioInf, precioSup);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> findByEstilo(Long idEstilo) {
+        return productoDao.findByEstilo(idEstilo);
+    }
+    
+        @Override
+    @Transactional(readOnly = true)
+    public List<Producto> findByFiltros( double precioInf, double precioSup, Long idEstilo, String marca) {
+        return productoDao.findByFiltros(precioInf, precioSup, idEstilo, marca);
+    }
+    
 }

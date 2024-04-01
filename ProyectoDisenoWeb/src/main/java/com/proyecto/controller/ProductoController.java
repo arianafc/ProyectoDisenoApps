@@ -51,6 +51,13 @@ public class ProductoController {
         return "producto/listado";
     }
 
+    @GetMapping("/vistaProducto")
+    public String producto(Model model) {
+        var productos = productoService.getProductos();
+        model.addAttribute("productos", productos);
+        return "/producto/vistaProducto";
+    }
+
     @GetMapping("/nuevo")
     public String productoNuevo(Producto producto) {
         return "producto/modificar";
@@ -95,6 +102,11 @@ public class ProductoController {
         return "/producto/busquedaProducto";
     }
 
+    @GetMapping("guiaTallas")
+    public String guiaTallas() {
+        return "/producto/guiaTallas";
+    }
+
     @GetMapping("/Carrito")
     private String Carrito() {
         return "/producto/Carrito";
@@ -123,7 +135,6 @@ public class ProductoController {
     public String getProductsByEstiloName(@PathVariable("nombre") String nombreCategoria, @PathVariable("estilo") String nombreEstilo, Model model) {
         Categoria categoria = categoriaService.getCategoriaByName(nombreCategoria);
         Estilo estilo = estiloService.getEstiloByName(nombreEstilo);
-//        Long idCategoria = categoria.getIdCategoria();
         List<Producto> productos = productoService.findByCategoriaAndEstilo(categoria, estilo);
         model.addAttribute("nombreCategoria", nombreCategoria);
         model.addAttribute("nombreEstilo", nombreEstilo);
@@ -133,27 +144,37 @@ public class ProductoController {
         return "/producto/vistaProducto";
     }
 
-//        @GetMapping("/vistaProducto/{nombre}/{marca}")
-//    public String getProductsByMarca(@PathVariable("nombre") String nombreCategoria, @PathVariable("marca") String marca, Model model) {   
-//        Categoria categoria = categoriaService.getCategoriaByName(nombreCategoria);
-// 
-//        List<Producto> productos = productoService.findByCategoriaAndMarca(categoria, marca); 
-//        model.addAttribute("nombreCategoria", nombreCategoria);
-//        model.addAttribute("marca", marca);
-//        model.addAttribute("productos", productos);
-//        model.addAttribute("estilos", estiloService.getEstilos());
-//        
-//        return "/producto/vistaProducto";
-//    }
-    @GetMapping("/producto/vistaProducto/{nombreCategoria}/{marca}")
-    public String vistaProductosByCategoriaAndMarca(
-        @PathVariable("nombreCategoria") String nombreCategoria,
-        @PathVariable("marca") String marca,
-        Model model
-    ) {
+    @GetMapping("/vistaProducto/{nombre}/marca/{marca}")
+    public String getProductosMarca(@PathVariable("nombre") String nombreCategoria, @PathVariable("marca") String marca, Model model) {
         Categoria categoria = categoriaService.getCategoriaByName(nombreCategoria);
-        List<Producto> productos = productoService.findByCategoriaAndMarca(categoria, marca);
+        List<Producto> productos = productoService.filtrarMarcaYCategoria(categoria.getIdCategoria(), marca);
+        model.addAttribute("nombreCategoria", nombreCategoria);
         model.addAttribute("productos", productos);
-        return "producto/vistaProducto";
+        model.addAttribute("estilos", estiloService.getEstilos());
+        return "/producto/vistaProducto";
     }
+
+    @GetMapping("/vistaProducto/marca/{marca}")
+    public String getAllMarca(@PathVariable("marca") String marca, Model model) {
+        List<Producto> productos = productoService.findByMarca(marca);
+        model.addAttribute("productos", productos);
+        model.addAttribute("estilos", estiloService.getEstilos());
+        return "/producto/vistaProducto";
+    }
+
+    @PostMapping("/query1")
+    public String consultaQuery1(@RequestParam(value = "precioInf") double precioInf,
+            @RequestParam(value = "precioSup") double precioSup, @RequestParam(value = "nombreEstilo") String nombreEstilo,
+            @RequestParam(value = "marca") String marca, Model model) {
+        Estilo estilo = estiloService.getEstiloByName(nombreEstilo);
+        var productos = productoService.findByFiltros(precioInf, precioSup, estilo.getIdEstilo(), marca);
+        model.addAttribute("productos", productos);
+        model.addAttribute("estilos", estiloService.getEstilos());
+        model.addAttribute("precioInf", precioInf);
+        model.addAttribute("precioSup", precioSup);
+        model.addAttribute("nombreEstilo", nombreEstilo);
+        model.addAttribute("marca", marca);
+        return "/producto/vistaProducto";
+    }
+
 }

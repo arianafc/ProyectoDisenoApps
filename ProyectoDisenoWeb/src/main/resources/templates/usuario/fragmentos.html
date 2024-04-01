@@ -4,290 +4,315 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
 
-    <html xmlns="http://www.w3.org/1999/xhtml"
-          xmlns:th="http://www.thymeleaf.org">
-        <head th:fragment="head"> <!-- th:fragment darle nombres a las secciones para llamarlas en otras partes-->
-            <meta charset="UTF-8"/>
-            <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/> <!-- agrega las referencias de las dependencias que agregamos -->
-            <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-            <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-            <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-            <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>      
-            <title>FAEJ</title>   
-        </head>
-        <body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head"> <!-- th:fragment darle nombres a las secciones para llamarlas en otras partes-->
+        <meta charset="UTF-8"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/> <!-- agrega las referencias de las dependencias que agregamos -->
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>      
+        <title>FAEJ</title>   
+    </head>
+    <body>
 
-            <!-- 1 Sección para el inicio de sesión-->
-            <section th:fragment="loginForm"class="vh-100" >
-                <div class="container-fluid" >
-                    <div class="row" style="align-items: center">
-                        <div class="col-sm-6 px-0 d-none d-sm-block">
-                            <img src="https://images.pexels.com/photos/1020488/pexels-photo-1020488.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"                      
-                                 alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+        <!-- 1 Sección para el inicio de sesión-->
+        <section th:fragment="loginForm"class="vh-100" >
+            <div class="container-fluid" >
+                <div class="row" style="align-items: center">
+                    <div class="col-sm-6 px-0 d-none d-sm-block">
+                        <img src="https://images.pexels.com/photos/1020488/pexels-photo-1020488.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"                      
+                             alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+                    </div>
+                    <div class="col-sm-6 text-black" style="align-items: center">
+                        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5" style="justify-content: center">
+                            <form th:action="@{/usuario/login}" method="POST" class="was-validated" 
+                                  style="width: 23rem;">
+
+                                <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;"><h2>Iniciar Sesión</h2></h3>
+                                <div style="text-align: end; color: black"><a href="#!" >Olvidé mi contraseña</a></div>
+                                <p></p>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="email">Correo Electrónico</label>
+                                    <input type="email" id="email" th:name="email" class="form-control form-control-lg" required="true" />
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="password">Contraseña</label>
+                                    <input type="password" th:name="password" id="password" class="form-control form-control-lg" required="true"/>
+                                </div>
+
+                                <div class="pt-2 mb-4">
+                                    <button class="btn btn-lg btn-block" name="btnIngresar" type="submit" style="width: 368px; background-color: #cccccc">Iniciar Sesión</button>
+                                </div>
+
+                                <hr></hr>
+                                <p style="text-align: center">No tienes una cuenta? </p>
+                                <div style="text-align: center" class="pt-1 mb-4" >
+                                    <button class="btn btn-lg" type="button" style="background: black; color: white; text-align: center; font-size: 17px"><a th:href="@{/usuario/crearCuenta}" style="color: white">Crear Cuenta</a></button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col-sm-6 text-black" style="align-items: center">
-                            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5" style="justify-content: center">
-                                <form th:action="@{/usuario/login}" method="POST" class="was-validated" 
-                                      style="width: 23rem;">
+                    </div>
+                    <div th:if="${param.error != null}">
+                        <h3>Error</h3>
+                    </div>
+                </div>
+            </div>
 
-                                    <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;"><h2>Iniciar Sesión</h2></h3>
-                                    <div style="text-align: end; color: black"><a href="#!" >Olvidé mi contraseña</a></div>
-                                    <p></p>
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="email">Correo Electrónico</label>
-                                        <input type="email" id="email" th:name="email" class="form-control form-control-lg" required="true" />
-                                    </div>
+        </section>
 
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="password">Contraseña</label>
-                                        <input type="password" th:name="password" id="password" class="form-control form-control-lg" required="true"/>
-                                    </div>
 
-                                    <div class="pt-2 mb-4">
-                                        <button class="btn btn-lg btn-block" name="btnIngresar" type="submit" style="width: 368px; background-color: #cccccc">Iniciar Sesión</button>
-                                    </div>
 
-                                    <hr></hr>
-                                    <p style="text-align: center">No tienes una cuenta? </p>
-                                    <div style="text-align: center" class="pt-1 mb-4" >
-                                        <button class="btn btn-lg" type="button" style="background: black; color: white; text-align: center; font-size: 17px"><a th:href="@{/usuario/crearCuenta}" style="color: white">Crear Cuenta</a></button>
+
+        <!-- 1 Sección para crear cuenta-->
+        <section th:fragment="loginCrear"class="vh-100" >
+            <div class="container-fluid" >
+                <div class="row" style="align-items: center">
+                    <div class="col-sm-6 px-0 d-none d-sm-block">
+                        <img src="https://images.pexels.com/photos/1020488/pexels-photo-1020488.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                             alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+                    </div>
+                    <div class="col-sm-6 text-black" style="align-items: center">
+                        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5" style="justify-content: center">
+
+                            <form th:action="@{/usuario/guardar}"  th:object="${usuario}"  method="POST"  class="was-validated" 
+                                  style="width: 23rem;">
+
+                                <h3 class="fw-normal " style="letter-spacing: 1px;"><h2>Crear Cuenta</h2></h3>
+                                <p></p>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="cedula">Número de Cédula</label>
+                                    <input type="num" id="cedula" th:name="cedula" class="form-control form-control-lg" required="true" />
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="nombre">Nombre Completo</label>
+                                    <input type="text" id="nombre" th:name="nombre" class="form-control form-control-lg" required="true" />
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="email">Correo Electrónico</label>
+                                    <input type="email" id="email" th:name="email" class="form-control form-control-lg" required="true" />
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="telefono">Número de Teléfono</label>
+                                    <input type="text" id="telefono" th:name="telefono" class="form-control form-control-lg" required="true" />
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="password">Contraseña</label>
+                                    <input type="password" th:name="password" id="password" class="form-control form-control-lg" required="true"/>
+                                </div>
+                                <input type="hidden" id="direccion" th:name="direccion" class="form-control form-control-lg" value="" />
+                                <div class="pt-2 mb-4">
+                                    <button class="btn btn-lg btn-block" name="btnIngresar" type="submit" style="width: 368px; background-color: #cccccc">Crear Cuenta</button>
+                                </div>     
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section th:fragment="carrusel"class="vh-100" style="margin-bottom: 20%">
+
+            <div id="template-mo-faej-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" >
+                    <div class="carousel-item active">
+                        <div class="container-fluid">
+                            <div class="row" style="background-color: #F9FAFB">
+                                <div class="col-sm-6 px-0 d-sm-block"  >
+
+                                    <img  style=" width: 100%; object-fit: fill"
+                                          src="https://images.pexels.com/photos/20019043/pexels-photo-20019043/free-photo-of-calcetines-mariposas-fotografia-de-moda-entrenadores.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                          alt="">
+                                </div>
+                                <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
+                                    <div>
+                                        <h4 style="font-size: 16px">LO MEJOR EN SNEAKERS</h4>
+                                        <h1><b>CONOCÉ LOS NUEVOS</b></h1>
+                                        <h1 style="font-size: 62px"><b>ESTILOS DISPONIBLES</b></h1>
+                                        <p></p>
+                                        <h5 style="font-size: 18px">Con acabados únicos y un diseño excepcional</h5>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
-                        <div th:if="${param.error != null}">
-                            <h3>Error</h3>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="container-fluid">
+                            <div class="row" style="background-color: #F9FAFB">
+                                <div class="col-sm-6 px-0 d-sm-block"  >
+
+                                    <img  style=" width: 100%; object-fit: fill"
+                                          src="https://images.pexels.com/photos/20019043/pexels-photo-20019043/free-photo-of-calcetines-mariposas-fotografia-de-moda-entrenadores.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                          alt="">
+                                </div>
+                                <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
+                                    <div>
+                                        <h4 style="font-size: 16px">LO MEJOR EN SNEAKERS</h4>
+                                        <h1><b>CONOCÉ LOS NUEVOS</b></h1>
+                                        <h1 style="font-size: 62px"><b>ESTILOS DISPONIBLES</b></h1>
+                                        <p></p>
+                                        <h5 style="font-size: 18px">Con acabados únicos y un diseño excepcional</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="container-fluid">
+                            <div class="row" style="background-color: #F9FAFB">
+                                <div class="col-sm-6 px-0 d-sm-block"  >
+
+                                    <img  style=" width: 100%; object-fit: fill"
+                                          src="https://images.pexels.com/photos/20019043/pexels-photo-20019043/free-photo-of-calcetines-mariposas-fotografia-de-moda-entrenadores.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                          alt="">
+                                </div>
+                                <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
+                                    <div>
+                                        <h4 style="font-size: 16px">LO MEJOR EN SNEAKERS</h4>
+                                        <h1><b>CONOCÉ LOS NUEVOS</b></h1>
+                                        <h1 style="font-size: 62px"><b>ESTILOS DISPONIBLES</b></h1>
+                                        <p></p>
+                                        <h5 style="font-size: 18px">Con acabados únicos y un diseño excepcional</h5>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-            </section>
-
-
-
-
-            <!-- 1 Sección para crear cuenta-->
-            <section th:fragment="loginCrear"class="vh-100" >
-                <div class="container-fluid" >
-                    <div class="row" style="align-items: center">
-                        <div class="col-sm-6 px-0 d-none d-sm-block">
-                            <img src="https://images.pexels.com/photos/1020488/pexels-photo-1020488.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                                 alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
-                        </div>
-                        <div class="col-sm-6 text-black" style="align-items: center">
-                            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5" style="justify-content: center">
-
-                                <form th:action="@{/usuario/guardar}"  th:object="${usuario}"  method="POST"  class="was-validated" 
-                                      style="width: 23rem;">
-
-                                    <h3 class="fw-normal " style="letter-spacing: 1px;"><h2>Crear Cuenta</h2></h3>
-                                    <p></p>
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="cedula">Número de Cédula</label>
-                                        <input type="num" id="cedula" th:name="cedula" class="form-control form-control-lg" required="true" />
-                                    </div>
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="nombre">Nombre Completo</label>
-                                        <input type="text" id="nombre" th:name="nombre" class="form-control form-control-lg" required="true" />
-                                    </div>
-
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="email">Correo Electrónico</label>
-                                        <input type="email" id="email" th:name="email" class="form-control form-control-lg" required="true" />
-                                    </div>
-
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="telefono">Número de Teléfono</label>
-                                        <input type="text" id="telefono" th:name="telefono" class="form-control form-control-lg" required="true" />
-                                    </div>
-
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="password">Contraseña</label>
-                                        <input type="password" th:name="password" id="password" class="form-control form-control-lg" required="true"/>
-                                    </div>
-                                    <input type="hidden" id="direccion" th:name="direccion" class="form-control form-control-lg" value="" />
-                                    <div class="pt-2 mb-4">
-                                        <button class="btn btn-lg btn-block" name="btnIngresar" type="submit" style="width: 368px; background-color: #cccccc">Crear Cuenta</button>
-                                    </div>     
-
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-            </section>
-
-            <section th:fragment="carrusel"class="vh-100" style="margin-bottom: 20%">
-
-                <div id="template-mo-faej-hero-carousel" class="carousel slide" data-bs-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="0" class="active"></li>
-                        <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="1"></li>
-                        <li data-bs-target="#template-mo-faej-hero-carousel" data-bs-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner" >
-                        <div class="carousel-item active">
-                            <div class="container-fluid">
-                                <div class="row" style="background-color: #F9FAFB">
-                                    <div class="col-sm-6 px-0 d-sm-block"  >
-
-                                        <img  style=" width: 100%; object-fit: fill"
-                                              src="https://images.pexels.com/photos/20019043/pexels-photo-20019043/free-photo-of-calcetines-mariposas-fotografia-de-moda-entrenadores.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                                              alt="">
-                                    </div>
-                                    <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
-                                        <div>
-                                            <h4 style="font-size: 16px">LO MEJOR EN SNEAKERS</h4>
-                                            <h1><b>CONOCÉ LOS NUEVOS</b></h1>
-                                            <h1 style="font-size: 62px"><b>ESTILOS DISPONIBLES</b></h1>
-                                            <p></p>
-                                            <h5 style="font-size: 18px">Con acabados únicos y un diseño excepcional</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="container-fluid">
-                                <div class="row" style="background-color: #F9FAFB">
-                                    <div class="col-sm-6 px-0 d-sm-block"  >
-
-                                        <img  style=" width: 100%; object-fit: fill"
-                                              src="https://images.pexels.com/photos/20019043/pexels-photo-20019043/free-photo-of-calcetines-mariposas-fotografia-de-moda-entrenadores.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                                              alt="">
-                                    </div>
-                                    <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
-                                        <div>
-                                            <h4 style="font-size: 16px">LO MEJOR EN SNEAKERS</h4>
-                                            <h1><b>CONOCÉ LOS NUEVOS</b></h1>
-                                            <h1 style="font-size: 62px"><b>ESTILOS DISPONIBLES</b></h1>
-                                            <p></p>
-                                            <h5 style="font-size: 18px">Con acabados únicos y un diseño excepcional</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="container-fluid">
-                                <div class="row" style="background-color: #F9FAFB">
-                                    <div class="col-sm-6 px-0 d-sm-block"  >
-
-                                        <img  style=" width: 100%; object-fit: fill"
-                                              src="https://images.pexels.com/photos/20019043/pexels-photo-20019043/free-photo-of-calcetines-mariposas-fotografia-de-moda-entrenadores.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                                              alt="">
-                                    </div>
-                                    <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
-                                        <div>
-                                            <h4 style="font-size: 16px">LO MEJOR EN SNEAKERS</h4>
-                                            <h1><b>CONOCÉ LOS NUEVOS</b></h1>
-                                            <h1 style="font-size: 62px"><b>ESTILOS DISPONIBLES</b></h1>
-                                            <p></p>
-                                            <h5 style="font-size: 18px">Con acabados únicos y un diseño excepcional</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a class="carousel-control-prev  w-auto ps-3" href="#template-mo-faej-hero-carousel"
-                       role="button" data-bs-slide="prev">
-                        <i class="fas fa-chevron-left"></i>
-                    </a>
-                    <a class="carousel-control-next w-auto pe-3" href="#template-mo-faej-hero-carousel"
-                       role="button" data-bs-slide="next">
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                </div>
-                <hr>
-                    <p></p>
-            </section>
-
-            <section th:fragment="marcas"class="vh-100" style="margin-bottom: 50%">
-                <h1 class="text-black" style="font-size: 50px; text-align: center">LAS MEJORES MARCAS DEL MERCADO</h1>
+                <a class="carousel-control-prev  w-auto ps-3" href="#template-mo-faej-hero-carousel"
+                   role="button" data-bs-slide="prev">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                <a class="carousel-control-next w-auto pe-3" href="#template-mo-faej-hero-carousel"
+                   role="button" data-bs-slide="next">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+            <hr>
                 <p></p>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4" style="width: 424px; height: 347px">
-                            <div class="card" style="border: none">
-                                <a href="#"><img  src="https://shoelab.cr/wp-content/uploads/2024/02/dz2708-001_1-300x300.jpg" style="width: 398px; height: 347px" class="card-img-top" alt="nike"/>
-                                 </a>
-                                    <div class="card-body">
-                                    <p class="card-text" style="text-align: center">
-                                        Sneakers
-                                    </p>
-                                    <h5 class="card-title" style="text-align: center; font-size: 25px">Nike</h5>
-                                </div>
-                               
-                            </div>
-                        </div>
-                        <div class="col-md-4" style="width: 424px; height: 347px">
-                            <div class="card" style="border: none">
-                                <a href="#"><img src="https://shoelab.cr/wp-content/uploads/2023/11/id7954_1-300x300.jpg" style="width: 398px; height: 347px" class="card-img-top" alt="Palm Springs Road"/>
-                                </a><div class="card-body">
-                                    <p class="card-text" style="text-align: center">
-                                        Sneakers
-                                    </p>
-                                    <h5 class="card-title" style="text-align: center; font-size: 25px">Adidas</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" style="width: 424px; height: 347px">
-                            <div class="card" style="border: none">
-                                <a href="#"><img src="https://shoelab.cr/wp-content/uploads/2023/11/ct302sl-d_1-300x300.jpg" style="width: 398px; height: 347px"  alt="Los Angeles Skyscrapers"/>
-                                </a>
-                                <div class="card-body">
-                                    <p class="card-text" style="text-align: center">
-                                        Sneakers
-                                    </p>
-                                    <h5 class="card-title" style="text-align: center; font-size: 25px">New Balance</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <p></p>
-                    <div class="row">
-                        <div class="col-md-4" style="width: 424px; height: 347px; margin-top: 150px">
-                            <div class="card" style="border: none">
-                                <a href="#"><img src="https://shoelab.cr/wp-content/uploads/2023/11/a04590c_1-300x300.jpg" style="width: 398px; height: 347px" class="card-img-top" alt="Skyscrapers"/>
-                                </a>
-                                    <div class="card-body">
-                                    <p class="card-text" style="text-align: center">
-                                        Sneakers
-                                    </p>
-                                    <h5 class="card-title" style="text-align: center; font-size: 25px">Converse</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" style="width: 424px; height: 347px; margin-top: 150px">
-                            <div class="card" style="border: none">
-                                <a href="#"><img style="width: 398px; height: 347px" src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_500,h_500/global/395926/01/sv01/fnd/PNA/fmt/png/Mayze-Stack-XPL-No-Filter-Women's-Sneakers" class="card-img-top" alt="Skyscrapers"/>
-                                </a>
-                                <div class="card-body">
-                                    <p class="card-text" style="text-align: center">
-                                        Sneakers
-                                    </p>
-                                    <h5 class="card-title" style="text-align: center; font-size: 25px">Puma</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4" style="width: 424px; height: 347px; margin-top: 150px" >
-                            <div class="card" style="border: none">
-                                <a href="#"><img style="width: 398px; height: 347px" src="https://images.vans.com/is/image/Vans/VN000CP5_C9I_HERO?wid=1600&hei=1984&fmt=jpeg&qlt=90&resMode=sharp2&op_usm=0.9,1.7,8,0"  alt="Skyscrapers"/>
-                                </a>
-                                    <div class="card-body">
-                                    <p class="card-text" style="text-align: center">
-                                        Sneakers
-                                    </p>
-                                    <h5 class="card-title" style="text-align: center; font-size: 25px">Vans</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        </section>
 
+        <section th:fragment="marcas"class="vh-100" style="margin-bottom: 50%">
+            <h1 class="text-black" style="font-size: 50px; text-align: center">LAS MEJORES MARCAS DEL MERCADO</h1>
+            <p></p>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4" style="width: 424px; height: 347px">
+                        <div class="card" style="border: none">
+                            <a href="#"><img  src="https://shoelab.cr/wp-content/uploads/2024/02/dz2708-001_1-300x300.jpg" style="width: 398px; height: 347px" class="card-img-top" alt="nike"/>
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text" style="text-align: center">
+                                    Sneakers
+                                </p>
+                                <h5 class="card-title" style="text-align: center; font-size: 25px">Nike</h5>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="width: 424px; height: 347px">
+                        <div class="card" style="border: none">
+                            <a href="#"><img src="https://shoelab.cr/wp-content/uploads/2023/11/id7954_1-300x300.jpg" style="width: 398px; height: 347px" class="card-img-top" alt="Palm Springs Road"/>
+                            </a><div class="card-body">
+                                <p class="card-text" style="text-align: center">
+                                    Sneakers
+                                </p>
+                                <h5 class="card-title" style="text-align: center; font-size: 25px">Adidas</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="width: 424px; height: 347px">
+                        <div class="card" style="border: none">
+                            <a href="#"><img src="https://shoelab.cr/wp-content/uploads/2023/11/ct302sl-d_1-300x300.jpg" style="width: 398px; height: 347px"  alt="Los Angeles Skyscrapers"/>
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text" style="text-align: center">
+                                    Sneakers
+                                </p>
+                                <h5 class="card-title" style="text-align: center; font-size: 25px">New Balance</h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
-        </body>
-    </html>
+                <p></p>
+                <div class="row">
+                    <div class="col-md-4" style="width: 424px; height: 347px; margin-top: 150px">
+                        <div class="card" style="border: none">
+                            <a href="#"><img src="https://shoelab.cr/wp-content/uploads/2023/11/s70715-3_1-1.jpg" style="width: 398px; height: 347px" class="card-img-top" alt="Skyscrapers"/>
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text" style="text-align: center">
+                                    Sneakers
+                                </p>
+                                <h5 class="card-title" style="text-align: center; font-size: 25px">Saucony</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="width: 424px; height: 347px; margin-top: 150px">
+                        <div class="card" style="border: none">
+                            <a href="#"><img style="width: 398px; height: 347px" src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_500,h_500/global/395926/01/sv01/fnd/PNA/fmt/png/Mayze-Stack-XPL-No-Filter-Women's-Sneakers" class="card-img-top" alt="Skyscrapers"/>
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text" style="text-align: center">
+                                    Sneakers
+                                </p>
+                                <h5 class="card-title" style="text-align: center; font-size: 25px">Puma</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4" style="width: 424px; height: 347px; margin-top: 150px" >
+                        <div class="card" style="border: none">
+                            <a href="#"><img style="width: 398px; height: 347px" src="https://images.vans.com/is/image/Vans/VN000CP5_C9I_HERO?wid=1600&hei=1984&fmt=jpeg&qlt=90&resMode=sharp2&op_usm=0.9,1.7,8,0"  alt="Skyscrapers"/>
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text" style="text-align: center">
+                                    Sneakers
+                                </p>
+                                <h5 class="card-title" style="text-align: center; font-size: 25px">Vans</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <aside th:fragment="opciones">
+            <div class="p-3">
+                <h3>Hola, Usuario</h3>
+                <div class="d-flex flex-column flex-shrink-0 shadow collapse" style="margin-left: -11px">
+                    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" >
+                        <li class="nav-item text-black"> <a th:href="@{/usuario/adminInicio}" class="nav-link active py-3 border-bottom text-white bg-dark"> <i class="fa fa-dashboard"></i> <b>Dashboard</b> </a> </li>             
+                        <li> <a href="#" class="nav-link icon-link-hover py-3 border-bottom text-black"> <i class="fa fa-server"></i> Mis Pedidos </a> </li>
+                        <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-shopping-cart"></i> Carrito de Compras</a> </li>
+                        <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-heart"></i> Lista de Deseos</a> </li>
+                        <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-cog"></i> Ajustes </a> </li>
+                        <li> <a th:href="@{/usuario/login}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-sign-in"></i> Cerrar Sesión </a> </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <section th:fragment="dashboard">
+            <h1 class="text-center">INFORMACION DEL USUARIO PENDIENTE</h1>
+        </section>
+
+
+
+
+    </body>
+</html>

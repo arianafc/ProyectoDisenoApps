@@ -30,8 +30,12 @@ public interface ProductoService {
     public void deleteProducto(Long id);
 
 
+    public List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf, double precioSup);
+    public List<Producto> findByCategoria(Categoria categoria);
+    public List<Producto> findByCategoriaAndEstilo(Categoria categoria, Estilo estilo);
+    public List<Producto> findByMarca(String marca);
+    public List<Producto> filtrarMarcaYCategoria(Long idCategoria, String marca);
+    public List<Producto> findByEstilo(Long idEstilo);
+    public List<Producto> findByFiltros(double precioInf, double precioSup, Long idEstilo, String marca);
     
-    List<Producto> findByCategoria(Categoria categoria);
-    List<Producto> findByCategoriaAndEstilo(Categoria categoria, Estilo estilo);
-    List<Producto> findByCategoriaAndMarca(Categoria categoria, String marca);
 }

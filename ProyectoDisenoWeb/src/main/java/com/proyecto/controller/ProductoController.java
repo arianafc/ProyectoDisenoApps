@@ -99,6 +99,20 @@ public class ProductoController {
         return "producto/modificar";
     }
 
+    @GetMapping("/vistaProductoDetalle/{idProducto}")
+    public String vistaProductoDetalle(@PathVariable("idProducto") Producto producto, Model model) {
+        producto = productoService.getProducto(producto);
+        var productos = productoService.getProductos();
+        var categorias = categoriaService.getCategorias();
+        var estilos = estiloService.getEstilos();
+        model.addAttribute("productos", productos);
+        model.addAttribute("totalProductos", productos.size());
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("estilos", estilos);
+        model.addAttribute("producto", producto);
+        return "producto/vistaProductoDetalle";
+    }
+
     @GetMapping("busquedaProducto")
     public String busquedaProducto(Model model) {
         return "/producto/busquedaProducto";

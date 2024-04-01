@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head">
+        <title>Modificar Producto</title>
+    </head>
+    <body>
+
+        <header th:replace="~{layout/plantillaInicio :: headerInicio}"/>
+        <br>
+        <section th:replace="~{producto/fragmentos :: vistaProductoDetalle}"/>
+        <hr>
+        <section th:replace="~{producto/fragmentos :: reseñas}"/> 
+        <hr>
+        <section th:replace="~{producto/fragmentos :: productosRelacionados}"/> 
+        <br>
+        <footer th:replace="~{layout/plantilla :: footer }"/> 
+    </body>
+</body>
+</html>

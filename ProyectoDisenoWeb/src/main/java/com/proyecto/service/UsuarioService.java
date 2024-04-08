@@ -18,7 +18,7 @@ public interface UsuarioService {
     
     // Se inserta un nuevo categoria si el id del categoria esta vacío    
     // Se actualiza un categoria si el id del categoria NO esta vacío     
-    public void save(Usuario usuario);          
+    public void save(Usuario usuario,boolean crearRolUser);         
     
 // Se elimina el categoria que tiene el id pasado por parámetro     
     public void delete(Usuario usuario); 
@@ -30,4 +30,14 @@ public interface UsuarioService {
     public boolean existeUsuarioPorEmail(String email);
     
     
+    public Usuario getUsuarioPorUsername(String username);
+
+    
+    public Usuario getUsuarioPorUsernameYPassword(String username, String password);
+    
+   
+    public Usuario getUsuarioPorUsernameOCorreo(String username, String correo);
+    
+  
+    public boolean existeUsuarioPorUsernameOCorreo(String username, String correo);
 }

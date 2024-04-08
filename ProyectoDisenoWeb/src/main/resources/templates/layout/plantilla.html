@@ -11,7 +11,7 @@
     </head>
     <body >
         <header th:fragment="header" class="header">
-            <nav class="navbar navbar-expand-lg shadow">
+            <nav class="navbar navbar-expand-lg shadow mx-auto">
                 <div class="container-fluid">
                     <a style="margin-left: 100px" class="navbar-brand" href="#">
                         <!--<img src="FAEJ-NEGRO.png" alt="" width="100px"/> </a>-->
@@ -25,7 +25,7 @@
                     <div  class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown dropdown-mega position-static" >
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">[[#{nav.mujeres}]]</a>
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" sec:authorize="hasRole('ROLE_USER')" >[[#{nav.mujeres}]]</a>
                                 <div class="dropdown-menu shadow mt-0" style="width: 100%">
 
                                     <div class="mega-conten">
@@ -38,25 +38,25 @@
                                                     </h1>
                                                 </div>
                                                 <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                    <a href="#"><h5>[[#{nav.todos}]]</h5></a>
+                                                    <a th:href="@{/producto/vistaProducto/Mujer}"><h5>[[#{nav.todos}]]</h5></a>
                                                     <div class="list-group">
-                                                        <a class="list-group-item" href="#">Lifestyle</a>
-                                                        <a class="list-group-item" href="#">Running</a>
-                                                        <a class="list-group-item" href="#">Trail Running</a>
-                                                        <a class="list-group-item" href="#">Training & Gym</a>
-                                                        <a class="list-group-item" href="#">Sportswear</a>
-                                                        <a class="list-group-item" href="#">Skateboarding</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Lifestyle}">Lifestyle</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Running}">Running</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Trail Running}">Trail Running</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Training & Gym}">Training & Gym</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Sportswear}">Sportswear</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Skateboarding}">Skateboarding</a>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-4 col-md-3 py-4">
                                                     <a href="#"><h5>[[#{nav.marcas}]]</h5></a>
                                                     <div class="list-group">
-                                                        <a class="list-group-item" href="#">Nike</a>
-                                                        <a class="list-group-item" href="#">Adidas</a>
-                                                        <a class="list-group-item" href="#">Vans</a>
-                                                        <a class="list-group-item" href="#">Puma</a>
-                                                        <a class="list-group-item" href="#">New Balance</a>
-                                                        <a class="list-group-item" href="#">Saucony</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Mujer', marca='Nike')}">Nike</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Mujer', marca='Adidas')}">Adidas</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Mujer', marca='Vans')}">Vans</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Mujer', marca='Puma')}">Puma</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Mujer', marca='NewBalance')}">New Balance</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Mujer', marca='Saucony')}">Saucony</a>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-4 col-md-3 py-4">
@@ -73,7 +73,7 @@
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown dropdown-mega position-static" >
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">[[#{nav.hombres}]]</a>
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" sec:authorize="hasRole('ROLE_USER')">[[#{nav.hombres}]]</a>
                                 <div class="dropdown-menu shadow mt-0" style="width: 100%">
 
                                     <div class="mega-conten">
@@ -85,25 +85,25 @@
                                                     </h1>
                                                 </div>
                                                 <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                    <a href="#"><h5>[[#{nav.todos}]]</h5></a>
+                                                    <a th:href="@{/producto/vistaProducto/Hombre}"><h5>[[#{nav.todos}]]</h5></a>
                                                     <div class="list-group">
-                                                        <a class="list-group-item" href="#">Lifestyle</a>
-                                                        <a class="list-group-item" href="#">Running</a>
-                                                        <a class="list-group-item" href="#">Trail Running</a>
-                                                        <a class="list-group-item" href="#">Training & Gym</a>
-                                                        <a class="list-group-item" href="#">Sportswear</a>
-                                                        <a class="list-group-item" href="#">Skateboarding</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Lifestyle}">Lifestyle</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Running}">Running</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Trail Running}">Trail Running</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Training & Gym}">Training & Gym</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Sportswear}">Sportswear</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Hombre/Skateboarding}">Skateboarding</a>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-4 col-md-3 py-4">
                                                     <a href="#"><h5>[[#{nav.marcas}]]</h5></a>
                                                     <div class="list-group">
-                                                        <a class="list-group-item" href="#">Nike</a>
-                                                        <a class="list-group-item" href="#">Adidas</a>
-                                                        <a class="list-group-item" href="#">Vans</a>
-                                                        <a class="list-group-item" href="#">Puma</a>
-                                                        <a class="list-group-item" href="#">New Balance</a>
-                                                        <a class="list-group-item" href="#">Saucony</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Hombre', marca='Nike')}">Nike</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Hombre', marca='Adidas')}">Adidas</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Hombre', marca='Vans')}">Vans</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Hombre', marca='Puma')}">Puma</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Hombre', marca='NewBalance')}">New Balance</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Hombre', marca='Saucony')}">Saucony</a>s
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-4 col-md-3 py-4">
@@ -120,7 +120,7 @@
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown dropdown-mega position-static" >
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">[[#{nav.ninos}]]</a>
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" sec:authorize="hasRole('ROLE_USER')">[[#{nav.ninos}]]</a>
                                 <div class="dropdown-menu shadow mt-0" style="width: 100%">
 
                                     <div class="mega-conten">
@@ -132,25 +132,25 @@
                                                     </h1>
                                                 </div>
                                                 <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                    <a href="#"><h5>[[#{nav.todos}]]</h5></a>
+                                                    <a th:href="@{/producto/vistaProducto/Niñ@}"><h5>[[#{nav.todos}]]</h5></a>
                                                     <div class="list-group">
-                                                        <a class="list-group-item" href="#">Lifestyle</a>
-                                                        <a class="list-group-item" href="#">Running</a>
-                                                        <a class="list-group-item" href="#">Trail Running</a>
-                                                        <a class="list-group-item" href="#">Training & Gym</a>
-                                                        <a class="list-group-item" href="#">Sportswear</a>
-                                                        <a class="list-group-item" href="#">Skateboarding</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Lifestyle}">Lifestyle</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Running}">Running</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Trail Running}">Trail Running</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Training & Gym}">Training & Gym</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Sportswear}">Sportswear</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/Niñ@/Skateboarding}">Skateboarding</a>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                    <a href="#"><h5>[[#{nav.marcas}]]</h5></a>
+                                                    <a th:href="@{/producto/vistaProducto/Nin@}"><h5>[[#{nav.marcas}]]</h5></a>
                                                     <div class="list-group">
-                                                        <a class="list-group-item" href="#">Nike</a>
-                                                        <a class="list-group-item" href="#">Adidas</a>
-                                                        <a class="list-group-item" href="#">Vans</a>
-                                                        <a class="list-group-item" href="#">Puma</a>
-                                                        <a class="list-group-item" href="#">New Balance</a>
-                                                        <a class="list-group-item" href="#">Saucony</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Niñ@', marca='Nike')}">Nike</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Niñ@', marca='Adidas')}">Adidas</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Niñ@', marca='Vans')}">Vans</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Niñ@', marca='Puma')}">Puma</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Niñ@', marca='NewBalance')}">New Balance</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Niñ@', marca='Saucony')}">Saucony</a>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-4 col-md-3 py-4">
@@ -168,7 +168,7 @@
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown dropdown-mega position-static" >
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">[[#{nav.marcas}]]</a>
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" sec:authorize="hasRole('ROLE_USER')">[[#{nav.marcas}]]</a>
                                 <div class="dropdown-menu shadow mt-0" style="width: 100%">
                                     <div class="mega-conten">
                                         <div class="container">
@@ -179,14 +179,14 @@
                                                     </h1>
                                                 </div>
                                                 <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                    <a href="#"><h5>[[#{nav.marcas}]]</h5></a>
+                                                    <a th:href="@{/producto/vistaProducto}"></h5></a>
                                                     <div class="list-group">
-                                                        <a class="list-group-item" href="#">Nike</a>
-                                                        <a class="list-group-item" href="#">Adidas</a>
-                                                        <a class="list-group-item" href="#">Vans</a>
-                                                        <a class="list-group-item" href="#">Puma</a>
-                                                        <a class="list-group-item" href="#">New Balance</a>
-                                                        <a class="list-group-item" href="#">Saucony</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/marca/{marca}(marca='Nike')}">Nike</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/marca/{marca}(marca='Adidas')}">Adidas</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/marca/{marca}(marca='Vans')}">Vans</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/marca/{marca}(marca='Puma')}">Puma</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/marca/{marca}(marca='NewBalance')}">New Balance</a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/marca/{marca}(marca='Saucony')}">Saucony</a>
                                                     </div>
                                                 </div>  
                                             </div>
@@ -196,7 +196,7 @@
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a sec:authorize="hasRole('ROLE_USER')" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     [[#{nav.nosotros}]]
                                 </a>
                                 <ul class="dropdown-menu">
@@ -208,7 +208,7 @@
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a sec:authorize="hasRole('ROLE_USER')" class="nav-link" th:href="@{/contacto/contacto}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     [[#{nav.contacto}]]
                                 </a>
                             </li>
@@ -216,7 +216,7 @@
                     </div>
 
                     <ul class="navbar-nav d-flex flex-row">
-                        <li class="nav-item me-3 me-lg-0">
+                        <li sec:authorize="hasRole('ROLE_USER')" class="nav-item me-3 me-lg-0">
                             <a class="nav-link" th:href="@{/producto/busquedaProducto}">
                                 <i class="fas fa-magnifying-glass"></i>
                             </a>
@@ -231,19 +231,29 @@
                                     <i class="fas fa-user"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item"  th:href="@{/usuario/login}">Iniciar Sesión</a></li>
+                                    <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/usuario/login}">Iniciar Sesión</a></li>
 
-                                    <li><a class="dropdown-item" th:href="@{/usuario/crearCuenta}">Registrarse</a></li>
+                                    <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/usuario/crearCuenta}">Registrarse</a></li>
+                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" th:href="@{/usuario/miCuenta}">Mi cuenta</a></li>
+                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" href="#">Mis Pedidos</a></li>
+                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" href="#">Mis favoritos</a></li>
+                                    <hr sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR') ">
+                                        <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
+                                            <button class="btn btn-dark">
+                                                <i class="fas fa-sign-out-alt"></i>
+                                            </button>
+
+                                        </form>
                                 </ul>
                             </li>
                         </ul>
-                        <li class="nav-item me-3 me-lg-0">
+                        <li sec:authorize="hasRole('ROLE_USER')" class="nav-item me-3 me-lg-0">
                             <a class="nav-link" href="#">
                                 <i class="far fa-heart"></i>
                             </a>
                         </li>
 
-                        <li class="nav-item me-3 me-lg-0">
+                        <li sec:authorize="hasRole('ROLE_USER')" class="nav-item me-3 me-lg-0">
                             <a class="nav-link" href="#">
                                 <i class="fas fa-bag-shopping"></i>
                             </a>
@@ -273,7 +283,7 @@
                             <!-- Grid column -->
 
                             <!-- Grid column -->
-                            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-1 mt-1">
+                            <div sec:authorize="hasRole('ROLE_USER')" class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-1 mt-1">
                                 <!-- Links -->
                                 <h6 class="text-uppercase fw-bold mb-4">
                                     [[#{footer.categorias}]]
@@ -291,10 +301,10 @@
                             <!-- Grid column -->
 
                             <!-- Grid column -->
-                            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-1 mt-1">
+                            <div sec:authorize="hasRole('ROLE_USER')" class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-1 mt-1">
                                 <!-- Links -->
                                 <h6 class="text-uppercase fw-bold mb-4">
-                                 [[#{footer.marcas}]]
+                                    [[#{footer.marcas}]]
                                 </h6>
                                 <p>
                                     <a th:href="@{/producto/vistaProducto/marca/Nike}" class="text-reset">Nike</a>
@@ -309,7 +319,7 @@
                             <!-- Grid column -->
 
                             <!-- Grid column -->
-                            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 mb-1 mt-1">
+                            <div sec:authorize="hasRole('ROLE_USER')" class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 mb-1 mt-1">
                                 <!-- Links -->
                                 <h6 class="text-uppercase fw-bold mb-4">[[#{footer.ayuda}]]</h6>
                                 <p>
@@ -344,9 +354,9 @@
                 <div class="row mx-auto">
                     <div class="col">
                         <p style="margin-left: 10px">Derechos Reservados FAEJ © 2024</p></div>
-                        <div class="col">
+                    <div class="col">
                         <p class="text-right" style="justify-content: end; align-content: end"><a class="text-white" th:href="@{/(lang=es)}">ES </a><a class="text-white" th:href="@{/(lang=en)}">EN</a></p>
-                </div>
+                    </div>
                 </div>
             </div>
         </footer>

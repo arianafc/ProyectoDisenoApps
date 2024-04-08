@@ -37,28 +37,28 @@ public class UsuarioController {
         return "/usuario/login";
     }
 
-    @PostMapping("/login")
-    private String login(Model model, @RequestParam(value = "email") String email, @RequestParam(value = "password") String pass) {
-        Usuario usuario = usuarioService.getUsuarioporEmail(email);
-        if (usuario == null) {
-            model.addAttribute("error", "Correo o usuario incorrecto");
-            return "/usuario/login";
-        }
-        if (!email.equals(usuarioService.getUsuarioporEmail(email).getEmail()) || !pass.equals(usuarioService.getUsuarioporEmail(email).getPassword())) {
-            model.addAttribute("error", "Correo o usuario incorrecto");
-            return "/usuario/login";
-        } else {
-            if (usuario.getRol() == 3) {
-                return "redirect:/usuario/inicio";
-            } else if (usuario.getRol() == 1) {
-                return "redirect:/usuario/adminInicio";
-            } else if (usuario.getRol() == 2) {
-                return "redirect:/usuario/vendedorInicio";
-            } else {
-                return "/usuario/login";
-            }
-        }
-    }
+//    @PostMapping("/login")
+//    private String login(Model model, @RequestParam(value = "email") String email, @RequestParam(value = "password") String pass) {
+//        Usuario usuario = usuarioService.getUsuarioporEmail(email);
+//        if (usuario == null) {
+//            model.addAttribute("error", "Correo o usuario incorrecto");
+//            return "/usuario/login";
+//        }
+//        if (!email.equals(usuarioService.getUsuarioporEmail(email).getEmail()) || !pass.equals(usuarioService.getUsuarioporEmail(email).getPassword())) {
+//            model.addAttribute("error", "Correo o usuario incorrecto");
+//            return "/usuario/login";
+//        } else {
+//            if (usuario.getRol() == 3) {
+//                return "redirect:/usuario/inicio";
+//            } else if (usuario.getRol() == 1) {
+//                return "redirect:/usuario/adminInicio";
+//            } else if (usuario.getRol() == 2) {
+//                return "redirect:/usuario/vendedorInicio";
+//            } else {
+//                return "/usuario/login";
+//            }
+//        }
+//    }
 
     @GetMapping("/inicio")
     private String inicio() {
@@ -90,27 +90,27 @@ public class UsuarioController {
         return "/usuario/miCuenta";
     }
 
-    @PostMapping("/guardar")
-    public String guardar(Usuario usuario, Model model) {
-        if (usuarioService.existeUsuarioPorEmail(usuario.getEmail())) {
-            model.addAttribute("error", "Correo registrado");
-            return "/usuario/crearCuenta";
-        } else {
-            usuario.setDireccion("");
-            usuario.setRol(3);
-            usuarioService.save(usuario);
-            return "redirect:/usuario/login";
-        }
-    }
+//    @PostMapping("/guardar")
+//    public String guardar(Usuario usuario, Model model) {
+//        if (usuarioService.existeUsuarioPorEmail(usuario.getEmail())) {
+//            model.addAttribute("error", "Correo registrado");
+//            return "/usuario/crearCuenta";
+//        } else {
+//            usuario.setDireccion("");
+////            usuario.setRol(3);
+//            usuarioService.save(usuario);
+//            return "redirect:/usuario/login";
+//        }
+//    }
 
-    @PostMapping("/guardarAdmin")
-    public String guardarAdmin(Usuario usuario, Model model, @RequestParam(value = "rol") String rol) {
-        if (usuarioService.existeUsuarioPorEmail(usuario.getEmail())) {
-            model.addAttribute("error", "Correo registrado");
-            return "/usuario/asignarRol";
-        } else {
-            usuarioService.save(usuario);
-            return "redirect:/usuario/asignarRol";
-        }
-    }
+//    @PostMapping("/guardarAdmin")
+//    public String guardarAdmin(Usuario usuario, Model model, @RequestParam(value = "rol") String rol) {
+//        if (usuarioService.existeUsuarioPorEmail(usuario.getEmail())) {
+//            model.addAttribute("error", "Correo registrado");
+//            return "/usuario/asignarRol";
+//        } else {
+//            usuarioService.save(usuario);
+//            return "redirect:/usuario/asignarRol";
+//        }
+//    }
 }

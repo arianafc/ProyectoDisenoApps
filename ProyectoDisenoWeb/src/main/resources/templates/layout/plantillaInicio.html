@@ -43,7 +43,7 @@
                                                                     </div>
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
                                                                         <a th:href="@{/producto/vistaProducto/Mujer}"><h5>Todos</h5></a>
-                                                                        <div class="list-group">
+                                                                        <div sec:authorize="hasRole('ROLE_USER') class="list-group">
                                                                             <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Lifestyle}">Lifestyle</a>
                                                                             <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Running}">Running</a>
                                                                             <a class="list-group-item" th:href="@{/producto/vistaProducto/Mujer/Trail Running}">Trail Running</a>
@@ -147,7 +147,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                                        <a th:href="@{/producto/vistaProducto/Mujer}"><h5>Marcas</h5></a>
+                                                                        <a th:href="@{/producto/vistaProducto/Nin@}"><h5>Marcas</h5></a>
                                                                         <div class="list-group">
                                                                             <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Niñ@', marca='Nike')}">Nike</a>
                                                                             <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Niñ@', marca='Adidas')}">Adidas</a>

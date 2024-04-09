@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
         <title>FAEJ</title>        
     </head>
     <body>
-        <header th:replace="~{layout/plantillaInicio :: headerInicio}"/>
-        <div class="container-fluid mt-5">
+        <header th:replace="~{layout/plantilla :: header}"/>
+        <div sec:authorize="hasRole('ROLE_USER')" class="container-fluid mt-5">
             <div class="row">
                 <div class="col-md-2">
                     <aside th:replace="~{producto/fragmentos :: filtros}"/> 

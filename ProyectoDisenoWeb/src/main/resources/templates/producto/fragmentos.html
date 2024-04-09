@@ -301,7 +301,7 @@
         </section>
 
         <!-- 2 Sección principal para mostrar la informaccion de las productos -->
-        <section th:fragment="listadoProductosFiltrado" id="productos">
+        <section sec:authorize="hasRole('ROLE_USER')" th:fragment="listadoProductosFiltrado" id="productos">
             <div class="row row-cols-3 mb-5" style="margin-right: 10px">
                 <div class="card" th:each="p : ${productos}">
                     <figure><a th:href="@{/producto/vistaProductoDetalle/{idProducto}(idProducto=${p.idProducto})}"><img th:src="${p.rutaImagen}" 
@@ -317,7 +317,7 @@
             </div>
         </section>
 
-        <section th:fragment="vistaProductoDetalle">
+        <section sec:authorize="hasRole('ROLE_USER')" th:fragment="vistaProductoDetalle">
             <form th:object="${producto}" class="was-validated" enctype="multipart/form-data">
                 <div class="container-fluid">
                 <div class="row mx-auto" style="justify-content: center">

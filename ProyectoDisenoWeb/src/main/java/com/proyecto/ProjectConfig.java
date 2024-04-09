@@ -4,10 +4,7 @@
  */
 package com.proyecto;
 
-/**
- *
- * @author feru0
- */
+
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -89,9 +86,9 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/producto/listado"
                 ).hasAnyRole("ADMIN", "VENDEDOR")
                 .requestMatchers(
-                        "/login", "/index", "/usuario/inicio", "/usuario/crearCuenta"
+                        "/login", "/index", "/usuario/inicio", "/usuario/crearCuenta", "/usuario/login"
                 ).hasAnyRole("ADMIN", "VENDEDOR", "USER")
-                .requestMatchers("/producto/vistaProducto/", "/producto/vistaProductoDetalle", "/producto/guiaTallas", "/producto/carritoCompras",
+                .requestMatchers("/producto/vistaProducto/Mujer/*", "/producto/vistaProductoDetalle", "/producto/guiaTallas", "/producto/carritoCompras",
                         "/producto/carrito", "/contacto/contacto")
                 .hasRole("USER")
                 )

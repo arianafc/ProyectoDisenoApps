@@ -232,7 +232,7 @@
                                     <i class="fas fa-user"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/usuario/login}">Iniciar Sesión</a></li>
+                                    <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/inicioSesion}">Iniciar Sesión</a></li>
 
                                     <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/usuario/crearCuenta}">Registrarse</a></li>
                                     <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" th:href="@{/usuario/miCuenta}">Mi cuenta</a></li>

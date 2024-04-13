@@ -67,7 +67,7 @@ public class ProjectConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/inicioSesion").setViewName("inicioSesion");
         registry.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
     }
 
@@ -75,7 +75,7 @@ public class ProjectConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
-                .requestMatchers("/", "/index", "/errores/**",
+                .requestMatchers("/", "/index","/login", "/errores/**",
                         "/registro/**", "/js/**", "/webjars/**")
                 .permitAll()
                 .requestMatchers(
@@ -86,7 +86,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/producto/listado"
                 ).hasAnyRole("ADMIN", "VENDEDOR")
                 .requestMatchers(
-                        "/login", "/index", "/usuario/inicio", "/usuario/crearCuenta", "/usuario/login"
+                        "/inicioSesion", "/index", "/usuario/inicio", "/usuario/crearCuenta", "/usuario/login"
                 ).hasAnyRole("ADMIN", "VENDEDOR", "USER")
                 .requestMatchers("/producto/vistaProducto/Mujer/*", "/producto/vistaProductoDetalle", "/producto/guiaTallas", "/producto/carritoCompras",
                         "/producto/carrito", "/contacto/contacto")

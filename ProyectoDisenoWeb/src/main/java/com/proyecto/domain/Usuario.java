@@ -30,7 +30,7 @@ public class Usuario implements Serializable {
     private int cedula;
     private String username;
     private String apellidos;
-     private String nombre;
+    private String nombre;
     private String email;
     private String password;
     private String telefono;
@@ -51,7 +51,7 @@ public class Usuario implements Serializable {
         this.cedula = cedula;
         this.username = username;
         this.apellidos = apellidos;
-        this.nombre=nombre;
+        this.nombre = nombre;
         this.email = email;
         this.password = password;
         this.telefono = telefono;

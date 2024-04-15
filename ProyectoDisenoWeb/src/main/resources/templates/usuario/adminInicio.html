@@ -406,31 +406,22 @@
 
             <!-- Algunas de las clases presentes no estan creadas aun. -->
             <!-- contenido de la pagina -->
-            <div class="container mt-5">
+            <div class="container  mt-5 ml-3 mx-auto">
                 <div class="row">
                     <div class="col">
                         <section class="card bg-light mb-3" style="max-width: 18rem; justify-content: center" >
 
-                            <header class="card-header">Información de la Cuenta</header>
-                            <div class="card-body">
+                        <header class="card-header">Información de la Cuenta</header>
+                            <div class="card-body text-center">
                                 <div class="card-text">
-                                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/63fb472cb2fb9f16011580ff3f78ce8a1d22f122f6e6235ad622f2e1b59e6528?apiKey=3985c52de56d473dbef26e6c027f5b71&" class="user-avatar" alt="User avatar" />
+                                    <img th:src="@{${session.usuarioImagen}}" class="user-avatar text-center" height="100"alt="User avatar" />
                                     <div class="user-details">
-                                        <h2 class="card-title">Admin Ejemplo</h2>
-                                        <p class="user-location">Región - País </p>
+                                        <h3 sec:authentication="name">Santi</h3>
+                                        
+                                        <p class="user-location">Costa Rica </p>
+                                        <h6 th:text="${usuario.email}"></h6>
+                                        <h6 th:text="${usuario.telefono}"></h6>
                                     </div>
-                                </div>
-                                <div class="user-email">
-                                    <span class="email-label">Email:</span>
-                                    <span class="email-value">emailtest@gmail.com</span>
-                                </div>
-                                <div class="user-email-secondary">
-                                    <span class="email-secondary-label">Email 2:</span>
-                                    <span class="email-secondary-value">email2test@gmail.com</span>
-                                </div>
-                                <div class="user-phone">
-                                    <span class="phone-label">Teléfono</span>
-                                    <span class="phone-value">+1-000-000-0000</span>
                                 </div>
                             </div>
                             <button class="btn btn-light">Editar Cuenta</button>

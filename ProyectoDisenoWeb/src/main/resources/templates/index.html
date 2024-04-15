@@ -6,8 +6,19 @@
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-        <section th:replace="~{usuario/fragmentos :: carrusel}"/> 
-        <section th:replace="~{usuario/fragmentos :: marcas}"/> 
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2" style="width: 10%">
+                        <aside th:replace="~{layout/plantillaAdmin :: sideBar}"/>
+                    </div>
+                    <div class="col-md-9">
+                        <br>
+                            <section th:replace="~{usuario/fragmentosAdmin :: loginCrear}"/>
+                    </div>
+                </div>
+            </div>
+        <section sec:authorize="!isAuthenticated() or hasRole('ROLE_USER')" th:replace="~{usuario/fragmentos :: carrusel}"/> 
+        <section sec:authorize="!isAuthenticated() or hasRole('ROLE_USER')" th:replace="~{usuario/fragmentos :: marcas}"/> 
         <footer th:replace="~{layout/plantilla :: footer }"/>          
     </body>
 </html>

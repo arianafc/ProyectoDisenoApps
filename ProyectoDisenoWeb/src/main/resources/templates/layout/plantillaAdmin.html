@@ -59,9 +59,11 @@
                                         <li class="nav-item text-black"> <a th:href="@{/usuario/adminInicio}" class="nav-link active py-3 border-bottom text-white bg-dark"> <i class="fa fa-dashboard"></i> <b>Dashboard</b> </a> </li>             
                                         <li> <a th:href="@{/producto/listado}" class="nav-link icon-link-hover py-3 border-bottom text-black"> <i class="fa fa-plus"></i> Registro de productos </a> </li>
                                         <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-shopping-cart"></i> Control de ventas </a> </li>
-                                        <li> <a th:href="@{/usuario/asignarRol}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-spinner"></i> Asignar un rol</a> </li>
+                                        <li> <a th:href="@{/usuario/asignarRol}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-spinner"></i> Gestión de Usuarios</a> </li>
                                         <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-cog"></i> Ajustes </a> </li>
-                                        <li> <a th:href="@{/usuario/login}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-sign-in"></i> Cerrar Sesión </a> </li>
+                                        <li> <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
+                                                <button class="btn bg-light"> <i class="fa fa-user"></i> Cerrar Sesión</button> 
+                                        </form> </li>
                                     </ul>
                                 </div>
                             </aside>

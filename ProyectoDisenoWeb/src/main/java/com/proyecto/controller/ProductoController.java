@@ -9,13 +9,17 @@ package com.proyecto.controller;
  * @author Jorge
  */
 import com.proyecto.dao.CategoriaDao;
+import com.proyecto.dao.TallasDao;
 import com.proyecto.domain.Categoria;
 import com.proyecto.domain.Estilo;
 import com.proyecto.domain.Producto;
+import com.proyecto.domain.Tallas;
 import com.proyecto.service.CategoriaService;
+import com.proyecto.service.ColorService;
 import com.proyecto.service.EstiloService;
 import com.proyecto.service.FirebaseStorageService;
 import com.proyecto.service.ProductoService;
+import com.proyecto.service.TallasService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +42,10 @@ public class ProductoController {
     private CategoriaDao categoriaDao;
     @Autowired
     private EstiloService estiloService;
+    @Autowired
+    private TallasService tallasService;
+    @Autowired
+    private ColorService colorService;
 
     @GetMapping("/listado")
     public String listado(Model model) {
@@ -105,11 +113,15 @@ public class ProductoController {
         var productos = productoService.getProductos();
         var categorias = categoriaService.getCategorias();
         var estilos = estiloService.getEstilos();
+        var tallas = tallasService.findByidProducto(producto.getIdProducto());
+        var colores = colorService.findByidProducto(producto.getIdProducto());
         model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
         model.addAttribute("categorias", categorias);
         model.addAttribute("estilos", estilos);
         model.addAttribute("producto", producto);
+        model.addAttribute("tallas", tallas);
+        model.addAttribute("colores", colores);
         return "producto/vistaProductoDetalle";
     }
 

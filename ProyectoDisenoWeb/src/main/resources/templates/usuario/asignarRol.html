@@ -12,7 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <body>
 
 
-            <header th:replace="~{layout/plantillaAdmin :: header}"/>
+            <header th:replace="~{layout/plantilla :: header}"/>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-2" style="width: 10%">
@@ -20,10 +20,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </div>
                     <div class="col-md-9">
                         <br>
-                            <section th:replace="~{usuario/fragmentosAdmin :: loginCrear}"/>
+                            <section th:replace="~{usuario/fragmentosAdmin :: listadoRoles}"/>
                     </div>
                 </div>
             </div>
-            <footer th:replace="~{layout/plantillaAdmin :: footer }"/>          
+            <footer th:replace="~{layout/plantilla :: footer }"/>          
         </body>
     </html>

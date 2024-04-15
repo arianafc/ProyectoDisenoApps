@@ -49,15 +49,31 @@ CREATE TABLE IF NOT EXISTS FAEJ.usuario (
   activo boolean
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
-CREATE TABLE IF NOT EXISTS FAEJ.pedido (
-  id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+create table faej.factura (
+  id_factura INT NOT NULL AUTO_INCREMENT,
   id_usuario INT NOT NULL,
-  fecha_pedido DATE NOT NULL,
-  estado VARCHAR(255) NOT NULL,
-  total DECIMAL(10,2) NOT NULL,
-  detalle_pedido TEXT NOT NULL,
-  FOREIGN KEY (id_usuario) REFERENCES FAEJ.usuario(id_usuario)
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
+  fecha date,  
+  total double,
+  estado int,
+  PRIMARY KEY (id_factura),
+  foreign key fk_factura_usuario (id_usuario) references usuario(id_usuario)  
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+create table faej.venta (
+  id_venta INT NOT NULL AUTO_INCREMENT,
+  id_factura INT NOT NULL,
+  id_producto INT NOT NULL,
+  precio double, 
+  cantidad int,
+  PRIMARY KEY (id_venta),
+  foreign key fk_ventas_factura (id_factura) references factura(id_factura),
+  foreign key fk_ventas_producto (id_producto) references producto(id_producto) 
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
 
 CREATE TABLE IF NOT EXISTS FAEJ.deseos (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -75,7 +91,24 @@ CREATE TABLE IF NOT EXISTS FAEJ.rol (
     FOREIGN KEY fk_rol_usuario (id_usuario) REFERENCES usuario(id_usuario)
 )ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
-INSERT INTO faej.usuario (id_usuario, cedula, username, apellidos, nombre, email, password, telefono, direccion, ruta_imagen, activo) VALUES
+CREATE TABLE IF NOT EXISTS FAEJ.tallas (
+	id_talla INT NOT NULL AUTO_INCREMENT,
+    talla double,
+    id_producto INT NOT NULL,
+    PRIMARY KEY(id_talla),
+    FOREIGN KEY fk_talla_producto (id_producto) REFERENCES producto(id_producto)
+)ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
+
+CREATE TABLE IF NOT EXISTS FAEJ.color (
+	id_color INT NOT NULL AUTO_INCREMENT,
+    color VARCHAR(50),
+    id_producto INT NOT NULL,
+    PRIMARY KEY(id_color),
+    FOREIGN KEY fk_talla_color (id_color) REFERENCES producto(id_producto)
+)ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
+
+
+INSERT INTO faej.usuario (id_usuario, cedula, username, email, apellidos, nombre, password, telefono, direccion, ruta_imagen, activo) VALUES
 (1, 118810955, 'Ariana', '1234@gmail.com', 'Fallas Calderon',  'Ariana','$2a$10$P1.w58XvnaYQUQgZUCk4aO/RTRl8EValluCqB3S2VMLTbRt.tlre.', 4848, 'NA', 'https://th.bing.com/th/id/R.0ababdb27dd0bb71f21f03c98b6cd6f1?rik=%2fiVDxahrgNztPA&pid=ImgRaw&r=0',true),
 (2, 905635, 'Fernanda', 'fer@gmail.com', 'Fallas Calderon', 'Fernanda', '$2a$10$P1.w58XvnaYQUQgZUCk4aO/RTRl8EValluCqB3S2VMLTbRt.tlre.', 4848, 'NA', 'https://th.bing.com/th/id/R.0ababdb27dd0bb71f21f03c98b6cd6f1?rik=%2fiVDxahrgNztPA&pid=ImgRaw&r=0',true),
 (3, 2344, 'Jorge', 'jorge@gmail.com', 'Fallas Calderon', 'Jorge', '$2a$10$P1.w58XvnaYQUQgZUCk4aO/RTRl8EValluCqB3S2VMLTbRt.tlre.',234 , 'NA', 'https://th.bing.com/th/id/R.0ababdb27dd0bb71f21f03c98b6cd6f1?rik=%2fiVDxahrgNztPA&pid=ImgRaw&r=0',true);
@@ -110,3 +143,8 @@ INSERT INTO FAEJ.deseos (id_usuario, id_producto) VALUES (1, 5);
 
 insert into faej.rol (id_rol, nombre, id_usuario) values
  (1,'ROLE_ADMIN',1), (2,'ROLE_VENDEDOR',2), (3,'ROLE_USER',3);
+ 
+INSERT INTO faej.tallas(id_talla, talla, id_producto) VALUES
+(1, 7, 1),(2, 7.5, 1),(3, 7, 5);
+INSERT INTO faej.color(id_color, color, id_producto) VALUES
+(1, 'Blanco', 1),(2, 'Beige', 1),(3, 'Blanco', 5);

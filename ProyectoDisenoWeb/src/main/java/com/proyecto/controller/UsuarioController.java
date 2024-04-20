@@ -73,7 +73,7 @@ public class UsuarioController {
 //
     @PostMapping("/guardar")
     public String productoGuardar(Rol rol) {
-        rolService.save(rol);
+        rolService.saveRol(rol);
         return "redirect:/usuario/asignarRol";
     }
 //

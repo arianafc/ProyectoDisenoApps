@@ -27,7 +27,7 @@ public class RolServiceImpl implements RolService{
     }
 
     @Override
-    public void save(Rol rol) {
+    public void saveRol(Rol rol) {
         rolDao.save(rol);
     }
 

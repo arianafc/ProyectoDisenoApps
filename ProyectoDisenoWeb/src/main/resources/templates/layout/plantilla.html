@@ -63,12 +63,6 @@
                                                         <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Mujer', marca='Saucony')}">Saucony</a>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                    <a href="#"><h5>Nuevos Ingresos</h5></a>
-                                                    <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                        <a href="#"><h5>Ofertas</h5></a>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -107,13 +101,7 @@
                                                         <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Hombre', marca='Vans')}">Vans</a>
                                                         <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Hombre', marca='Puma')}">Puma</a>
                                                         <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Hombre', marca='NewBalance')}">New Balance</a>
-                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Hombre', marca='Saucony')}">Saucony</a>s
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                    <a href="#"><h5>Nuevos Ingresos</h5></a>
-                                                    <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                        <a href="#"><h5>Ofertas</h5></a>
+                                                        <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Hombre', marca='Saucony')}">Saucony</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,7 +115,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" sec:authorize="hasRole('ROLE_USER')">[[#{nav.ninos}]]</a>
                                 <div class="dropdown-menu shadow mt-0" style="width: 100%">
 
-                                    <div class="mega-conten">
+                                    <div class="mega-conten mx-auto">
                                         <div class="container">
                                             <div class="row" style="flex-wrap: nowrap">
                                                 <div class="col-12 col-sm-4 col-md-3 py-4">
@@ -155,12 +143,6 @@
                                                         <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Niñ@', marca='Puma')}">Puma</a>
                                                         <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Niñ@', marca='NewBalance')}">New Balance</a>
                                                         <a class="list-group-item" th:href="@{/producto/vistaProducto/{nombre}/marca/{marca}(nombre='Niñ@', marca='Saucony')}">Saucony</a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                    <a href="#"><h5>Nuevos Ingresos</h5></a>
-                                                    <div class="col-12 col-sm-4 col-md-3 py-4">
-                                                        <a href="#"><h5>Ofertas</h5></a>
                                                     </div>
                                                 </div>
 
@@ -226,7 +208,8 @@
                             </a>
                         </li>
                         <ul class="navbar-nav" sec:authorize="hasRole('ROLE_USER') or !isAuthenticated()" >
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropstart">
+                                
                                 <a
                                     class="nav-link dropdown-toggle"
                                     href="#"
@@ -234,17 +217,17 @@
                                     >
                                     <i class="fas fa-user"></i>
                                 </a>
-                                <ul class="dropdown-menu" >
-                                    <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/inicioSesion}">Iniciar Sesión</a></li>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm-start" >
+                                    <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/login}">[[#{nav.login}]]</a></li>
 
-                                    <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/usuario/crearCuenta}">Registrarse</a></li>
-                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" th:href="@{/usuario/miCuenta}">Mi cuenta</a></li>
-                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" href="#">Mis Pedidos</a></li>
-                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" href="#">Mis favoritos</a></li>
+                                    <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/registro/nuevo}">[[#{nav.registro}]]</a></li>
+                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" th:href="@{/usuario/miCuenta}">[[#{nav.cuenta}]]</a></li>
+                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" href="#">[[#{nav.ordenes}]]</a></li>
+                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" href="#">[[#{nav.favoritos}]]</a></li>
                                     <hr sec:authorize="hasRole('ROLE_USER')">
                                         <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
-                                            <button class="btn btn-dark">
-                                                <i class="fas fa-sign-out-alt"></i>
+                                            <button class="btn">
+                                                Cerrar Sesión
                                             </button>
                                         </form>
                                 </ul>

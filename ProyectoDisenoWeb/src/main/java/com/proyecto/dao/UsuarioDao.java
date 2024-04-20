@@ -6,6 +6,7 @@ package com.proyecto.dao;
 
 import com.proyecto.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -23,4 +24,7 @@ public interface UsuarioDao extends JpaRepository <Usuario,Long>   {
     Usuario findByUsernameOrEmail(String username, String correo);
 
     boolean existsByUsernameOrEmail(String username, String correo);
+    
+    @Query("SELECT max(u.idUsuario) FROM Usuario u")
+    Long getLastId();
 }

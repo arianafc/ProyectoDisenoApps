@@ -52,7 +52,7 @@ public class RegistroServiceImpl implements RegistroService {
     public void activar(Usuario usuario, MultipartFile imagenFile) {
         var codigo = new BCryptPasswordEncoder();//aqui encript el password
         usuario.setPassword(codigo.encode(usuario.getPassword()));
-
+        usuario.setActivo(true);
         if (!imagenFile.isEmpty()) {
             usuarioService.save(usuario, false);
             usuario.setRutaImagen(

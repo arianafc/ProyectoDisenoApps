@@ -16,7 +16,7 @@ public interface RolService {
  
     public Rol getRol(Rol rol);   
      
-    public void save(Rol rol);          
+    public void saveRol(Rol rol);          
   
     public void delete(Long idRol);
 }

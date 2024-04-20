@@ -94,14 +94,15 @@ public class ProjectConfig implements WebMvcConfigurer {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http
                 .authorizeHttpRequests((request) -> request
                 .requestMatchers("/", "/index", "/errores/**",
                         "/producto/**", 
-                        "/registro/**","/carrito/**", "/js/**", "/webjars/**")
+                        "/registro/**","/carrito/**", "/inicioSesion/**","/js/**", "/webjars/**")
                 .permitAll()
                 .requestMatchers(
-                        "/producto/nuevo", "/producto/guardar",
+                        "/producto/nuevo", "/inicioSesion/**","/producto/guardar",
                         "/producto/modificar/**", "/producto/eliminar/**",
                         "/categoria/nuevo", "/categoria/guardar",
                         "/categoria/modificar/**", "/categoria/eliminar/**",
@@ -115,7 +116,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/usuario/listado"
                 ).hasAnyRole("ADMIN", "VENDEDOR")
                 .requestMatchers(
-                        "/usuario/crearCuenta", "/carrito/listado"
+                        "/usuario/crearCuenta", "/carrito/listado", "/inicioSesion/**"
                 ).hasAnyRole("ADMIN", "VENDEDOR", "USER")        
                 .requestMatchers("/facturar/carrito", "/index", "/producto/vistaProducto/Mujer/Lifestyle", "/producto/vistaProducto/Hombre/*", "/producto/vistaProducto/Nin@"
                 , "/producto/guiaTallas", "/producto/vistaProductoDetalle/*", "/contacto/contacto", "/carrito/listado")

@@ -4,21 +4,21 @@
  */
 package com.proyecto.service;
 
-import com.proyecto.domain.Rol;
+import com.proyecto.domain.Factura;
 import java.util.List;
 
 /**
  *
  * @author Ariana
  */
-public interface RolService {
-    public List<Rol> getRols();
+public interface FacturaService {
+    public List<Factura> getRols();
  
-    public Rol getRol(Rol rol);   
+    public Factura getFactura(Factura factura);   
      
-    public void saveRol(Rol rol);          
+    public void save(Factura factura);          
   
-    public void delete(Long idRol);
+    public void delete(Long idFactura);
     
-    public Rol findByIdUsuario(Long idUsuario);
+    public List<Factura> findByIdUsuario(Long idUsuario);
 }

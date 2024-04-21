@@ -86,5 +86,10 @@ public class ProductoServiceImpl implements ProductoService {
     public List<Producto> findByFiltros( double precioInf, double precioSup, Long idEstilo, String marca) {
         return productoDao.findByFiltros(precioInf, precioSup, idEstilo, marca);
     }
+
+    @Override
+    public Producto findByIdProducto(Long idProducto) {
+       return productoDao.findByIdProducto(idProducto);
+    }
     
 }

@@ -8,12 +8,16 @@
         <header th:replace="~{layout/plantilla :: header}"/>
         <div sec:authorize="hasRole('ROLE_ADMIN')" class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2" style="width: 10%">
+                    <div class="col-md-2">
                         <aside th:replace="~{layout/plantillaAdmin :: sideBar}"/>
                     </div>
                     <div class="col-md-9">
                         <br>
-                            <section th:replace="~{usuario/fragmentosAdmin :: loginCrear}"/>
+                           
+                        <div class="d-flex justify-content-center">
+                            <h1 style="margin-right: 5px" >Hola,   <h1 sec:authentication=" name"></h1></h1>
+                    </div>
+                    <br>
                     </div>
                 </div>
             </div>

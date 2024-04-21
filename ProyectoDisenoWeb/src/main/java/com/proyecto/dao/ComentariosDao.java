@@ -4,7 +4,7 @@
  */
 package com.proyecto.dao;
 
-import com.proyecto.domain.Factura;
+import com.proyecto.domain.Comentarios;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,8 +14,8 @@ import org.springframework.data.repository.query.Param;
  *
  * @author Ariana
  */
-public interface FacturaDao extends JpaRepository<Factura, Long>{
-     @Query(nativeQuery = true,
-            value = "SELECT * FROM factura where factura.id_usuario = :idUsuario")
-    public List<Factura> encontrarPorUsuario(@Param("idUsuario") Long idUsuario);
+public interface ComentariosDao extends JpaRepository<Comentarios, Long>{
+    @Query(nativeQuery = true,
+            value = "SELECT * FROM comentarios where comentarios.id_producto = :idProducto")
+    public List<Comentarios> findByIdProducto(@Param("idProducto") Long idProducto);
 }

@@ -158,7 +158,8 @@
                                     <label for="imagen">[[#{usuario.imagen}]]</label>
                                     <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);" />
                                     <img id="blah" th:src="@{${usuario.rutaImagen}}" alt="your image" height="200"/>
-                                </div> 
+                                </div>
+                                <input type="hidden" name="direccion" th:field="*{direccion}"/>
                                 <div class="card-footer align-items-center">
                                     <button type="submit" class="btn bg-dark text-white">
                                         <i class="fas fa-check"></i> [[#{usuario.activacion}]]

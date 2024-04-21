@@ -47,10 +47,11 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="text-center" th:if="${param.error != null}">
+                            <h3>[[#{error.login}]]</h3>
+                        </div>
                     </div>
-                    <div th:if="${param.error != null}">
-                        <h3>[[#{error.login}]]</h3>
-                    </div>
+
                 </div>
             </div>
         </section>
@@ -144,7 +145,7 @@
 
         <section th:fragment="marcas"class="vh-100" style="margin-bottom: 50%">
             <h1 class="text-black" style="font-size: 50px; text-align: center">[[#{inicio.marcas}]]</h1>
-            
+
             <p></p>
 
             <div class="container">
@@ -230,28 +231,170 @@
         </section>
 
 
-        <aside th:fragment="opciones">
+        <aside th:fragment="opciones" sec:authorize="hasRole('ROLE_USER')" >
             <div class="p-3">
-                <h3>Hola, Usuario</h3>
-                <div class="d-flex flex-column flex-shrink-0 shadow collapse" style="margin-left: -11px">
-                    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" >
-                        <li class="nav-item text-black"> <a th:href="@{/usuario/adminInicio}" class="nav-link active py-3 border-bottom text-white bg-dark"> <i class="fa fa-dashboard"></i> <b>Dashboard</b> </a> </li>             
-                        <li> <a href="#" class="nav-link icon-link-hover py-3 border-bottom text-black"> <i class="fa fa-server"></i> Mis Pedidos </a> </li>
-                        <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-shopping-cart"></i> Carrito de Compras</a> </li>
-                        <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-heart"></i> Lista de Deseos</a> </li>
-                        <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-cog"></i> Ajustes </a> </li>
-                        <li> <a th:href="@{/usuario/login}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-sign-in"></i> Cerrar Sesión </a> </li>
-                    </ul>
-                </div>
+
+                <br>
+                    <div class="d-flex flex-column flex-shrink-0 shadow collapse" style="margin-left: -11px">
+
+                        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" >
+                            <li class="nav-item text-black"> <a th:href="@{/usuario/dashboard}" class="nav-link active py-3 border-bottom text-white bg-dark"> <i class="fa fa-dashboard"></i> <b>Dashboard</b> </a> </li>             
+                            <li> <a th:href="@{/pedidos/listado}" class="nav-link icon-link-hover py-3 border-bottom text-black"> <i class="fa fa-server"></i> Mis Pedidos </a> </li>
+                            <li> <a  th:href="@{/carrito/listado}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-shopping-cart"></i> Carrito de Compras</a> </li>
+                            <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-heart"></i> Lista de Deseos</a> </li>
+                            <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-cog"></i> Ajustes </a> </li>
+                            <li> <a th:href="@{/usuario/login}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-sign-in"></i> Cerrar Sesión </a> </li>
+                        </ul>
+                    </div>
             </div>
         </aside>
 
-        <section th:fragment="dashboard">
-            <h1 class="text-center">INFORMACION DEL USUARIO PENDIENTE</h1>
+        <section th:fragment="dashboard">           
+            <div class="container mt-3" style="margin-left: 50px">
+                <div class="d-flex">
+                    <h2 style="margin-right: 5px" >Hola,   <h2 sec:authentication=" name"></h2></h2>
+                </div>
+                <br>
+                    <div class="card">
+                        <form th:action="@{/usuario/guardarUsuario}" th:object="${usuario}" method="POST" class="was-validated" enctype="multipart/form-data">
+                            <input type="hidden" name="password" th:field="*{password}"/>               
+                            <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
+
+                            <div class="row align-items-center mt-2">
+                                <h3 class="col  card-title" style="text-align: center">[[#{nav.cuenta}]]</h3>
+                            </div>
+                            <hr>
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-left: 10px">
+                                        <img id="blah" th:src="@{${usuario.rutaImagen}}" alt="your image" height="200"/>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row card-body">
+
+                                            <div class=" col form-outline mb-1">
+                                                <label class="form-label" for="cedula"><strong>[[#{usuario.cedula}]] </strong></label>
+                                                <input type="text" id="cedula" th:field="*{cedula}" class="form-control form-control-lg" required="true" />
+                                            </div>
+                                            <div class="col form-outline mb-1">
+                                                <label class="form-label" for="nombre"><strong>[[#{usuario.nombre}]]</strong></label>
+                                                <input type="text" id="nombre" th:field="*{nombre}" class="form-control form-control-lg" required="true" />
+                                            </div>
+                                        </div>
+                                        <div class="row card-body">
+
+                                            <div class="col form-outline mb-1">
+                                                <label for="apellidos"><strong>[[#{usuario.apellidos}]]</strong></label>
+                                                <input type="text" class="form-control form-control-lg" name="apellidos" th:field="*{apellidos}" required="true"/></div>
+                                            <div class="col form-outline mb-1">
+                                                <label for="username"><strong>[[#{usuario.username}]]</strong></label>
+                                                <input type="text" class="form-control form-control-lg" name="username" th:field="*{username}" required="true"/></div>
+                                        </div>
+                                        <div class="row card-body">
+
+                                            <div class="col form-outline mb-1">
+                                                <label class="form-label" for="email"><strong>[[#{usuario.correo}]]</strong></label>
+                                                <input type="email" id="email" th:field="*{email}" class="form-control form-control-lg" required="true" />
+                                            </div>
+                                            <div class="col form-outline mb-1">
+                                                <label class="form-label" for="telefono"><strong>[[#{usuario.telefono}]]</strong></label>
+                                                <input type="text" id="telefono" th:field="*{telefono}" class="form-control form-control-lg" required="true" />
+                                            </div>
+                                        </div>
+                                        <div class="row card-body">
+
+                                            <div class="col form-outline mb-1">
+                                                <label class="form-label" for="direccion"><strong>[[#{usuario.direccion}]]</strong></label>
+                                                <input type="text" id="direccion" th:field="*{direccion}" class="form-control form-control-lg" required="true"></input>
+                                            </div>
+                                            <div class="col form-outline mb-1">
+                                                <label class="form-label" for="imagen"><strong>[[#{usuario.imagen}]]</strong></label>
+                                                <input class="form-control form-control-lg" type="file" name="imagenFile"
+                                                       onchange="readURL(this);" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-light">
+                                    <button class="btn bg-dark text-white" type="submit"><h5>[[#{accion.guardar}]]</h5></button>
+                                </div>
+                        </form>
+                    </div>
+            </div>
+
+            </div>
+
         </section>
 
-        
+        <section th:fragment="dashboardUser">
+            <div class="mt-5 col-md-9 text-center d-flex justify-content-center mx-auto"style="width: 100%; margin-left: 30px">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col">
+                            <div class="card mb-3" style="max-width: 50rem; justify-content: start" >
+
+                                <header class="card-header text-center"><strong>INFORMACIÓN DE LA CUENTA</strong></header>
+                                <div class="card-body text-center">
+                                    <div class="card-text">
+                                        <img th:src="@{${session.usuarioImagen}}" class="user-avatar text-center" height="100"alt="User avatar" />
+                                        <div class="user-details">
+                                            <h3 sec:authentication="name">Santi</h3>
+
+                                            <p class="user-location">Costa Rica </p>
+                                            <h6 th:text="'Email: '+${usuario.email}"></h6>
+                                            <h6 th:text="'Número de Teléfono: '+${usuario.telefono}"></h6>
+                                            <h6 th:text="'Dirección Registrada: '+${usuario.direccion}"></h6>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    <button class="btn" style="color: #333333; border: #333333 solid; justify-content: start"><strong><a th:href="@{/usuario/miCuenta}">Editar Cuenta</a></strong></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="container">
+                                <div class="stats-container">
+                                    <div class="container-fluid" style="background-color: #d2ecf3">
+                                        <div class="row">
+                                            <div class="col mt-3 total-orders-icon text-lg-start" style="align-items: center">
+                                                <img style=" width: 100px; height: 100px" src="https://cdn.builder.io/api/v1/image/assets/TEMP/86918e56bd72d68a849e56fbef7f286d4f8dcf62f0868a5e9fa01fd2c3b4a196?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Total Orders Icon" class="icon" />
+                                            </div>
+                                            <div class="col mb-3 mt-3 total-orders-info text-lg-start">
+                                                <h5 class="total-orders-count">154</h5>
+                                                <h6 class="total-orders-label">Ordenes Totales en la Página</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                        <div class="container-fluid" style="background-color: #fac49c">
+                                            <div class="row">
+                                                <div class="col mt-3 text-lg-start pending-orders-icon">
+                                                    <img style=" width: 100px; height: 100px" src="https://cdn.builder.io/api/v1/image/assets/TEMP/326c2a4d1209c95773eb057c3ed767f4ea06578c3db47ccc7a8c3428ae9afbc7?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Pending Orders Icon" class="icon" />
+                                                </div>
+                                                <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
+                                                    <h5 class="pending-orders-count">05</h5>
+                                                    <h6 class="pending-orders-label">Ordenes Pendientes en la Página</h6>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <br>
+                                            <div class="container-fluid" style="background-color: #c5fdcb">
+                                                <div class="row">
+                                                    <div class="col mt-3 text-lg-start">
+                                                        <img style=" width: 100px; height: 100px" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ae77913fa6f44c7ac47f22671bcdee5c5fe065ecd020993dbc569dc4e079b6fa?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Completed Orders Icon" class="icon" />
+                                                    </div>
+                                                    <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
+                                                        <h5 class="completed-orders-count">149</h5>
+                                                        <h6 class="completed-orders-label">Ordenes Completas en la Página</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </section>
 
 
-    </body>
-</html>
+                                            </body>
+                                            </html>

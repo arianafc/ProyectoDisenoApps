@@ -4,21 +4,19 @@
  */
 package com.proyecto.service;
 
-import com.proyecto.domain.Rol;
+import com.proyecto.domain.Venta;
 import java.util.List;
 
 /**
  *
  * @author Ariana
  */
-public interface RolService {
-    public List<Rol> getRols();
+public interface VentaService {
+    public List<Venta> getVentas();
  
-    public Rol getRol(Rol rol);   
+    public Venta getVenta(Venta venta);   
      
-    public void saveRol(Rol rol);          
+    public void saveVenta(Venta venta);          
   
-    public void delete(Long idRol);
-    
-    public Rol findByIdUsuario(Long idUsuario);
+    public void delete(Long idVenta);
 }

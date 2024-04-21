@@ -122,181 +122,240 @@
 
                                                 <section th:fragment="checkout" id="items">
                                                     <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-md-9" style="border-right:1px solid; border-color: #cccccc">
-                                                                <div class="container d-flex justify-content-between">
-                                                                    <h4>FACTURACIÓN Y ENVÍO</h4>
-                                                                </div>
-                                                                <hr>
-                                                                    <div class="row">
-                                                                        <div class="col">
-                                                                            <div class="form-outline mb-2">
-                                                                                <label for="nombre"><h6>Nombre</h6></label>
-                                                                                <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col">
-                                                                            <div class="form-outline mb-2">
-                                                                                <label for="apellido"><h6>Apellido</h6></label>
-                                                                                <input type="text" class="form-control" id="apellido" name="apellido" required>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col">
-                                                                            <div class="form-outline mb-2">
-                                                                                <label for="pais"><h6>País</h6></label>
-                                                                                <input type="text" class="form-control" id="pais" name="pais" required>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col">
-                                                                            <div class="form-outline mb-2">
-                                                                                <label for="provincia"><h6>Provincia</h6></label>
-                                                                                <input type="text" class="form-control" id="provincia" name="provincia" required>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col">
-                                                                            <div class="form-outline mb-2">
-                                                                                <label for="ciudad"><h6>Ciudad</h6></label>
-                                                                                <input type="text" class="form-control" id="ciudad" name="ciudad" required>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col">
-                                                                            <div class="form-outline mb-2">
-                                                                                <label for="codigoPostal"><h6>Código postal</h6></label>
-                                                                                <input type="text" class="form-control" id="codigoPostal" name="codigoPostal" required>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col">
-                                                                            <div class="form-outline mb-2">
-                                                                                <label for="telefono"><h6>Teléfono</h6></label>
-                                                                                <input type="text" class="form-control" id="telefono" name="telefono" required>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-outline mb-2">
-                                                                        <label for="email"><h6>Email</h6></label>
-                                                                        <input type="email" class="form-control" id="email" name="email" required>
-                                                                    </div>
-                                                                    <div class="form-outline mb-2">
-                                                                        <label for="direccion"><h6>Dirección exacta</h6></label>
-                                                                        <input type="text" class="form-control" id="direccion" name="direccion" required>
+                                                        <form th:action="@{/facturar/carrito}" th:object="${usuario}" method="POST" enctype="multipart/form-data">
+                                                            <div class="row">
+                                                                <div class="col-md-9" style="border-right:1px solid; border-color: #cccccc">
+                                                                    <div class="container d-flex justify-content-between">
+                                                                        <h4>FACTURACIÓN Y ENVÍO</h4>
                                                                     </div>
                                                                     <hr>
-                                                                        <h5>Método de Pago</h5>
-                                                                        <br>
-                                                                            <div class="row">
-                                                                                <div class="col" style="border-right: 1px solid; border-color: #cccccc">
-                                                                                    <div class="form-group text-center">
-                                                                                        <img src="https://cdn-icons-png.flaticon.com/512/74/74742.png" height="75" width="100" alt="alt"/>
-                                                                                        <br>
-                                                                                            <br>
-                                                                                                <button class="btn bg-dark text-white" value="form1" onclick="mostrarFormulario(this.value)">Pago Contra Entrega</button>
+
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <div class="form-outline mb-2">
+                                                                                    <label for="nombre"><h6>Nombre</h6></label>
+                                                                                    <input type="text" class="form-control" id="nombre" name="nombre" th:field="${usuario.nombre}" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <div class="form-outline mb-2">
+                                                                                    <label for="apellido"><h6>Apellido</h6></label>
+                                                                                    <input type="text" class="form-control" id="apellido" name="apellido" th:field="${usuario.apellidos}" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <div class="form-outline mb-2">
+                                                                                    <label for="pais"><h6>País</h6></label>
+                                                                                    <input type="text" class="form-control" id="pais" name="pais" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <div class="form-outline mb-2">
+                                                                                    <label for="provincia"><h6>Provincia</h6></label>
+                                                                                    <input type="text" class="form-control" id="provincia" name="provincia" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <div class="form-outline mb-2">
+                                                                                    <label for="ciudad"><h6>Ciudad</h6></label>
+                                                                                    <input type="text" class="form-control" id="ciudad" name="ciudad" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <div class="form-outline mb-2">
+                                                                                    <label for="codigoPostal"><h6>Código postal</h6></label>
+                                                                                    <input type="text" class="form-control" id="codigoPostal" name="codigoPostal" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <div class="form-outline mb-2">
+                                                                                    <label for="telefono"><h6>Teléfono</h6></label>
+                                                                                    <input type="text" class="form-control" id="telefono" name="telefono" th:field="${usuario.telefono}" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-outline mb-2">
+                                                                            <label for="email"><h6>Email</h6></label>
+                                                                            <input type="email" class="form-control" id="email" name="email" th:field="${usuario.email}" required>
+                                                                        </div>
+                                                                        <div class="form-outline mb-2">
+                                                                            <label for="direccion"><h6>Dirección exacta</h6></label>
+                                                                            <input type="text" class="form-control" id="direccion" name="direccion" th:field="${usuario.direccion}" required>
+                                                                        </div>
+                                                                        <div class="form-outline mb-2">
+                                                                            <label for="metodoPago"><h6>Selecciona un método de pago:</h6></label>
+                                                                            <select class="form-control" id="metodoPago" name="metodoPago">
+                                                                                <option value="pagoContraEntrega">Pago contra entrega</option>
+                                                                                <option value="tarjeta">Tarjeta</option>
+                                                                                <option value="sinpeMovil">SINPE Móvil</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <hr>
+                                                                            <h5>Información Método de Pago</h5>
+                                                                            <br>
+                                                                                <p>Por favor, llenar la siguiente información solo en caso de seleccionar SINPE Móvil o Tarjeta como método de pago.</p>
+                                                                                <div class="row">
+                                                                                    <div class="col card">
+                                                                                        <div class="card-title text-center align-items-center mt-2"><h6>Información Tarjeta</h6></div>
+                                                                                        <hr>
+                                                                                            <div class="card-body">
+                                                                                                <div class="row">
+                                                                                                    <div class="col form-outline mb-2">
+                                                                                                        <label for="email"><h6>Titular</h6></label>
+                                                                                                        <input type="text" class="form-control" id="email" name="email" >
+                                                                                                    </div>
+                                                                                                    <div class="col form-outline mb-2">
+                                                                                                        <label for="email"><h6>Número Tarjeta</h6></label>
+                                                                                                        <input type="text" class="form-control" id="email" name="email" >
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col form-outline mb-2">
+                                                                                                        <label for="email"><h6>CVV</h6></label>
+                                                                                                        <input type="number" class="form-control" id="email" name="email" >
+                                                                                                    </div>
+                                                                                                    <div class="col form-outline mb-2">
+                                                                                                        <label for="email"><h6>Fecha Vencimiento</h6></label>
+                                                                                                        <input type="date" class="form-control" id="email" name="email">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="col card">
+                                                                                        <div class="card-title text-center align-items-center mt-2"><h6>Información SINPE Móvil</h6></div>
+                                                                                        <hr>
+                                                                                            <div class="card-body">
+                                                                                                <div class="row">
+                                                                                                    <div class="mb-3">
+                                                                                                        <h6>Favor realizar el SINPE Móvil al número 83484739 y adjuntar el comprobante de pago.</h6>
+                                                                                                        <label class="form-label" for="imagen"><strong>Comprobante de Pago</strong></label>
+                                                                                                        <input class="form-control form-control-lg" type="file" name="imagenFile"/>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                </div>
+                                                                                
+                                                                                <div class=" card col-md-3">
+                                                                                    <div class=" mt-2 container d-flex"><h4>ORDEN FINAL</h4></div>
+                                                                                    <hr>    
+                                                                                        <div th:each="p : ${items}">
+                                                                                            <div class="card-body">
+                                                                                                <div class="row">
+                                                                                                    <div class="col">
+                                                                                                        <img th:src="${p.rutaImagen}" height="100"/>
+                                                                                                    </div>
+                                                                                                    <div class="col">
+                                                                                                        <h6 class="card-title">[[${p.nombre}]]</h6>
+                                                                                                        <h5 class="card-text">
+                                                                                                            <span th:text="${p.cantidad}">&#8203;</span>
+                                                                                                            x <span style="color: #2da5f3" th:text="'$'+${p.precio}">&#8203;</span></h5>
+
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div> 
+                                                                                        <hr>
+                                                                                            <div class="row">
+                                                                                                <h5 class="col">Subtotal:</h5>
+                                                                                                <h5 class="col text-end">  [['$'+${carritoTotal}]]</h5>
+                                                                                            </div>
+                                                                                            <div class="row">
+                                                                                                <h5 class="col">Envío:</h5>
+                                                                                                <h5 class="col text-end"> $0</h5>
+                                                                                            </div>
+
+                                                                                            <div class="row">
+                                                                                                <h5 class="col">Descuento:</h5>
+                                                                                                <h5 class="col text-end">  $0</h5>
+                                                                                            </div>
+                                                                                            <div class="row">
+                                                                                                <h5 class="col">Impuestos:</h5>
+                                                                                                <h5 class="col text-end">  -</h5>
+                                                                                            </div>
+                                                                                            <hr>
+                                                                                                <div class="row">
+                                                                                                    <h4 class="col">Total:</h4>
+                                                                                                    <h4 class="col text-end">  [['$'+${carritoTotal}]]</h4>
+                                                                                                </div>
+                                                                                                <div class="card-footer">
+                                                                                                    <button class="btn bg-dark text-white" style="width: 100% "type="submit">Facturar</button>
+                                                                                                </div>
+                                                                                                </div>
+
+                                                                                                </div>
+
+                                                                                                </form>
                                                                                                 <br>
+
                                                                                                     </div>
-                                                                                                    </div>
-                                                                                                    <div class="col" style="border-right: 1px solid; border-color: #cccccc">
-                                                                                                        <div class="form-group text-center">
-                                                                                                            <img src="https://cdn-icons-png.flaticon.com/512/9334/9334539.png" height="100" width="100" alt="alt"/>
-                                                                                                            <br>
-                                                                                                                <button 
-                                                                                                                    type="button" 
-                                                                                                                    class="btn bg-dark text-white" 
-                                                                                                                    data-bs-toggle="modal" 
-                                                                                                                    data-bs-target="#agregarTarjeta">
-                                                                                                                    Tarjeta
-                                                                                                                </button>
-                                                                                                                <br>
+
+                                                                                                    </section>
+                                                                                                    <section th:fragment="modificaItem">
+                                                                                                        <div class="row row-cols-6 p-3" >
+                                                                                                            <a th:href="@{/carrito/listado}" class="btn btn-primary">
+                                                                                                                <i class='fas fa-reply'></i> Regresar</a>
+                                                                                                        </div>
+                                                                                                        <div class="row row-cols-2">
+                                                                                                            <div class="card">
+                                                                                                                <div class="card-header">Producto</div>
+                                                                                                                <div class="card-body">
+                                                                                                                    <h5 class="card-title">[[${item.nombre}]]</h5>
+                                                                                                                    <h6 class="card-subtitle mb-2 text-muted text-end">
+                                                                                                                        [[${item.precio}+' ('+${item.existencias}+')']]</h6>
+                                                                                                                    <p class="card-text">[[${item.descripcion}]]</p>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div class="card">                    
+                                                                                                                <div class="card-body">
+                                                                                                                    <figure><img th:src="@{${item.rutaImagen}}" height="200"/></figure>
+                                                                                                                    <div class="row">
+                                                                                                                        <form th:action="@{/carrito/guardar}"
+                                                                                                                              method="post"
+                                                                                                                              th:object="${item}" >
+                                                                                                                            <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
+
+                                                                                                                            <label for="cantidad">Cantidad:</label>
+                                                                                                                            <input type="number" name="cantidad" th:field="*{cantidad}" 
+                                                                                                                                   min='1' th:max="${item.existencias}"/>
+
+                                                                                                                            <button class="btn btn-success" type="submit" name="guardar">
+                                                                                                                                <i class='fas fa-save'></i> Guardar</button>
+                                                                                                                            <a th:href="@{/carrito/eliminar/}+${item.idProducto}"
+                                                                                                                               class="btn btn-danger">
+                                                                                                                                <i class='fas fa-trash'></i> Eliminar
+                                                                                                                            </a>
+                                                                                                                        </form>
+
                                                                                                                     </div>
-                                                                                                                    </div>
-                                                                                                                    <div class="col text-center">
-                                                                                                                        <div class="form-group">
-                                                                                                                            <img src="https://www.bancopopular.fi.cr/wp-content/uploads/2021/02/sinpe-movil-2.png" height="75" width="100" alt="alt"/>
-                                                                                                                            <br>
-                                                                                                                                <br>
-                                                                                                                                    <button 
-                                                                                                                                        type="button" 
-                                                                                                                                        class="btn bg-dark text-white" 
-                                                                                                                                        data-bs-toggle="modal" 
-                                                                                                                                        data-bs-target="#sinpeMovil">
-                                                                                                                                        SINPE Móvil
-                                                                                                                                    </button>
-                                                                                                                                    <br>
-                                                                                                                                        <br><br>
-                                                                                                                                        </div>
-                                                                                                                                        </div>
-                                                                                                                                        </div>
-                                                                                                                                        </div>
-                                                                                                                                        <div class="col-md-3">
-                                                                                                                                            <div class="container d-flex"><h4>ORDEN FINAL</h4></div>
-                                                                                                                                            <hr>    
-                                                                                                                                                <div class="card" th:each="p : ${items}">
-                                                                                                                                                    <div class="card-body">
-                                                                                                                                                        <div class="row">
-                                                                                                                                                            <div class="col">
-                                                                                                                                                                <img th:src="${p.rutaImagen}" height="20"/>
-                                                                                                                                                            </div>
-                                                                                                                                                            <div class="col">
-                                                                                                                                                                <h4 class="card-title">[[${p.nombre}]]</h4>
-                                                                                                                                                                <h5 class="card-text">[[${p.descripcion}]]</h5>
-                                                                                                                                                                <h5 class="card-text">[['$'+${p.precio}]]</h5>
-                                                                                                                                                                <h5 class="card-text">[['QTY:'+${p.cantidad}]]</h5>
-                                                                                                                                                            </div>
-                                                                                                                                                           
-                                                                                                                                                        </div>
-                                                                                                                                                    </div>
-                                                                                                                                                </div> 
-                                                                                                                                        </div>
-                                                                                                                                        </div>
-
-                                                                                                                                        </div>
-                                                                                                                                        </div>
-
-                                                                                                                                        <br>
-                                                                                                                                            </section>
-
-
-                                                                                                                                            <section th:fragment="agregarTarjeta">
-                                                                                                                                                <div id="agregarTarjeta" 
-                                                                                                                                                     class="modal fade" 
-                                                                                                                                                     tabindex="-1" 
-                                                                                                                                                     aria-labelledby="exampleModalLabel" 
-                                                                                                                                                     aria-hidden="true">
-                                                                                                                                                    <div class="modal-dialog modal-md">
-                                                                                                                                                        <div class="modal-content">
-                                                                                                                                                            <div class="modal-header bg-dark text-white">
-                                                                                                                                                                <h5 class="modal-title">Información de pago</h5>
-                                                                                                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                                                                                                            </div> 
-                                                                                                                                                            <form>
-                                                                                                                                                                <div class="modal-body">
-                                                                                                                                                                    <div class="mb-3">
-                                                                                                                                                                        <label for="nombreTitular">Titular</label>
-                                                                                                                                                                        <input type="text" class="form-control" name="Descripcion" required="true"/>
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <div class="mb-3">
-                                                                                                                                                                        <label for="numeroTarjeta">Número Tarjeta</label>
-                                                                                                                                                                        <input type="text" class="form-control" name="Detalle" required="true"/>
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <div class="mb-3">
-                                                                                                                                                                        <label for="descripcion">Vencimiento</label>
-                                                                                                                                                                        <input type="text" class="form-control" name="Precio" required="true"/>
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <div class="mb-3">
-                                                                                                                                                                        <label for="descripcion">CCV</label>
-                                                                                                                                                                        <input type="text" class="form-control" name="Existencia" required="true"/>
-                                                                                                                                                                    </div>
-
-                                                                                                                                                                </div>
-                                                                                                                                                                <div class="modal-footer">
-                                                                                                                                                                    <button class="btn btn-primary" type="submit">Guardar</button>
-                                                                                                                                                                </div>
-                                                                                                                                                            </form>
-                                                                                                                                                        </div>
-                                                                                                                                                    </div>
-                                                                                                                                                </div>
-                                                                                                                                            </section>
-                                                                                                                                            </body>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </section>
+        
+        <section th:fragment="orden">
+            <div class="container text-center mt-5 mb-5 justify-content-center">
+            <div class="justify-content-center">
+                <img class="text-center" src="https://cdn-icons-png.flaticon.com/512/5290/5290058.png" height="200px" width="200px" />
+                <h2>Tu orden ha sido enviada!</h2>
+                <h4>Muchas gracias por comprar en FAEJ</h4>
+                <br>
+                <div class="row text-center">
+                    <div class="col">
+                        <a th:href="@{/index}"><button type="button" class="btn bg-white text-black" style="border: #cccccc solid"><b>IR A INICIO</b></button></a><!-- comment -->
+                         <a href="#"><button type="button" class="btn bg-dark text-white">VER ORDENES</button></a>
+                           <br>
+                    </div>
+            </div>
+            </div>
+            </div>
+        </section>
+                                                                                                    </body>
 

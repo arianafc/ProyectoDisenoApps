@@ -21,3 +21,6 @@ function addCard(formulario) {
     var url = '/carrito/agregar/' + valor + '?talla=' + talla + '&color=' + color;
     $("#resultsBlock").load(url);
 }
+
+
+

@@ -36,4 +36,9 @@ public class RolServiceImpl implements RolService{
         rolDao.deleteById(idRol);
     }
     
+    @Override
+    public Rol findByIdUsuario(Long idUsuario) {
+        return rolDao.findByIdUsuario(idUsuario);
+    }
+    
 }

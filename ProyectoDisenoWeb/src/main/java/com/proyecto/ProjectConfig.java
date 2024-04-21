@@ -1,11 +1,17 @@
 package com.proyecto;
 
 import com.proyecto.dao.ColorDao;
+import com.proyecto.dao.FacturaDao;
 import com.proyecto.dao.TallasDao;
+import com.proyecto.dao.VentaDao;
 import com.proyecto.domain.Color;
+import com.proyecto.domain.Factura;
 import com.proyecto.domain.Tallas;
+import com.proyecto.domain.Venta;
 import com.proyecto.service.ColorService;
+import com.proyecto.service.FacturaService;
 import com.proyecto.service.TallasService;
+import com.proyecto.service.VentaService;
 import java.util.List;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +24,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -28,10 +35,73 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @Configuration
 public class ProjectConfig implements WebMvcConfigurer {
+
     @Autowired
     private TallasDao tallasDao;
     @Autowired
     private ColorDao colorDao;
+    @Autowired
+    private FacturaDao facturaDao;
+    @Autowired
+    private VentaDao ventaDao;
+
+    @Bean
+    public VentaService ventaService() {
+        return new VentaService() {
+            @Override
+            public List<Venta> getVentas() {
+                return ventaDao.findAll();
+            }
+
+            @Override
+            public Venta getVenta(Venta venta) {
+                return ventaDao.findById(venta.getIdFactura()).orElse(null);
+            }
+
+            @Override
+            public void saveVenta(Venta venta) {
+                ventaDao.save(venta);
+            }
+
+            @Override
+            public void delete(Long idVenta) {
+                ventaDao.deleteById(idVenta);
+            }
+
+        };
+    }
+
+    @Bean
+    public FacturaService facturaService() {
+        return new FacturaService() {
+            @Override
+
+            public List<Factura> getRols() {
+                return facturaDao.findAll();
+            }
+
+            @Override
+            public Factura getFactura(Factura factura) {
+                return facturaDao.findById(factura.getIdFactura()).orElse(null);
+            }
+
+            @Override
+            public void save(Factura factura) {
+                facturaDao.save(factura);
+            }
+
+            @Override
+            public void delete(Long idFactura) {
+                facturaDao.deleteById(idFactura);
+            }
+
+            @Override
+            public List<Factura> findByIdUsuario(Long idUsuario) {
+                return facturaDao.encontrarPorUsuario(idUsuario);
+            }
+        };
+    }
+
     @Bean
     public TallasService tallasService() {
         return new TallasService() {
@@ -41,7 +111,7 @@ public class ProjectConfig implements WebMvcConfigurer {
             }
         };
     }
-    
+
     @Bean
     public ColorService colorService() {
         return new ColorService() {
@@ -51,6 +121,7 @@ public class ProjectConfig implements WebMvcConfigurer {
             }
         };
     }
+
     /* Los siguientes métodos son para hacer uso de Internacionalización */
     @Bean
     public LocaleResolver localeResolver() {
@@ -98,17 +169,17 @@ public class ProjectConfig implements WebMvcConfigurer {
         http
                 .authorizeHttpRequests((request) -> request
                 .requestMatchers("/", "/index", "/errores/**",
-                        "/producto/**", 
-                        "/registro/**","/carrito/**", "/inicioSesion/**","/js/**", "/webjars/**")
+                        "/producto/**",
+                        "/registro/**", "/carrito/**", "/inicioSesion/**", "/js/**", "/webjars/**")
                 .permitAll()
                 .requestMatchers(
-                        "/producto/nuevo", "/inicioSesion/**","/producto/guardar",
+                        "/producto/nuevo", "/inicioSesion/**", "/producto/guardar",
                         "/producto/modificar/**", "/producto/eliminar/**",
                         "/categoria/nuevo", "/categoria/guardar",
                         "/categoria/modificar/**", "/categoria/eliminar/**",
-                        "/usuario/nuevo", "/usuario/guardar","/usuario/asignarRol",
-                        "/usuario/modificar/*", "/usuario/eliminar/**", "/usuario/adminInicio",
-                        "/reportes/**"
+                        "/usuario/nuevo", "/usuario/guardar", "/usuario/listado",
+                        "/usuario/modificar/*", "/usuario/modificarUsuario/*", "/usuario/eliminar/**", "/usuario/adminInicio", "/usuario/eliminarUsuario/*", "/usuario/modificarUsuario/*",
+                        "/reportes/**", "/usuario/actualizarPassword", "/usuario/actualizarUsuario"
                 ).hasRole("ADMIN")
                 .requestMatchers(
                         "/producto/listado",
@@ -116,10 +187,10 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/usuario/listado"
                 ).hasAnyRole("ADMIN", "VENDEDOR")
                 .requestMatchers(
-                        "/usuario/crearCuenta", "/carrito/listado", "/inicioSesion/**"
-                ).hasAnyRole("ADMIN", "VENDEDOR", "USER")        
-                .requestMatchers("/facturar/carrito", "/index", "/producto/vistaProducto/Mujer/Lifestyle", "/producto/vistaProducto/Hombre/*", "/producto/vistaProducto/Nin@"
-                , "/producto/guiaTallas", "/producto/vistaProductoDetalle/*", "/contacto/contacto", "/carrito/listado")
+                        "/usuario/crearCuenta", "/carrito/listado","/usuario/dashboard", "/inicioSesion/**", "/usuario/miCuenta", "/usuario/actualizarPassword", "/usuario/guardarUsuario"
+                ).hasAnyRole("ADMIN", "VENDEDOR", "USER")
+                .requestMatchers("/facturar/carrito","/carrito/orden", "/index","/pedidos/listado", "/producto/vistaProducto/Mujer/Lifestyle", "/producto/vistaProducto/Hombre/*", "/producto/vistaProducto/Nin@",
+                        "/producto/guiaTallas", "/producto/vistaProductoDetalle/*", "/contacto/contacto", "/carrito/listado", "/usuario/guardarUsuario", "/producto/guardarComentario")
                 .hasRole("USER")
                 )
                 .formLogin((form) -> form
@@ -127,10 +198,10 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .logout((logout) -> logout.permitAll());
         return http.build();
     }
-    
+
     @Autowired
-   private UserDetailsService userDetailsService;
-    
+    private UserDetailsService userDetailsService;
+
     @Autowired
     public void configurerGlobal(AuthenticationManagerBuilder build)
             throws Exception {

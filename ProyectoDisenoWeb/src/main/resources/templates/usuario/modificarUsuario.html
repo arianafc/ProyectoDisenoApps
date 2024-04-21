@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Modificar Producto</title>
+    </head>
+    <body>
+
+        <header th:replace="~{layout/plantillaAdmin :: header}"/>
+        <div class="d-flex" style="flex-direction: column; min-height: 100vh">
+        <section class="container d-flex" style="margin: 0px; flex: 1">
+            <aside th:replace="~{layout/plantillaAdmin :: sideBar}" style="flex: 0 0 auto"/>
+
+            <section th:replace="~{usuario/fragmentosAdmin :: editarUsuario}"/>
+        </section>
+        </div>
+        <footer th:replace="~{layout/plantillaAdmin :: footer}"/>      
+    </body>
+</body>
+</html>

@@ -10,20 +10,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <title>FAEJ</title>        
         </head>
         <body>
-
-
-            <header th:replace="~{layout/plantilla :: header}"/>
+            <header th:replace="~{layout/plantilla:: header}"/>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2" style="width: 10%">
-                        <aside th:replace="~{layout/plantillaAdmin :: sideBar}"/>
+                    <div class="col-md-2">
+                        <aside sec:authorize="hasRole('ROLE_USER')"  th:replace="~{usuario/fragmentos :: opciones}"/>
                     </div>
                     <div class="col-md-9">
                         <br>
-                            <section th:replace="~{usuario/fragmentosAdmin :: listadoRoles}"/>
+                          <section th:replace="~{usuario/fragmentos :: dashboardUser}"/>  
                     </div>
                 </div>
             </div>
+            <br>
             <footer th:replace="~{layout/plantilla :: footer }"/>          
         </body>
     </html>

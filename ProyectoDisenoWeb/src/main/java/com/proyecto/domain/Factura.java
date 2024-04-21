@@ -19,15 +19,19 @@ public class Factura implements Serializable {
     private Long idUsuario;
     private Date fecha;
     private double total;
-    private int estado;
-    
+    private String estado;
+    private String direccion;
+    private String metodoPago;
+    private String rutaImagen;
     
     public Factura() {
     }
 
-    public Factura(Long idUSuario) {
+    public Factura(Long idUSuario, String direccion, String metodoPago) {
         this.idUsuario = idUSuario;
         this.fecha = Calendar.getInstance().getTime();
-        this.estado=1;
+        this.estado="Nueva Orden";
+        this.direccion=direccion;
+        this.metodoPago=metodoPago;
     }    
 }

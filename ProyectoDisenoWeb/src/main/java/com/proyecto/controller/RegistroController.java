@@ -1,10 +1,13 @@
 package com.proyecto.controller;
 
 import com.proyecto.domain.Usuario;
+import com.proyecto.service.FirebaseStorageService;
 import com.proyecto.service.RegistroService;
+import com.proyecto.service.UsuarioService;
 import jakarta.mail.MessagingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +24,9 @@ public class RegistroController {
 
     @Autowired
     private RegistroService registroService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping("/nuevo")
     public String nuevo(Model model, Usuario usuario) {
@@ -52,11 +58,38 @@ public class RegistroController {
         }
     }
 
+    @Autowired
+    FirebaseStorageService firebaseStorageService;
+
     @PostMapping("/activar")
     public String activar(
             Usuario usuario,
             @RequestParam("imagenFile") MultipartFile imagenFile) {
-        registroService.activar(usuario, imagenFile);
+        Usuario usuarioExistente = usuarioService.getUsuarioPorUsername(usuario.getUsername());
+
+        // Verificar si el usuario existe
+        if (usuarioExistente != null) {
+            usuarioExistente.setActivo(true);
+            var codigo = new BCryptPasswordEncoder();//aqui encript el password
+            usuarioExistente.setPassword(codigo.encode(usuario.getPassword()));
+            // Copiar los datos del usuario enviado al usuario existente
+            usuarioExistente.setCedula(usuario.getCedula());
+            usuarioExistente.setUsername(usuario.getUsername());
+            usuarioExistente.setApellidos(usuario.getApellidos());
+            usuarioExistente.setNombre(usuario.getNombre());
+            usuarioExistente.setEmail(usuario.getEmail());
+            usuarioExistente.setTelefono(usuario.getTelefono());
+            usuarioExistente.setDireccion(usuario.getDireccion());
+
+            // Verificar si se envió una nueva imagen
+            if (!imagenFile.isEmpty()) {
+                // Actualizar la ruta de la imagen y guardar la imagen
+                usuarioExistente.setRutaImagen(firebaseStorageService.cargaImagen(
+                        imagenFile, "usuario", usuario.getIdUsuario()));
+            }
+            // Guardar los cambios en el usuario
+            usuarioService.saveUsuario(usuarioExistente);
+        }
         return "redirect:/";
     }
 

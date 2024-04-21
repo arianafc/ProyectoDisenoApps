@@ -44,4 +44,7 @@ public interface ProductoDao extends JpaRepository<Producto, Long> {
             @Param("precioSup") double precioSup,
             @Param("idEstilo") Long idEstilo, @Param("marca") String marca);
 
+   @Query(nativeQuery = true,
+            value = "SELECT * FROM producto where producto.id_producto = :idProducto")
+    public Producto findByIdProducto(@Param("idProducto") Long idProducto);
 }

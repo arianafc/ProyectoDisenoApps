@@ -1,9 +1,16 @@
 package com.proyecto.controller;
 
+import com.proyecto.domain.Factura;
 import com.proyecto.domain.Producto;
 import com.proyecto.domain.Item;
+import com.proyecto.domain.Usuario;
+import com.proyecto.domain.Venta;
 import com.proyecto.service.ColorService;
+import com.proyecto.service.FacturaService;
+import com.proyecto.service.FirebaseStorageService;
+import com.proyecto.service.UsuarioService;
 import com.proyecto.service.ItemService;
+import static com.proyecto.service.ItemService.listaItems;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +19,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.proyecto.service.ProductoService;
 import com.proyecto.service.TallasService;
+import com.proyecto.service.VentaService;
+import java.security.Principal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class CarritoController {
@@ -25,6 +37,12 @@ public class CarritoController {
     private TallasService tallasService;
     @Autowired
     private ColorService colorService;
+    @Autowired
+    private UsuarioService usuarioService;
+    @Autowired
+    private FacturaService facturaService;
+    @Autowired
+    private VentaService ventaService;
 
     @GetMapping("/")
     private String listado(Model model) {
@@ -93,16 +111,76 @@ public class CarritoController {
         itemService.actualiza(item);
         return "redirect:/carrito/listado";
     }
-
+    @Autowired
+    FirebaseStorageService firebaseStorageService;
     //Para facturar los productos del carrito... no implementado...
-    @GetMapping("/facturar/carrito")
-    public String facturarCarrito() {
-        itemService.facturar();
-        return "redirect:/";
+    @PostMapping("/facturar/carrito")
+    public String facturarCarrito(@RequestParam("direccion") String direccion, @RequestParam("metodoPago") String metodoPago,  
+            @RequestParam("imagenFile") MultipartFile imagenFile) {
+       
+        String username;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails userDetails) {
+            username = userDetails.getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        if (username.isBlank()) {
+            return "";
+        }
+
+        Usuario usuario = usuarioService.getUsuarioPorUsername(username);
+
+        if (usuario == null) {
+            return "";
+        }
+
+        Factura factura = new Factura(usuario.getIdUsuario(), direccion, metodoPago);
+        facturaService.save(factura);
+        
+        if (!imagenFile.isEmpty()) {
+                // Actualizar la ruta de la imagen y guardar la imagen
+                factura.setRutaImagen(firebaseStorageService.cargaImagen(
+                        imagenFile, "facturas", factura.getIdFactura()));
+            }
+        
+        double total = 0;
+        for (Item i : listaItems) {
+            System.out.println("Producto: " + i.getDescripcion()
+                    + " Cantidad: " + i.getCantidad()
+                    + " Total: " + i.getPrecio() * i.getCantidad());
+            Venta venta = new Venta(factura.getIdFactura(), i.getIdProducto(), i.getPrecio(), i.getCantidad());
+            ventaService.saveVenta(venta);
+            Producto producto = productoService.findByIdProducto(i.getIdProducto());
+            producto.setExistencias(producto.getExistencias()-i.getCantidad());
+            productoService.save(producto);
+            total += i.getPrecio() * i.getCantidad();
+        }
+        factura.setTotal(total);
+        facturaService.save(factura);
+        listaItems.clear();
+        return "redirect:/carrito/orden";
     }
     
     @GetMapping("/carrito/checkout")
-    public String checkout() {
+    public String checkout(Model model, Principal principal) {
+        String username = principal.getName();
+        Usuario usuario = usuarioService.getUsuarioPorUsername(username);
+        var items = itemService.gets();
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("items", items);
+        var carritoTotalVenta = 0;
+        for (Item i : items) {
+            carritoTotalVenta += (i.getCantidad() * i.getPrecio());
+        }
+        model.addAttribute("carritoTotal",
+                carritoTotalVenta);
         return "/carrito/checkout";
+    }
+    
+    @GetMapping("/carrito/orden")
+    public String orden(Model model, Principal principal) {
+        return "/carrito/orden";
     }
 }

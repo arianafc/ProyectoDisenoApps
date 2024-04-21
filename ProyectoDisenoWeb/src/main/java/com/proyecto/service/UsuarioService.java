@@ -4,6 +4,7 @@
  */
 package com.proyecto.service;
 
+import com.proyecto.domain.Rol;
 import com.proyecto.domain.Usuario;
 import java.util.List;
 
@@ -20,8 +21,10 @@ public interface UsuarioService {
     // Se actualiza un categoria si el id del categoria NO esta vacío     
     public void save(Usuario usuario,boolean crearRolUser);         
     
+    public void saveUsuario(Usuario usuario);
+    
 // Se elimina el categoria que tiene el id pasado por parámetro     
-    public void delete(Usuario usuario); 
+    public void delete(Long idUsuario); 
     
     public Usuario getUsuarioporEmail(String email);
     

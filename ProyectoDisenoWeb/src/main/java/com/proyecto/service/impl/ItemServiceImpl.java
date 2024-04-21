@@ -33,7 +33,7 @@ public class ItemServiceImpl implements ItemService {
             //Busca si ya existe el producto en el carrito
             if (Objects.equals(i.getIdProducto(), item.getIdProducto())) {
                 //Valida si aún puede colocar un item adicional -segun existencias-
-                if (i.getCantidad() < item.getCantidad()) {
+                if (i.getCantidad() < item.getExistencias()) {
                     //Incrementa en 1 la cantidad de elementos
                     i.setCantidad(i.getCantidad() + 1);
                 }
@@ -98,44 +98,44 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void facturar() {
-        System.out.println("Facturando");
-
-        //Se obtiene el usuario autenticado
-        String username;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails userDetails) {
-            username = userDetails.getUsername();
-        } else {
-            username = principal.toString();
-        }
-
-        if (username.isBlank()) {
-            return;
-        }
-
-        Usuario uuario = uuarioService.getUsuarioPorUsername(username);
-
-        if (uuario == null) {
-            return;
-        }
-
-        Factura factura = new Factura(uuario.getIdUsuario());
-        factura = facturaDao.save(factura);
-
-        double total = 0;
-        for (Item i : listaItems) {
-            System.out.println("Producto: " + i.getDescripcion()
-                    + " Cantidad: " + i.getCantidad()
-                    + " Total: " + i.getPrecio() * i.getCantidad());
-            Venta venta = new Venta(factura.getIdFactura(), i.getIdProducto(), i.getPrecio(), i.getCantidad());
-            ventaDao.save(venta);
-            Producto producto = productoDao.getReferenceById(i.getIdProducto());
-            producto.setCantidad(producto.getCantidad()-i.getCantidad());
-            productoDao.save(producto);
-            total += i.getPrecio() * i.getCantidad();
-        }
-        factura.setTotal(total);
-        facturaDao.save(factura);
-        listaItems.clear();
+//        System.out.println("Facturando");
+//
+//        //Se obtiene el usuario autenticado
+//        String username;
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof UserDetails userDetails) {
+//            username = userDetails.getUsername();
+//        } else {
+//            username = principal.toString();
+//        }
+//
+//        if (username.isBlank()) {
+//            return;
+//        }
+//
+//        Usuario uuario = uuarioService.getUsuarioPorUsername(username);
+//
+//        if (uuario == null) {
+//            return;
+//        }
+//
+//        Factura factura = new Factura(uuario.getIdUsuario());
+//        factura = facturaDao.save(factura);
+//
+//        double total = 0;
+//        for (Item i : listaItems) {
+//            System.out.println("Producto: " + i.getDescripcion()
+//                    + " Cantidad: " + i.getCantidad()
+//                    + " Total: " + i.getPrecio() * i.getCantidad());
+//            Venta venta = new Venta(factura.getIdFactura(), i.getIdProducto(), i.getPrecio(), i.getCantidad());
+//            ventaDao.save(venta);
+//            Producto producto = productoDao.getReferenceById(i.getIdProducto());
+//            producto.setExistencias(producto.getExistencias()-i.getCantidad());
+//            productoDao.save(producto);
+//            total += i.getPrecio() * i.getCantidad();
+//        }
+//        factura.setTotal(total);
+//        facturaDao.save(factura);
+//        listaItems.clear();
     }
 }

@@ -49,13 +49,19 @@ public class UsuarioServiceImpl implements UsuarioService {
             rol.setNombre("ROLE_USER");
             rol.setIdUsuario(usuario.getIdUsuario());
             rolDao.save(rol);
-        }
+        } 
     }
 
     @Override
     @Transactional
-    public void delete(Usuario usuario) {
-        usuarioDao.delete(usuario);
+    public void saveUsuario(Usuario usuario) {
+        usuario = usuarioDao.save(usuario);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long usuario) {
+        usuarioDao.deleteById(usuario);
     }
 
     @Override

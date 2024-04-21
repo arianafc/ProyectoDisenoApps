@@ -37,5 +37,5 @@ public interface ProductoService {
     public List<Producto> filtrarMarcaYCategoria(Long idCategoria, String marca);
     public List<Producto> findByEstilo(Long idEstilo);
     public List<Producto> findByFiltros(double precioInf, double precioSup, Long idEstilo, String marca);
-    
+    public Producto findByIdProducto(Long idProducto);
 }

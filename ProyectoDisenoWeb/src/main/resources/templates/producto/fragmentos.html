@@ -86,397 +86,416 @@
 
 
         <section th:fragment="agregarProducto">
-            <div class="container mt-5" style="margin-left: 130px">
-                <h2 style="text-align: center">Registrar Nuevo Producto</h2>
-                <hr>
-                    <form th:action="@{/producto/guardar}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
-                        <div class="row">
-                            <!-- Primera columna -->
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <label class="mb-1" for="nombre" style="font-size: 20px"><h5>Nombre</h5></label>
-                                    <input type="text" class="form-control" id="nombre" th:field="*{nombre}" style="height: 50px" required/>
-                                </div>
-                                <div class="form-group mb-3 mt-3">
-                                    <label class="mb-1" for="descripcion" style="font-size: 20px"><h5>Descripción</h5></label>
-                                    <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" style="height: 70px" required/>
-                                </div>
-                                <div class="form-group mb-3 mt-3">
-                                    <label style="font-size: 20px" for="categoria" class="mb-1"><h5>Categoría</h5></label>
-                                    <select name="categoria" th:field="*{categoria}" class="form-control" style="height: 50px">
-                                        <option th:each="item : ${categorias}" th:value="${item.idCategoria}">
-                                            [[${item.nombre}]]
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-3 mt-3">
-                                    <label style="font-size: 20px" for="estilo" class="mb-1"><h5>Estilo</h5></label>
-                                    <select name="estilo" th:field="*{estilo}" class="form-control" style="height: 50px">
-                                        <option th:each="item : ${estilos}" th:value="${item.idEstilo}">
-                                            [[${item.nombre}]]
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="estilo"><h5>Marca</h5></label>
-                                    <select style="height: 50px" name="marca" th:field ="*{marca}" class="form-control">
-                                        <option th:value="Nike">Nike </option>
-                                        <option th:value="Adidas">Adidas</option>
-                                        <option th:value="Vans">Vans</option>
-                                        <option th:value="Puma">Puma</option>
-                                        <option th:value="NewBalance">New Balance</option>
-                                        <option th:value="Saucony">Saucony</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-3 mt-3">
-                                    <label for="precio" class="mb-1" style="font-size: 20px"><h5>Precio</h5></label>
-                                    <input type="number" class="form-control" id="precio" th:field="*{precio}" required style="height: 50px"/>
-                                </div>
-                                <div class="form-group mb-3 mt-3">
-                                    <label for="cantidad"  class="mb-1" style="font-size: 20px" ><h5>Cantidad</h5></label>
-                                    <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required style="height: 50px"/>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="status"><h5>Status</h5></label>
-                                    <select style="height: 50px" name="status" th:field ="*{status}" class="form-control">
-                                        <option th:value="Activo">
-                                            Activo
-                                        </option>
-                                        <<option th:value="Inactivo">Inactivo</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Segunda columna -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="imagen"><h5>Imagen del producto</h5></label>
-                                    <input class="form-control" type="file" name="imagenFile"  style="height: 70px" onchange="readURL(this);"/>
-                                    <p></p>                         
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
-                        </div>
-                    </form>
-            </div>
-        </section>
-
-        <section th:fragment="buscarProductos">
-            <div class="container mt-5">
-                <div class="row d-flex justify-content-center ">
-                    <div class="col-md-6">
+            <div class="container mt-3" style="margin-left: 50px">
+                <div class="container mt-3" style="margin-left: 50px">
+                    <div class="d-flex">
+                        <h2 style="margin-right: 5px" >Hola,   <h2 sec:authentication=" name"></h2></h2>
+                    </div>
+                    <br>
                         <div class="card">
-                            <div class="input-box">
-                                <input type="text" class="form-control">
-                                    <i class="fa fa-search"></i>                    
-                            </div>
-                            <div class="list border-bottom">
-                                <i class="https://cdn-icons-png.flaticon.com/512/732/732084.png"></i>
-                                <div class="d-flex flex-column ml-3">
-                                    <span>Nike</span> 
-                                    <small>Visita la tienda de Nike</small>
-                                </div>                   
-                            </div>
-                            <div class="list border-bottom">
-                                <i class="https://cdn-icons-png.flaticon.com/512/732/732160.png"></i>
-                                <div class="d-flex flex-column ml-3">
-                                    <span>Adidas</span> 
-                                    <small>Visita la tienda de Adidas</small>
-                                </div>                   
-                            </div>
-                            <div class="list border-bottom">
-                                <i class="https://th.bing.com/th/id/OIP.Qb7qWtNNDWtfTgMkdQzl8QHaEK?rs=1&pid=ImgDetMain"></i>
-                                <div class="d-flex flex-column ml-3">
-                                    <span>Converse</span> 
-                                    <small>Visita la tienda de converse</small>
-                                </div>                   
-                            </div>
-                            <div class="list">
-                                <i class="https://th.bing.com/th/id/R.45c1ad3faa7af37424c90eb624518103?rik=O%2fpMtJ1Wrbvawg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fpuma-png-download-1500.png&ehk=cn4MKCjlz4Xjw%2fxkgzKzklaV2LHcsFF5C%2b4fANHN44o%3d&risl=&pid=ImgRaw&r=0"></i>
-                                <div class="d-flex flex-column ml-3">
-                                    <span>Puma</span> 
-                                    <small>Visita la tienda de Puma</small>
-                                </div>                   
-                            </div>
-                            <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
-                                <div>
-                                    <h4 style="font-size: 16px">LO MEJOR EN SNEAKERS</h4>
-                                    <h1><b>CONOCÉ LOS NUEVOS</b></h1>
-                                    <h1 style="font-size: 62px"><b>ESTILOS DISPONIBLES</b></h1>
-                                    <p></p>
-                                    <h5 style="font-size: 18px">Con acabados únicos y un diseño excepcional</h5>
+                            <form th:action="@{/producto/guardar}" th:object="${producto}" method="POST" class="was-validated card-body" enctype="multipart/form-data">
+                                <div class="row align-items-center mt-2">
+                                    <h3 class="col  card-title" style="text-align: center">Registrar Nuevo Producto</h3>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                                <hr>
+                                    <div class="row">
+                                        <div class="col form-outline mb-3">
+                                            <label class="mb-1" for="nombre" style="font-size: 20px"><h5>Nombre</h5></label>
+                                            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" style="height: 50px" required/>
+                                        </div>
+                                        <div class="col form-outline mb-3">
+                                            <label class="mb-1" for="descripcion" style="font-size: 20px"><h5>Descripción</h5></label>
+                                            <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" style="height: 70px" required/>
+                                        </div>
 
-        <section th:fragment="editarProductos">
-            <div class="container mt-5" style="margin-left: 130px">
-                <h2 style="text-align: center">Modificar Producto</h2>
-                <hr>
-                    <form th:action="@{/producto/guardar}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
-                        <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
-                        <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <label for="nombreProducto"><h5>Nombre del Producto</h5></label>
-                                    <input type="text" class="form-control" id="nombre" th:field="*{nombre}" style="height: 50px" required/>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="descripcion"><h5>Descripción</h5></label>
-                                    <textarea class="form-control" id="descripcion" th:field="*{descripcion}"  style="height: 70px" required></textarea>
-                                </div>
+                                        <div class=" col form-outline mb-3">
+                                            <label style="font-size: 20px" for="categoria" class="mb-1"><h5>Categoría</h5></label>
+                                            <select name="categoria" th:field="*{categoria}" class="form-control" style="height: 50px">
+                                                <option th:each="item : ${categorias}" th:value="${item.idCategoria}">
+                                                    [[${item.nombre}]]
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
 
-                                <div class="form-group mb-3">
-                                    <label for="precio"><h5>Precio</h5></label>
-                                    <input type="number" class="form-control" id="precio" th:field="*{precio}"  style="height: 50px" required/>
-                                </div>
-
-
-                                <div class="form-group mb-3">
-                                    <label for="cantidad"><h5>Cantidad</h5></label>
-                                    <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}"  style="height: 50px" required/>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label for="idCategoria" style="font: 20px"><h5>Categoria</h5></label>
-                                    <select name="idCategoria" th:field ="*{categoria.idCategoria}" class="form-control" style="height: 50px">
-                                        <option th:each="item : ${categorias}" th:value="${item.idCategoria}">
-                                            [[${item.nombre}]]
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-3 mt-3">
-                                    <label style="font-size: 20px" for="estilo" class="mb-1"><h5>Estilo</h5></label>
-                                    <select name="estilo" th:field="*{estilo.idEstilo}" class="form-control" style="height: 50px">
-                                        <option th:each="item : ${estilos}" th:value="${item.idEstilo}">
-                                            [[${item.nombre}]]
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="estilo"><h5>Marca</h5></label>
-                                    <select style="height: 50px" name="marca" th:field ="*{marca}" class="form-control">
-                                        <option th:value="Nike">Nike </option>
-                                        <option th:value="Adidas">Adidas</option>
-                                        <option th:value="Vans">Vans</option>
-                                        <option th:value="Puma">Puma</option>
-                                        <option th:value="NewBalance">New Balance</option>
-                                        <option th:value="Saucony">Saucony</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="status"><h5>Status</h5></label>
-                                    <select style="height: 50px" name="status" th:field ="*{status}" class="form-control">
-                                        <option th:value="Activo">
-                                            Activo
-                                        </option>
-                                        <<option th:value="Inactivo">Inactivo</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="imagen"><h5>Imagen del producto</h5></label>
-                                    <input class="form-control" type="file" name="imagenFile"  style="height: 70px" onchange="readURL(this);"/>
-                                    <p></p>
-                                    <img class="mb-1" id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" width="400" height="400"/>
-                                </div>
-                            </div>
-                        </div>
+                                        <div class="col form-outline mb-3">
+                                            <label style="font-size: 20px" for="estilo" class="mb-1"><h5>Estilo</h5></label>
+                                            <select name="estilo" th:field="*{estilo}" class="form-control" style="height: 50px">
+                                                <option th:each="item : ${estilos}" th:value="${item.idEstilo}">
+                                                    [[${item.nombre}]]
+                                                </option>
+                                            </select>
+                                        </div>
 
 
-                        <div class="modal-footer">
-                            <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
-                        </div>
-                    </form>
+                                        <div class="col form-outline mb-3">
+                                            <label for="estilo"><h5>Marca</h5></label>
+                                            <select style="height: 50px" name="marca" th:field ="*{marca}" class="form-control">
+                                                <option th:value="Nike">Nike </option>
+                                                <option th:value="Adidas">Adidas</option>
+                                                <option th:value="Vans">Vans</option>
+                                                <option th:value="Puma">Puma</option>
+                                                <option th:value="NewBalance">New Balance</option>
+                                                <option th:value="Saucony">Saucony</option>
+                                            </select>
+                                        </div>
+                                        <div class="col form-outline mb-3">
+                                            <label for="precio" class="mb-1" style="font-size: 20px"><h5>Precio</h5></label>
+                                            <input type="number" class="form-control" id="precio" th:field="*{precio}" required style="height: 50px"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col form-outline mb-3">
+                                            <label for="cantidad"  class="mb-1" style="font-size: 20px" ><h5>Cantidad</h5></label>
+                                            <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required style="height: 50px"/>
+                                        </div>
+                                        <div class="col form-outline mb-3">
+                                            <label for="status"><h5>Status</h5></label>
+                                            <select style="height: 50px" name="status" th:field ="*{status}" class="form-control">
+                                                <option th:value="Activo">
+                                                    Activo
+                                                </option>
+                                                <<option th:value="Inactivo">Inactivo</option>
+                                            </select>
+                                        </div>
 
-            </div>
-        </section>
+                                        <div class="col form-outline mb-3">
+                                            <label for="imagen"><h5>Imagen del producto</h5></label>
+                                            <input class="form-control" type="file" name="imagenFile"  style="height: 70px" onchange="readURL(this);"/>
+                                            <p></p>                         
+                                        </div>
+                                    </div>
+                                    <hr>
+                                        <div class="modal-footer">
+                                            <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
+                                        </div>
+                                        </form>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </section>
 
-        <!-- 2 Sección principal para mostrar la informaccion de las productos -->
-        <section sec:authorize="hasRole('ROLE_USER')" th:fragment="listadoProductosFiltrado" id="productos">
-            <div id="resultsBlock"></div>
-            <div class="row row-cols-3 mb-5" style="margin-right: 10px"> 
-                <div class="card" th:each="p : ${productos}">
-                    <figure><a th:href="@{/producto/vistaProductoDetalle/{idProducto}(idProducto=${p.idProducto})}"><img th:src="${p.rutaImagen}" 
-                                                                                                                         class="card-img" alt="..."
-                                                                                                                         width="50" height="300"/></a>
-                    </figure>
-                    <div class="card-body">
-
-                        <h5 class="card-title">[[${p.nombre}]]</h5>
-                        <p class="card-text">[['$'+${p.precio}]]</p> 
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section sec:authorize="hasRole('ROLE_USER')" th:fragment="vistaProductoDetalle">
-            <div class="container-fluid">
-                <div class="row mx-auto" style="justify-content: center">
-                    <div class="col-md-4">
-                        <img class="img-fluid" id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" width="400" height="400"/>
-                    </div>
-                    <div class="col-md-4">
-                        <h1 >[[${producto.nombre}]]</h1>
-                        <hr>
-                            <h3 >[['$'+${producto.precio}]]</h3>
-                            <img class="mb-1" id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" width="100" height="100" style="border: solid"/>
-                            <br>
-                                <form>
-                                    <p></p>
-                                    <h4>Tallas</h4>
-                                    <select class="form-control form-control-lg" style="border-radius: 0" id="talla" aria-label="Default select example" name="talla">
-                                        <option selected>Selecciona la talla</option>
-                                        <option th:each="talla : ${tallas}" th:value="${talla.idProducto}" th:text="${talla.talla}" name="talla"></option>
-                                    </select>
-                                    <br>
-                                        <h4>Colores</h4>
-                                        <select class="form-control form-control-lg" style="border-radius: 0" id="color" aria-label="Default select example" name="color">
-                                            <option selected>Selecciona el color</option>
-                                            <option th:each="color : ${colores}" th:value="${color.idProducto}" th:text="${color.color}" name="color"></option>
-                                        </select>
-                                        <br>
-                                            <input type="hidden" name="texto" th:value="${producto.idProducto}"/>
-                                            <input type="hidden" name="texto" th:value="${producto.cantidad}"/>
-                                            <button class="btn btn-lg btn-block text-white" id="addCar" name="addCar" type="button" onclick="addCard(this.form)" style="width: 300px;
-                                                    background-color: #333333; border-radius: 0"><i class="fas fa-shopping-cart"></i>Añadir al carrito</button>
-                                            </form>
-                                            <br><br><br>      
-                                                        </div>
-                                                        </div>
-                                                        </div>
-                                                        </section>
-
-                                                        <section th:fragment="reseñas">
-                                                            <div class="row mx-auto">
-                                                                <div class="col-md-3">
-                                                                    <form  style="justify-content: center; border: solid 2px; border-bottom: 0; border-top: 0; border-left: 0; padding: 10px">
-                                                                        <h2 class="text-center">Escribe tu opinión</h2>
-                                                                        <p class="text-center">Haznos saber que te pareció el producto!</p>
-                                                                        <label class="form-label" for="password">Talla</label>
-                                                                        <select class="form-control " style="border-radius: 0" id="talla" aria-label="Default select example" name="rol">
-                                                                            <option selected>Talla</option>
-                                                                            <option th:value="1">7</option>
-                                                                            <option th:value="2">7.5</option>
-                                                                            <option th:value="3">8</option>
-                                                                            <option th:value="3">8.5</option>
-                                                                            <option th:value="3">9</option>
-                                                                            <option th:value="3">9.5</option>
-                                                                            <option th:value="3">10</option>
-                                                                        </select>
-                                                                        <p></p>
-                                                                        <label class="form-label" for="password">Color</label>
-                                                                        <input type="text" id="color" style="border-radius: 0" class="form-control "/>
-                                                                        <label class="form-label" for="password">Comentario</label>
-                                                                        <textarea type="text" id="color" style="border-radius: 0" class="form-control "></textarea>
-                                                                        <br>
-                                                                            <button class="btn btn-lg btn-block text-white" name="btnIngresar" type="submit" style="width: 300px; background-color: #333333; border-radius: 0">Agregar Comentario</button>
-                                                                    </form> 
-                                                                </div>
-                                                                <div class="col-md-9">
-                                                                    <h1 class="text-center">Nuestros usuarios opinan</h1>
+                                        <section th:fragment="buscarProductos">
+                                            <div class="container mt-5">
+                                                <div class="row d-flex justify-content-center ">
+                                                    <div class="col-md-6">
+                                                        <div class="card">
+                                                            <div class="input-box">
+                                                                <input type="text" class="form-control">
+                                                                    <i class="fa fa-search"></i>                    
+                                                            </div>
+                                                            <div class="list border-bottom">
+                                                                <i class="https://cdn-icons-png.flaticon.com/512/732/732084.png"></i>
+                                                                <div class="d-flex flex-column ml-3">
+                                                                    <span>Nike</span> 
+                                                                    <small>Visita la tienda de Nike</small>
+                                                                </div>                   
+                                                            </div>
+                                                            <div class="list border-bottom">
+                                                                <i class="https://cdn-icons-png.flaticon.com/512/732/732160.png"></i>
+                                                                <div class="d-flex flex-column ml-3">
+                                                                    <span>Adidas</span> 
+                                                                    <small>Visita la tienda de Adidas</small>
+                                                                </div>                   
+                                                            </div>
+                                                            <div class="list border-bottom">
+                                                                <i class="https://th.bing.com/th/id/OIP.Qb7qWtNNDWtfTgMkdQzl8QHaEK?rs=1&pid=ImgDetMain"></i>
+                                                                <div class="d-flex flex-column ml-3">
+                                                                    <span>Converse</span> 
+                                                                    <small>Visita la tienda de converse</small>
+                                                                </div>                   
+                                                            </div>
+                                                            <div class="list">
+                                                                <i class="https://th.bing.com/th/id/R.45c1ad3faa7af37424c90eb624518103?rik=O%2fpMtJ1Wrbvawg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fpuma-png-download-1500.png&ehk=cn4MKCjlz4Xjw%2fxkgzKzklaV2LHcsFF5C%2b4fANHN44o%3d&risl=&pid=ImgRaw&r=0"></i>
+                                                                <div class="d-flex flex-column ml-3">
+                                                                    <span>Puma</span> 
+                                                                    <small>Visita la tienda de Puma</small>
+                                                                </div>                   
+                                                            </div>
+                                                            <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
+                                                                <div>
+                                                                    <h4 style="font-size: 16px">LO MEJOR EN SNEAKERS</h4>
+                                                                    <h1><b>CONOCÉ LOS NUEVOS</b></h1>
+                                                                    <h1 style="font-size: 62px"><b>ESTILOS DISPONIBLES</b></h1>
+                                                                    <p></p>
+                                                                    <h5 style="font-size: 18px">Con acabados únicos y un diseño excepcional</h5>
                                                                 </div>
                                                             </div>
-                                                        </section>
-                                                        <section th:fragment="productosRelacionados">
-                                                            <h1 class="text-center">PRODUCTOS RELACIONADOS</h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                        <section th:fragment="editarProductos">
+                                            <div class="container mt-5" style="margin-left: 130px">
+                                                <h2 style="text-align: center">Modificar Producto</h2>
+                                                <hr>
+                                                    <form th:action="@{/producto/guardar}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
+                                                        <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
+                                                        <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group mb-3">
+                                                                    <label for="nombreProducto"><h5>Nombre del Producto</h5></label>
+                                                                    <input type="text" class="form-control" id="nombre" th:field="*{nombre}" style="height: 50px" required/>
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="descripcion"><h5>Descripción</h5></label>
+                                                                    <textarea class="form-control" id="descripcion" th:field="*{descripcion}"  style="height: 70px" required></textarea>
+                                                                </div>
+
+                                                                <div class="form-group mb-3">
+                                                                    <label for="precio"><h5>Precio</h5></label>
+                                                                    <input type="number" class="form-control" id="precio" th:field="*{precio}"  style="height: 50px" required/>
+                                                                </div>
+
+
+                                                                <div class="form-group mb-3">
+                                                                    <label for="cantidad"><h5>Cantidad</h5></label>
+                                                                    <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}"  style="height: 50px" required/>
+                                                                </div>
+
+                                                                <div class="form-group mb-3">
+                                                                    <label for="idCategoria" style="font: 20px"><h5>Categoria</h5></label>
+                                                                    <select name="idCategoria" th:field ="*{categoria.idCategoria}" class="form-control" style="height: 50px">
+                                                                        <option th:each="item : ${categorias}" th:value="${item.idCategoria}">
+                                                                            [[${item.nombre}]]
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group mb-3 mt-3">
+                                                                    <label style="font-size: 20px" for="estilo" class="mb-1"><h5>Estilo</h5></label>
+                                                                    <select name="estilo" th:field="*{estilo.idEstilo}" class="form-control" style="height: 50px">
+                                                                        <option th:each="item : ${estilos}" th:value="${item.idEstilo}">
+                                                                            [[${item.nombre}]]
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="estilo"><h5>Marca</h5></label>
+                                                                    <select style="height: 50px" name="marca" th:field ="*{marca}" class="form-control">
+                                                                        <option th:value="Nike">Nike </option>
+                                                                        <option th:value="Adidas">Adidas</option>
+                                                                        <option th:value="Vans">Vans</option>
+                                                                        <option th:value="Puma">Puma</option>
+                                                                        <option th:value="NewBalance">New Balance</option>
+                                                                        <option th:value="Saucony">Saucony</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="status"><h5>Status</h5></label>
+                                                                    <select style="height: 50px" name="status" th:field ="*{status}" class="form-control">
+                                                                        <option th:value="Activo">
+                                                                            Activo
+                                                                        </option>
+                                                                        <<option th:value="Inactivo">Inactivo</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="imagen"><h5>Imagen del producto</h5></label>
+                                                                    <input class="form-control" type="file" name="imagenFile"  style="height: 70px" onchange="readURL(this);"/>
+                                                                    <p></p>
+                                                                    <img class="mb-1" id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" width="400" height="400"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="modal-footer">
+                                                            <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
+                                                        </div>
+                                                    </form>
+
+                                            </div>
+                                        </section>
+
+                                        <!-- 2 Sección principal para mostrar la informaccion de las productos -->
+                                        <section sec:authorize="hasRole('ROLE_USER')" th:fragment="listadoProductosFiltrado" id="productos">
+                                            <div id="resultsBlock"></div>
+                                            <div class="row row-cols-3 mb-5" style="margin-right: 10px"> 
+                                                <div class="card" th:each="p : ${productos}">
+                                                    <figure><a th:href="@{/producto/vistaProductoDetalle/{idProducto}(idProducto=${p.idProducto})}"><img th:src="${p.rutaImagen}" 
+                                                                                                                                                         class="card-img" alt="..."
+                                                                                                                                                         width="50" height="300"/></a>
+                                                    </figure>
+                                                    <div class="card-body">
+
+                                                        <h5 class="card-title">[[${p.nombre}]]</h5>
+                                                        <p class="card-text">[['$'+${p.precio}]]</p> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                        <section sec:authorize="hasRole('ROLE_USER')" th:fragment="vistaProductoDetalle">
+                                            <div class="container-fluid">
+                                                <div class="row mx-auto" style="justify-content: center">
+                                                    <div class="col-md-4">
+                                                        <img class="img-fluid" id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" width="400" height="400"/>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <h1 >[[${producto.nombre}]]</h1>
+                                                        <hr>
+                                                            <h3 >[['$'+${producto.precio}]]</h3>
+                                                            <img class="mb-1" id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" width="100" height="100" style="border: solid"/>
                                                             <br>
-                                                                <div class="container">
-                                                                <div class="row" style="margin-right: 10px" th:if="${productos.size() > 0}">
-     
-                                                                    <div th:each="p, iter : ${productos}" th:if="${p.marca == producto.marca || p.categoria == producto.categoria && iter.index < 2}" class="col-md-3 col-sm-6 mb-4">
-                                                                        <div class="card h-100">
-                                                                            <figure><a th:href="@{/producto/vistaProductoDetalle/{idProducto}(idProducto=${p.idProducto})}"><img th:src="${p.rutaImagen}" 
-                                                                                                                                                                                 class="card-img-top" alt="..."
-                                                                                                                                                                                 width="100%" height="200"/></a>
-                                                                            </figure>
-                                                                            <div class="card-body">
-                                                                                <h5 class="card-title">[[${p.nombre}]]</h5>
-                                                                                <p class="card-text">[['$'+${p.precio}]]</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                </div>
-                                                        </section>
+                                                                <form>
+                                                                    <p></p>
+                                                                    <h4>Tallas</h4>
+                                                                    <select class="form-control form-control-lg" style="border-radius: 0" id="talla" aria-label="Default select example" name="talla">
+                                                                        <option selected>Selecciona la talla</option>
+                                                                        <option th:each="talla : ${tallas}" th:value="${talla.idProducto}" th:text="${talla.talla}" name="talla"></option>
+                                                                    </select>
+                                                                    <br>
+                                                                        <h4>Colores</h4>
+                                                                        <select class="form-control form-control-lg" style="border-radius: 0" id="color" aria-label="Default select example" name="color">
+                                                                            <option selected>Selecciona el color</option>
+                                                                            <option th:each="color : ${colores}" th:value="${color.idProducto}" th:text="${color.color}" name="color"></option>
+                                                                        </select>
+                                                                        <br>
+                                                                            <input type="hidden" name="texto" th:value="${producto.idProducto}"/>
+                                                                            <input type="hidden" name="texto" th:value="${producto.existencias}"/>
+                                                                            <button class="btn btn-lg btn-block text-white" id="addCar" name="addCar" type="button" onclick="addCard(this.form)" style="width: 300px;
+                                                                                    background-color: #333333; border-radius: 0"><i class="fas fa-shopping-cart"></i>Añadir al carrito</button>
+                                                                            </form>
+                                                                            <br><br><br>      
+                                                                                        </div>
+                                                                                        </div>
+                                                                                        </div>
+                                                                                        </section>
 
-                                                        <aside th:fragment="filtros">
-                                                            <div class="p-3">
-                                                                <h3>Filtros</h3>
-                                                                <form method="GET" th:action="@{/producto/query1}">
-                                                                    <div class="form-group">
-                                                                        <h5 for="estilo">Estilo</h5>
-                                                                        <div th:each="estilo : ${estilos}">
-                                                                            <input class="form-check-input" type="checkbox" th:value="${nombreEstilo}" id="nombreEstilo">
-                                                                                <label class="form-check-label" for="apple-filter">
-                                                                                    [[${estilo.nombre}]]
-                                                                                </label>    
-                                                                                <p><p/>
-                                                                                    </div>
-                                                                                    <h5 for="estilo" class="mt-2">Marcas</h5>
-                                                                                    <div>
-                                                                                        <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                            <label class="form-check-label" for="apple-filter">
-                                                                                                Nike
-                                                                                            </label> 
-                                                                                            <p><p/>
-                                                                                                <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                                    <label class="form-check-label" for="apple-filter">
-                                                                                                        Vans
-                                                                                                    </label>
-                                                                                                    <p><p/>
-                                                                                                        <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                                            <label class="form-check-label" for="apple-filter">
-                                                                                                                Adidas
-                                                                                                            </label>
-                                                                                                            <p><p/>
-                                                                                                                <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                                                    <label class="form-check-label" for="apple-filter">
-                                                                                                                        Saucony
-                                                                                                                    </label>
-                                                                                                                    <p><p/>
-                                                                                                                        <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                                                            <label class="form-check-label" for="apple-filter">
-                                                                                                                                Puma
-                                                                                                                            </label>
-                                                                                                                            <p><p/>
-                                                                                                                                <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                                                                    <label class="form-check-label" for="apple-filter">
-                                                                                                                                        New Balance
-                                                                                                                                    </label>
-                                                                                                                                    <p><p/>
-                                                                                                                                        </div>
-                                                                                                                                        </div>
+                                                                                        <section th:fragment="reseñas">
+                                                                                            <div class="row mx-auto">
+                                                                                                <div class="col-md-3">
+                                                                                                    <form th:action="@{/producto/guardarComentario}" th:object="${producto}" method="POST" style="justify-content: center; border: solid 2px; border-bottom: 0; border-top: 0; border-left: 0; padding: 10px">
+                                                                                                        <input type="hidden" name="idProducto" th:value="${producto.idProducto}">
+                                                                                                            <h2 class="text-center">Escribe tu opinión</h2>
+                                                                                                            <p class="text-center">Haznos saber que te pareció el producto!</p>
+                                                                                                            <h5>Talla Comprada</h5>
+                                                                                                            <input type="number" name="talla" id="talla" style="border-radius: 0" class="form-control"/>
+                                                                                                            <br>
+                                                                                                                <h5>Colores</h5>
+                                                                                                                <input type="text" name="Color" id="Color" style="border-radius: 0" class="form-control"/>
+                                                                                                                <br>
+                                                                                                                    <h5 class="form-label" for="comentario">Comentario</h5>
+                                                                                                                    <textarea type="text" id="comentario" style="border-radius: 0" class="form-control " name="comentario"></textarea>
+                                                                                                                    <br>
+                                                                                                                        <button class="btn btn-lg btn-block text-white" name="btnIngresar" type="submit" style="width: 300px; background-color: #333333; border-radius: 0">Agregar Comentario</button>
+                                                                                                                        </form>
+                                                                                                                        </div>
+                                                                                                                        <div class="col-md-9">
+                                                                                                                            <h1 class="text-center">Nuestros usuarios opinan</h1>
+                                                                                                                            <div th:each="p, iter : ${comentarios}">
+                                                                                                                                <div class="card h-100">
+                                                                                                                                    
+                                                                                                                                    <div class="card-body">
+                                                                                                                                        <h5 class="card-title">[['Producto: '+${p.nombreProducto}]]</h5>
+                                                                                                                                        <p class="card-text">[['Usuario: '+${p.usuario}]]</p>
+                                                                                                                                        <p class="card-text">[['Fecha del comentario: '+${p.fecha}]]</p>
+                                                                                                                                        <p class="card-text">;<b>[[${p.comentario}]]</b></p>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
 
-                                                                                                                                        <h5 for="precio" class="mt-2">Precio</h5>
-                                                                                                                                        <div class="card">                            
-                                                                                                                                            <div class="card-body">
-                                                                                                                                                <div class="mb-3">
-                                                                                                                                                    <label for="precioInf">Precio Inferior</label>
-                                                                                                                                                    <input type="number" class="form-control" 
-                                                                                                                                                           th:value="${precioInf}"
-                                                                                                                                                           th:name="precioInf" required="true"/>
-                                                                                                                                                </div>
-                                                                                                                                                <div class="mb-3">
-                                                                                                                                                    <label for="precioSup">Precio Superior</label>
-                                                                                                                                                    <input type="number" class="form-control" 
-                                                                                                                                                           th:value="${precioSup}"
-                                                                                                                                                           th:name="precioSup" required="true"/>
+                                                                                                                        </div>
+                                                                                                                        </section>
+                                                                                                                        <section th:fragment="productosRelacionados">
+                                                                                                                            <h1 class="text-center">PRODUCTOS RELACIONADOS</h1>
+                                                                                                                            <br>
+                                                                                                                                <div class="container">
+                                                                                                                                    <div class="row" style="margin-right: 10px" th:if="${productos.size() > 0}">
+
+                                                                                                                                        <div th:each="p, iter : ${productos}" th:if="${p.marca == producto.marca || p.categoria == producto.categoria && iter.index < 2}" class="col-md-3 col-sm-6 mb-4">
+                                                                                                                                            <div class="card h-100">
+                                                                                                                                                <figure><a th:href="@{/producto/vistaProductoDetalle/{idProducto}(idProducto=${p.idProducto})}"><img th:src="${p.rutaImagen}" 
+                                                                                                                                                                                                        class="card-img-top" alt="..."
+                                                                                                                                                                                                        width="100%" height="200"/></a>
+                                                                                                                                                </figure>
+                                                                                                                                                <div class="card-body">
+                                                                                                                                                    <h5 class="card-title">[[${p.nombre}]]</h5>
+                                                                                                                                                    <p class="card-text">[['$'+${p.precio}]]</p>
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                         </div>
-                                                                                                                                        <button type="submit" class="btn btn-dark mt-3">Aplicar Filtros</button>
-                                                                                                                                        </form>
-                                                                                                                                        </div>
-                                                                                                                                        </aside>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                        </section>
 
-                                                                                                                                        </body>
-                                                                                                                                        </html>
+                                                                                                                        <aside th:fragment="filtros">
+                                                                                                                            <div class="p-3">
+                                                                                                                                <h3>Filtros</h3>
+                                                                                                                                <form method="GET" th:action="@{/producto/query1}">
+                                                                                                                                    <div class="form-group">
+                                                                                                                                        <h5 for="estilo">Estilo</h5>
+                                                                                                                                        <div th:each="estilo : ${estilos}">
+                                                                                                                                            <input class="form-check-input" type="checkbox" th:value="${nombreEstilo}" id="nombreEstilo">
+                                                                                                                                                <label class="form-check-label" for="apple-filter">
+                                                                                                                                                    [[${estilo.nombre}]]
+                                                                                                                                                </label>    
+                                                                                                                                                <p><p/>
+                                                                                                                                                    </div>
+                                                                                                                                                    <h5 for="estilo" class="mt-2">Marcas</h5>
+                                                                                                                                                    <div>
+                                                                                                                                                        <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
+                                                                                                                                                            <label class="form-check-label" for="apple-filter">
+                                                                                                                                                                Nike
+                                                                                                                                                            </label> 
+                                                                                                                                                            <p><p/>
+                                                                                                                                                                <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
+                                                                                                                                                                    <label class="form-check-label" for="apple-filter">
+                                                                                                                                                                        Vans
+                                                                                                                                                                    </label>
+                                                                                                                                                                    <p><p/>
+                                                                                                                                                                        <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
+                                                                                                                                                                            <label class="form-check-label" for="apple-filter">
+                                                                                                                                                                                Adidas
+                                                                                                                                                                            </label>
+                                                                                                                                                                            <p><p/>
+                                                                                                                                                                                <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
+                                                                                                                                                                                    <label class="form-check-label" for="apple-filter">
+                                                                                                                                                                                        Saucony
+                                                                                                                                                                                    </label>
+                                                                                                                                                                                    <p><p/>
+                                                                                                                                                                                        <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
+                                                                                                                                                                                            <label class="form-check-label" for="apple-filter">
+                                                                                                                                                                                                Puma
+                                                                                                                                                                                            </label>
+                                                                                                                                                                                            <p><p/>
+                                                                                                                                                                                                <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
+                                                                                                                                                                                                    <label class="form-check-label" for="apple-filter">
+                                                                                                                                                                                                        New Balance
+                                                                                                                                                                                                    </label>
+                                                                                                                                                                                                    <p><p/>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        </div>
+
+                                                                                                                                                                                                        <h5 for="precio" class="mt-2">Precio</h5>
+                                                                                                                                                                                                        <div class="card">                            
+                                                                                                                                                                                                        <div class="card-body">
+                                                                                                                                                                                                        <div class="mb-3">
+                                                                                                                                                                                                        <label for="precioInf">Precio Inferior</label>
+                                                                                                                                                                                                        <input type="number" class="form-control" 
+                                                                                                                                                                                                        th:value="${precioInf}"
+                                                                                                                                                                                                        th:name="precioInf" required="true"/>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        <div class="mb-3">
+                                                                                                                                                                                                        <label for="precioSup">Precio Superior</label>
+                                                                                                                                                                                                        <input type="number" class="form-control" 
+                                                                                                                                                                                                        th:value="${precioSup}"
+                                                                                                                                                                                                        th:name="precioSup" required="true"/>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        <button type="submit" class="btn btn-dark mt-3">Aplicar Filtros</button>
+                                                                                                                                                                                                        </form>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        </aside>
+
+                                                                                                                                                                                                        </body>
+                                                                                                                                                                                                        </html>

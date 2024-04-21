@@ -11,15 +11,21 @@ package com.proyecto.controller;
 import com.proyecto.dao.CategoriaDao;
 import com.proyecto.dao.TallasDao;
 import com.proyecto.domain.Categoria;
+import com.proyecto.domain.Comentarios;
 import com.proyecto.domain.Estilo;
 import com.proyecto.domain.Producto;
 import com.proyecto.domain.Tallas;
+import com.proyecto.domain.Usuario;
 import com.proyecto.service.CategoriaService;
 import com.proyecto.service.ColorService;
+import com.proyecto.service.ComentariosService;
 import com.proyecto.service.EstiloService;
 import com.proyecto.service.FirebaseStorageService;
 import com.proyecto.service.ProductoService;
 import com.proyecto.service.TallasService;
+import com.proyecto.service.UsuarioService;
+import java.security.Principal;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,6 +52,10 @@ public class ProductoController {
     private TallasService tallasService;
     @Autowired
     private ColorService colorService;
+    @Autowired
+    private ComentariosService comentariosService;
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping("/listado")
     public String listado(Model model) {
@@ -108,13 +118,17 @@ public class ProductoController {
     }
 
     @GetMapping("/vistaProductoDetalle/{idProducto}")
-    public String vistaProductoDetalle(@PathVariable("idProducto") Producto producto, Model model) {
+    public String vistaProductoDetalle(@PathVariable("idProducto") Producto producto, Model model, Principal principal) {
+        String username = principal.getName();
+        Usuario usuario = usuarioService.getUsuarioPorUsername(username);
         producto = productoService.getProducto(producto);
         var productos = productoService.getProductos();
         var categorias = categoriaService.getCategorias();
         var estilos = estiloService.getEstilos();
         var tallas = tallasService.findByidProducto(producto.getIdProducto());
         var colores = colorService.findByidProducto(producto.getIdProducto());
+        var comentarios = comentariosService.findByIdProducto(producto.getIdProducto());
+        model.addAttribute("usuario", usuario);
         model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
         model.addAttribute("categorias", categorias);
@@ -122,6 +136,7 @@ public class ProductoController {
         model.addAttribute("producto", producto);
         model.addAttribute("tallas", tallas);
         model.addAttribute("colores", colores);
+        model.addAttribute("comentarios", comentarios);
         return "producto/vistaProductoDetalle";
     }
 
@@ -204,5 +219,26 @@ public class ProductoController {
         model.addAttribute("marca", marca);
         return "/producto/vistaProducto";
     }
+
+    @PostMapping("/guardarComentario")
+    public String comentarioGuardar(Comentarios comentario,
+            @RequestParam("talla") double talla, @RequestParam("Color") String color,
+            @RequestParam("idProducto") Long idProducto, @RequestParam("comentario") String comentarios, Principal principal) {
+        Producto producto = productoService.findByIdProducto(idProducto);
+        String username = principal.getName();
+        Usuario usuario = usuarioService.getUsuarioPorUsername(username);
+        comentario.setColor(color);
+        comentario.setIdProducto(idProducto);
+        comentario.setIdUsuario(usuario.getIdUsuario());
+        comentario.setTalla(talla);
+        comentario.setComentario(comentarios);
+        comentario.setFecha(Calendar.getInstance().getTime());
+        comentario.setUsuario(usuario.getNombre()+" "+usuario.getApellidos());
+        comentario.setNombreProducto(producto.getNombre());
+        comentariosService.save(comentario);
+        return "redirect:/producto/vistaProducto";
+    }
+
+ 
 
 }

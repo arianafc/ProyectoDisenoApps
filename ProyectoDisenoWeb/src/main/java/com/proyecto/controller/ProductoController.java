@@ -207,16 +207,35 @@ public class ProductoController {
 
     @GetMapping("/query1")
     public String consultaQuery1(@RequestParam(value = "precioInf") double precioInf,
-            @RequestParam(value = "precioSup") double precioSup, @RequestParam(value = "nombreEstilo") String nombreEstilo,
-            @RequestParam(value = "marca") String marca, Model model) {
-        Estilo estilo = estiloService.getEstiloByName(nombreEstilo);
-        var productos = productoService.findByFiltros(precioInf, precioSup, estilo.getIdEstilo(), marca);
+            @RequestParam(value = "precioSup") double precioSup, Model model) {
+        
+        var productos = productoService.findByFiltros(precioInf, precioSup);
         model.addAttribute("productos", productos);
         model.addAttribute("estilos", estiloService.getEstilos());
         model.addAttribute("precioInf", precioInf);
         model.addAttribute("precioSup", precioSup);
-        model.addAttribute("nombreEstilo", nombreEstilo);
-        model.addAttribute("marca", marca);
+       
+        return "/producto/vistaProducto";
+    }
+    
+    @GetMapping("/query2")
+    public String consultaQuery2(@RequestParam(value = "nombre") String nombreEstilo, Model model) {
+        Estilo estilo = estiloService.getEstiloByName(nombreEstilo);
+        var productos = productoService.findByEstilo(estilo.getIdEstilo());
+        model.addAttribute("productos", productos);
+        model.addAttribute("estilos", estiloService.getEstilos());
+       
+        return "/producto/vistaProducto";
+    }
+    
+    @GetMapping("/query3")
+    public String consultaQuery3(@RequestParam(value = "marca") String marca, Model model) {
+        
+        var productos = productoService.findByMarca(marca);
+        model.addAttribute("productos", productos);
+        model.addAttribute("estilos", estiloService.getEstilos());
+
+       
         return "/producto/vistaProducto";
     }
 

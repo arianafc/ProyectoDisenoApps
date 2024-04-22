@@ -21,6 +21,7 @@ import com.proyecto.service.ProductoService;
 import com.proyecto.service.TallasService;
 import com.proyecto.service.VentaService;
 import java.security.Principal;
+import java.text.ParseException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,9 +46,21 @@ public class CarritoController {
     private VentaService ventaService;
 
     @GetMapping("/")
-    private String listado(Model model) {
+    private String listado(Model model, Principal principal) {
         var productos = productoService.getProductos();
         model.addAttribute("productos", productos);
+         String username = principal.getName();
+        Usuario usuario = usuarioService.getUsuarioPorUsername(username);
+        model.addAttribute("usuario", usuario);
+        var facturas = facturaService.getRols();
+        var facturasPendientes = facturaService.findByEstado("Pendiente");
+        var facturasNuevas =  facturaService.findByEstado("Nueva");
+        var facturasCamino =  facturaService.findByEstado("Camino");
+        var facturasEntregadas =  facturaService.findByEstado("Entregada");
+        model.addAttribute("facturas", facturas);
+        model.addAttribute("totalFacturas", facturas.size());
+        model.addAttribute("totalFacturasPendientes", facturasPendientes.size()+facturasNuevas.size()+facturasCamino.size());
+        model.addAttribute("totalFacturasEntregadas", facturasEntregadas.size());
         return "/index";
     }
 
@@ -116,7 +129,7 @@ public class CarritoController {
     //Para facturar los productos del carrito... no implementado...
     @PostMapping("/facturar/carrito")
     public String facturarCarrito(@RequestParam("direccion") String direccion, @RequestParam("metodoPago") String metodoPago,  
-            @RequestParam(value="imagenFile", required = false) MultipartFile imagenFile) {
+            @RequestParam(value="imagenFile", required = false) MultipartFile imagenFile) throws ParseException {
        
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

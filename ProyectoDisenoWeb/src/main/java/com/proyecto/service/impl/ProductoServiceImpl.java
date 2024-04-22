@@ -83,8 +83,8 @@ public class ProductoServiceImpl implements ProductoService {
     
         @Override
     @Transactional(readOnly = true)
-    public List<Producto> findByFiltros( double precioInf, double precioSup, Long idEstilo, String marca) {
-        return productoDao.findByFiltros(precioInf, precioSup, idEstilo, marca);
+    public List<Producto> findByFiltros( double precioInf, double precioSup) {
+        return productoDao.findByFiltros(precioInf, precioSup);
     }
 
     @Override

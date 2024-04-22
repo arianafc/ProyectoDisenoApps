@@ -392,7 +392,7 @@
                                                                                                                             <h1 class="text-center">Nuestros usuarios opinan</h1>
                                                                                                                             <div th:each="p, iter : ${comentarios}">
                                                                                                                                 <div class="card h-100">
-                                                                                                                                    
+
                                                                                                                                     <div class="card-body">
                                                                                                                                         <h5 class="card-title">[['Producto: '+${p.nombreProducto}]]</h5>
                                                                                                                                         <p class="card-text">[['Usuario: '+${p.usuario}]]</p>
@@ -430,72 +430,68 @@
                                                                                                                         <aside th:fragment="filtros">
                                                                                                                             <div class="p-3">
                                                                                                                                 <h3>Filtros</h3>
-                                                                                                                                <form method="GET" th:action="@{/producto/query1}">
-                                                                                                                                    <div class="form-group">
-                                                                                                                                        <h5 for="estilo">Estilo</h5>
-                                                                                                                                        <div th:each="estilo : ${estilos}">
-                                                                                                                                            <input class="form-check-input" type="checkbox" th:value="${nombreEstilo}" id="nombreEstilo">
-                                                                                                                                                <label class="form-check-label" for="apple-filter">
-                                                                                                                                                    [[${estilo.nombre}]]
-                                                                                                                                                </label>    
-                                                                                                                                                <p><p/>
+                                                                                                                                <form method="GET" th:action="@{/producto/query2}">
+                                                                                                                                    <div class="card">
+                                                                                                                                        <h5 for="estilo" class="card-header">Estilo</h5>
+                                                                                                                                        <div class="card-body">
+                                                                                                                                            <select class="form-control form-control-lg" style="border-radius: 0" id="nombre" aria-label="Default select example" name="nombre">
+                                                                                                                                                <option selected>Estilo</option>
+                                                                                                                                                <option th:each="estilo : ${estilos}" th:value="${estilo.nombre}" th:text="${estilo.nombre}" name="nombre"></option>
+                                                                                                                                            </select>
+
+
+                                                                                                                                            <button type="submit" class="btn btn-dark mt-3">Filtrar por estilo</button>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </form>
+                                                                                                                                <hr>
+                                                                                                                                    <form method="GET" th:action="@{/producto/query3}">
+                                                                                                                                        <div class="card"> 
+                                                                                                                                            <h5 for="estilo" class="card-header">Marcas</h5>
+                                                                                                                                            <div class="card-body">
+                                                                                                                                                <select class="form-control form-control-lg" style="border-radius: 0" id="marca" aria-label="Default select example" name="marca">
+                                                                                                                                                    <option selected>Marca</option>
+                                                                                                                                                    <option th:value="Nike" name="marca">Nike</option>
+                                                                                                                                                    <option th:value="Vans" name="marca">Vans</option>
+                                                                                                                                                    <option th:value="Puma" name="marca">Puma</option>
+                                                                                                                                                    <option th:value="Adidas" name="marca">Adidas</option>
+                                                                                                                                                    <option th:value="Saucony" name="marca">Saucony</option>
+                                                                                                                                                    <option th:value="NewBalance" name="marca">New Balance</option>
+                                                                                                                                                </select>
+                                                                                                                                                <button type="submit" class=" btn btn-dark mt-3">Filtrar por marca</button>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </form>
+                                                                                                                                    <hr>
+                                                                                                                                        <form method="GET" th:action="@{/producto/query1}">
+
+
+                                                                                                                                            <div class="card"> 
+                                                                                                                                                <h5 for="precio" class="card-header" >Precio</h5>
+
+                                                                                                                                                <div class="card-body">
+                                                                                                                                                    <div class="mb-3">
+                                                                                                                                                        <label for="precioInf">Precio Inferior</label>
+                                                                                                                                                        <input type="number" class="form-control" 
+                                                                                                                                                               th:value="${precioInf}"
+                                                                                                                                                               th:name="precioInf" required="true"/>
                                                                                                                                                     </div>
-                                                                                                                                                    <h5 for="estilo" class="mt-2">Marcas</h5>
-                                                                                                                                                    <div>
-                                                                                                                                                        <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                                                                                            <label class="form-check-label" for="apple-filter">
-                                                                                                                                                                Nike
-                                                                                                                                                            </label> 
-                                                                                                                                                            <p><p/>
-                                                                                                                                                                <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                                                                                                    <label class="form-check-label" for="apple-filter">
-                                                                                                                                                                        Vans
-                                                                                                                                                                    </label>
-                                                                                                                                                                    <p><p/>
-                                                                                                                                                                        <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                                                                                                            <label class="form-check-label" for="apple-filter">
-                                                                                                                                                                                Adidas
-                                                                                                                                                                            </label>
-                                                                                                                                                                            <p><p/>
-                                                                                                                                                                                <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                                                                                                                    <label class="form-check-label" for="apple-filter">
-                                                                                                                                                                                        Saucony
-                                                                                                                                                                                    </label>
-                                                                                                                                                                                    <p><p/>
-                                                                                                                                                                                        <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                                                                                                                            <label class="form-check-label" for="apple-filter">
-                                                                                                                                                                                                Puma
-                                                                                                                                                                                            </label>
-                                                                                                                                                                                            <p><p/>
-                                                                                                                                                                                                <input class="form-check-input" type="checkbox" th:value="${marca}" id="estilo">
-                                                                                                                                                                                                    <label class="form-check-label" for="apple-filter">
-                                                                                                                                                                                                        New Balance
-                                                                                                                                                                                                    </label>
-                                                                                                                                                                                                    <p><p/>
-                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                        </div>
+                                                                                                                                                    <div class="mb-3">
+                                                                                                                                                        <label for="precioSup">Precio Superior</label>
+                                                                                                                                                        <input type="number" class="form-control" 
+                                                                                                                                                               th:value="${precioSup}"
+                                                                                                                                                               th:name="precioSup" required="true"/>
+                                                                                                                                                    </div>
+                                                                                                                                                    <button type="submit" class="btn btn-dark mt-3">Filtrar por precio</button>
+                                                                                                                                                </div>
 
-                                                                                                                                                                                                        <h5 for="precio" class="mt-2">Precio</h5>
-                                                                                                                                                                                                        <div class="card">                            
-                                                                                                                                                                                                        <div class="card-body">
-                                                                                                                                                                                                        <div class="mb-3">
-                                                                                                                                                                                                        <label for="precioInf">Precio Inferior</label>
-                                                                                                                                                                                                        <input type="number" class="form-control" 
-                                                                                                                                                                                                        th:value="${precioInf}"
-                                                                                                                                                                                                        th:name="precioInf" required="true"/>
-                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                        <div class="mb-3">
-                                                                                                                                                                                                        <label for="precioSup">Precio Superior</label>
-                                                                                                                                                                                                        <input type="number" class="form-control" 
-                                                                                                                                                                                                        th:value="${precioSup}"
-                                                                                                                                                                                                        th:name="precioSup" required="true"/>
-                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                        <button type="submit" class="btn btn-dark mt-3">Aplicar Filtros</button>
-                                                                                                                                                                                                        </form>
-                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                        </aside>
+                                                                                                                                            </div>
 
-                                                                                                                                                                                                        </body>
-                                                                                                                                                                                                        </html>
+
+                                                                                                                                        </form>
+                                                                                                                                        </div>
+
+                                                                                                                                        </aside>
+
+                                                                                                                                        </body>
+                                                                                                                                        </html>

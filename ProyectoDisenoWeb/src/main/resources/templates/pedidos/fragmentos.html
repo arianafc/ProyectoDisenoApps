@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-md-12"> <!-- Ajustado para usar todo el ancho disponible -->
                         <div class="card">
-                            <div class="card-header">
+                            <div sec:authorize="hasRole('ROLE_USER')" class="card-header">
                                 <h4>Mis Pedidos</h4>
                             </div>
                             <div th:if="${facturas != null and !facturas.empty}">
@@ -31,7 +31,7 @@
                                             <th>Método de Pago</th>
                                             <th>Total</th>
                                             <th>Estado</th>
-                                            <th></th>
+                                            <th sec:authorize="hasRole('ROLE_USER')"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -42,7 +42,7 @@
                                             <td th:text="${producto.metodoPago}"></td>
                                             <td th:text="'$'+${producto.total}"></td>
                                             <td th:text="${producto.estado}"></td>
-                                            <td>
+                                            <td sec:authorize="hasRole('ROLE_USER')">
                                                 <a th:href="@{/pedidos/rastrearPedido/{idFactura}(idFactura=${producto.idFactura})}" style="color: #007bff; text-decoration: underline;">
                                                     [[#{accion.rastrear}]]
                                                 </a></td>
@@ -88,7 +88,7 @@
                                                             <h6 class="card-text">[[${p.cantidad}]][[' x $'+${p.precio}]]</h6> 
 
                                                         </div>
-                                                        <div sec:authorize="hasRole('ROLE_VENDEDOR')" class="col-md-6">
+                                                        <div sec:authorize="hasRole('ROLE_VENDEDOR') or hasRole('ROLE_ADMIN')" class="col-md-6">
                                                             <h6 style="color: #009900" class="card-text">Cliente[[': '+${p.nombreUsuario}]]</h6> 
                                                         </div>
                                                     </div></div>
@@ -147,10 +147,10 @@
                                                                 <a th:href="@{/pedidos/rastrearPedido/{idFactura}(idFactura=${producto.idFactura})}" class="btn" style="color: #333333; text-decoration: underline;">
                                                                     <b>[[#{accion.rastrear}]]</b>
                                                                 </a>
-                                                                <a th:href="@{/pedidos/eliminar/{idFactura}(idFactura=${producto.idFactura})}" class="btn" style="color: #cc0033; text-decoration: underline;">
+                                                                <a sec:authorize="hasRole('ROLE_VENDEDOR')" th:href="@{/pedidos/eliminar/{idFactura}(idFactura=${producto.idFactura})}" class="btn" style="color: #cc0033; text-decoration: underline;">
                                                                     <b>[[#{accion.eliminar}]]</b>
                                                                 </a>
-                                                                <a th:href="@{/pedidos/modificar/{idFactura}(idFactura=${producto.idFactura})}" class="btn" style="color: #cc0033; text-decoration: underline;">
+                                                                <a  sec:authorize="hasRole('ROLE_VENDEDOR')" th:href="@{/pedidos/modificar/{idFactura}(idFactura=${producto.idFactura})}" class="btn" style="color: #007bff; text-decoration: underline;">
                                                                     <b>[[#{accion.actualizar}]]</b>
                                                                 </a>
                                                             </td>
@@ -170,7 +170,7 @@
                                                     <form th:action="@{/pedidos/guardar}" th:object="${factura}" method="POST" class="was-validated card-body " enctype="multipart/form-data">
                                                         <input type="hidden" name="idFactura" th:field="*{idFactura}"/>
                                                         <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
-                                                        <input type="hidden" name="fecha" th:field="*{fecha}"/>
+                                                        <input type="hidden" th:field="*{fecha}" />
                                                         <input type="hidden" name="metodoPago" th:field="*{metodoPago}"/>
                                                         <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
                                                         <div class="row">
@@ -179,7 +179,7 @@
                                                                     <label for="nombreProducto"><h5>Dirección de Envío</h5></label>
                                                                     <input type="text" class="form-control" id="direccion" th:field="*{direccion}" style="height: 50px" required/>
                                                                 </div>
-                                                               
+
                                                                 <div class="form-group mb-3">
                                                                     <label for="estado"><h5>Estado</h5></label>
                                                                     <select style="height: 50px" name="estado" th:field ="*{estado}" class="form-control">
@@ -190,13 +190,12 @@
                                                                     </select>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                            <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
-                                                        </div>
+                                                                    <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
+                                                                </div>
                                                             </div>
+                                                        </div>
 
-                                                            
 
-                                                        
                                                     </form>
 
                                             </div>

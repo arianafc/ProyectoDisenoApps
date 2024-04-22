@@ -5,7 +5,7 @@
         <title>FAEJ</title>        
     </head>
     <body>
-        <header th:replace="~{layout/plantilla :: header}"/>
+        <header th:replace="~{layout/plantilla :: header}" class="shadow"/>
         <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')" class="container-fluid">
                 <div class="row">
                     <div class="col-md-2">
@@ -14,8 +14,7 @@
                     <div class="col-md-9">
                         <br>
                            
-                        <div class="d-flex justify-content-center">
-                            <h1 style="margin-right: 5px" >Hola,   <h1 sec:authentication=" name"></h1></h1>
+                            <section th:replace="~{usuario/fragmentos :: inicio}"></section>
                     </div>
                     <br>
                     </div>

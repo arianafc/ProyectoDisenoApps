@@ -70,7 +70,7 @@
                             <div class="row" style="background-color: #F9FAFB">
                                 <div class="col-sm-6 px-0 d-sm-block"  >
 
-                                    <img  style=" width: 100%; object-fit: fill"
+                                    <img  style=" width:650px; height: 800px; object-fit: fill"
                                           src="https://images.pexels.com/photos/20019043/pexels-photo-20019043/free-photo-of-calcetines-mariposas-fotografia-de-moda-entrenadores.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                                           alt="">
                                 </div>
@@ -91,17 +91,17 @@
                             <div class="row" style="background-color: #F9FAFB">
                                 <div class="col-sm-6 px-0 d-sm-block"  >
 
-                                    <img  style=" width: 100%; object-fit: fill"
-                                          src="https://images.pexels.com/photos/20019043/pexels-photo-20019043/free-photo-of-calcetines-mariposas-fotografia-de-moda-entrenadores.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                    <img  style=" width:650px; height: 800px; object-fit: fill"
+                                          src="https://images.pexels.com/photos/1020488/pexels-photo-1020488.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                                           alt="">
                                 </div>
                                 <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
                                     <div>
-                                        <h4 style="font-size: 16px">LO MEJOR EN SNEAKERS</h4>
-                                        <h1><b>CONOCÉ LOS NUEVOS</b></h1>
-                                        <h1 style="font-size: 62px"><b>ESTILOS DISPONIBLES</b></h1>
+                                        <h4 style="font-size: 16px">TE GUSTA ESTAR A LA MODA?</h4>
+                                        <h2><b>FAEJ TIENE LO MEJOR PARA TI</b></h2>
+                                        <h1 style="font-size: 50px"><b>CONOCÉ TODOS NUESTROS ESTILOS DISPONIBLES</b></h1>
                                         <p></p>
-                                        <h5 style="font-size: 18px">Con acabados únicos y un diseño excepcional</h5>
+                                        <h5 style="font-size: 18px">FAEJ lo mejor para tu vida!</h5>
                                     </div>
                                 </div>
                             </div>
@@ -112,17 +112,17 @@
                             <div class="row" style="background-color: #F9FAFB">
                                 <div class="col-sm-6 px-0 d-sm-block"  >
 
-                                    <img  style=" width: 100%; object-fit: fill"
-                                          src="https://images.pexels.com/photos/20019043/pexels-photo-20019043/free-photo-of-calcetines-mariposas-fotografia-de-moda-entrenadores.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                    <img  style=" width:650px; height: 800px; object-fit: fill"
+                                          src="https://images.pexels.com/photos/1972115/pexels-photo-1972115.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                                           alt="">
                                 </div>
                                 <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
                                     <div>
-                                        <h4 style="font-size: 16px">LO MEJOR EN SNEAKERS</h4>
-                                        <h1><b>CONOCÉ LOS NUEVOS</b></h1>
-                                        <h1 style="font-size: 62px"><b>ESTILOS DISPONIBLES</b></h1>
+                                        <h4 style="font-size: 16px">TE GUSTA EL DEPORTE?</h4>
+                                        <h1><b>LAS MEJORES MARCAS DEPORTIVAS</b></h1>
+                                        <h1 style="font-size: 62px"><b>PARA QUE DISFRUTES HACIENDO LO QUE TE APASIONA</b></h1>
                                         <p></p>
-                                        <h5 style="font-size: 18px">Con acabados únicos y un diseño excepcional</h5>
+                                        <h5 style="font-size: 18px">Conocé los productos que tenemos para vos!</h5>
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                 </a>
             </div>
             <hr>
-                <p></p>
+                
         </section>
 
         <section th:fragment="marcas"class="vh-100" style="margin-bottom: 50%">
@@ -243,7 +243,7 @@
                             <li> <a  th:href="@{/carrito/listado}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-shopping-cart"></i> Carrito de Compras</a> </li>
                             <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-heart"></i> Lista de Deseos</a> </li>
                             <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-cog"></i> Ajustes </a> </li>
-                            
+
                         </ul>
                     </div>
             </div>
@@ -394,7 +394,89 @@
                                             </div>
                                             </div>
                                             </section>
+                 <section th:fragment="inicio">
+                                                <div class="mt-5 col-md-9 text-center d-flex justify-content-center mx-auto"style="width: 100%; margin-left: 30px">
+                                                    <div class="container">
+                                                        <div class="row justify-content-between">
+                                                            <div class="col">
+                                                                <div class="card mb-3" style="max-width: 50rem; justify-content: start" >
 
+                                                                    <header class="card-header text-center"><strong>INFORMACIÓN DE LA CUENTA</strong></header>
+                                                                    <div class="card-body text-center">
+                                                                        <div class="card-text">
+                                                                            <img th:src="@{${session.usuarioImagen}}" class="user-avatar text-center" height="100"alt="User avatar" />
+                                                                            <div class="user-details">
+                                                                                <h3 sec:authentication="name">Santi</h3>
 
-                                            </body>
-                                            </html>
+                                                                                <p class="user-location">Costa Rica </p>
+                                                                                <h6 th:text="'Email: '+${usuario.email}"></h6>
+                                                                                <h6 th:text="'Número de Teléfono: '+${usuario.telefono}"></h6>
+                                                                                <h6 th:text="'Dirección Registrada: '+${usuario.direccion}"></h6>
+                                                                                <hr>
+                                                                            </div>
+                                                                        </div>
+                                                                        <button class="btn" style="color: #333333; border: #333333 solid; justify-content: start"><strong><a th:href="@{/usuario/miCuenta}">Editar Cuenta</a></strong></button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="container">
+                                                                    <div class="stats-container">
+                                                                        <div class="container-fluid" style="background-color: #d2ecf3">
+                                                                            <div class="row">
+                                                                                <div class="col mt-3 total-orders-icon text-lg-start" style="align-items: center">
+                                                                                    <img style=" width: 100px; height: 100px" src="https://cdn.builder.io/api/v1/image/assets/TEMP/86918e56bd72d68a849e56fbef7f286d4f8dcf62f0868a5e9fa01fd2c3b4a196?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Total Orders Icon" class="icon" />
+                                                                                </div>
+                                                                                <div class="col mb-3 mt-3 total-orders-info text-lg-start">
+                                                                                    <h5 class="total-orders-count">[[${totalFacturas}]]</h5>
+                                                                                    <h6 class="total-orders-label">Ordenes Totales en la Página</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <br>
+                                                                            <div class="container-fluid" style="background-color: #fac49c">
+                                                                                <div class="row">
+                                                                                    <div class="col mt-3 text-lg-start pending-orders-icon">
+                                                                                        <img style=" width: 100px; height: 100px" src="https://cdn.builder.io/api/v1/image/assets/TEMP/326c2a4d1209c95773eb057c3ed767f4ea06578c3db47ccc7a8c3428ae9afbc7?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Pending Orders Icon" class="icon" />
+                                                                                    </div>
+                                                                                    <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
+                                                                                        <h5 class="pending-orders-count">[[${totalFacturasPendientes}]]</h5>
+                                                                                        <h6 class="pending-orders-label">Ordenes Pendientes en la Página</h6>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <br>
+                                                                                <div class="container-fluid" style="background-color: #c5fdcb">
+                                                                                    <div class="row">
+                                                                                        <div class="col mt-3 text-lg-start">
+                                                                                            <img style=" width: 100px; height: 100px" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ae77913fa6f44c7ac47f22671bcdee5c5fe065ecd020993dbc569dc4e079b6fa?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Completed Orders Icon" class="icon" />
+                                                                                        </div>
+                                                                                        <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
+                                                                                            <h5 class="completed-orders-count">[[${totalFacturasEntregadas}]]</h5>
+                                                                                            <h6 class="completed-orders-label">Ordenes Completas en la Página</h6>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                </div>
+                                                                                </div>
+                                                                                </div>
+                                                                                </div>
+                                                                                <hr  >
+                                                                                    <!-- grafico de ventas y lo mas vendido -->
+                                                                                    <div  class="row">
+                                                                                        <div class="col mb-3">
+                                                                                            
+                                                                                                <h4 class="order-history-title">HISTORIAL DE PEDIDOS EN LA PAGINA</h4>
+                                                                                                 <section sec:authorize="hasRole('ROLE_ADMIN')" th:replace="~{pedidos/fragmentos :: listadoVendedor}"/>  
+                                                                                                 <section sec:authorize="hasRole('ROLE_VENDEDOR')" th:replace="~{pedidos/fragmentos :: listado}"/>  
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    </div>
+                                                                                    </div>
+
+                                                                                    </section>
+
+                                                                                    </body>
+                                                                                    </html>

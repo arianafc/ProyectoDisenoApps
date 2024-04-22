@@ -39,11 +39,11 @@ public interface ProductoDao extends JpaRepository<Producto, Long> {
             value = "SELECT * FROM producto where producto.marca = :marca ORDER BY producto.descripcion ASC")
     public List<Producto> findByMarca(@Param("marca") String marca);
 
-    @Query(nativeQuery = true, value = "SELECT * FROM producto WHERE producto.precio BETWEEN :precioInf AND :precioSup AND producto.id_estilo= :idEstilo AND producto.marca = :marca ORDER BY p.descripcion ASC")
+    @Query(nativeQuery = true, value = "SELECT * FROM producto WHERE producto.precio BETWEEN :precioInf AND :precioSup ")
     List<Producto> findByFiltros(@Param("precioInf") double precioInf,
-            @Param("precioSup") double precioSup,
-            @Param("idEstilo") Long idEstilo, @Param("marca") String marca);
+            @Param("precioSup") double precioSup);
 
+    
    @Query(nativeQuery = true,
             value = "SELECT * FROM producto where producto.id_producto = :idProducto")
     public Producto findByIdProducto(@Param("idProducto") Long idProducto);

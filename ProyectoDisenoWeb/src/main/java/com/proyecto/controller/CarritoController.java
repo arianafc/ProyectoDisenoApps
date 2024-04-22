@@ -53,7 +53,7 @@ public class CarritoController {
 
     //Para ver el carrito
     @GetMapping("/carrito/listado")
-    public String inicio(Model model) {
+    public String inicio(Model model, Item item) {
         var items = itemService.gets();
         model.addAttribute("items", items);
         var carritoTotalVenta = 0;
@@ -116,7 +116,7 @@ public class CarritoController {
     //Para facturar los productos del carrito... no implementado...
     @PostMapping("/facturar/carrito")
     public String facturarCarrito(@RequestParam("direccion") String direccion, @RequestParam("metodoPago") String metodoPago,  
-            @RequestParam("imagenFile") MultipartFile imagenFile) {
+            @RequestParam(value="imagenFile", required = false) MultipartFile imagenFile) {
        
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -143,14 +143,16 @@ public class CarritoController {
                 // Actualizar la ruta de la imagen y guardar la imagen
                 factura.setRutaImagen(firebaseStorageService.cargaImagen(
                         imagenFile, "facturas", factura.getIdFactura()));
-            }
+            } else {
+            factura.setRutaImagen("");
+        }
         
         double total = 0;
         for (Item i : listaItems) {
             System.out.println("Producto: " + i.getDescripcion()
                     + " Cantidad: " + i.getCantidad()
                     + " Total: " + i.getPrecio() * i.getCantidad());
-            Venta venta = new Venta(factura.getIdFactura(), i.getIdProducto(), i.getPrecio(), i.getCantidad());
+            Venta venta = new Venta(factura.getIdFactura(), i.getIdProducto(), i.getPrecio(), i.getCantidad(), i.getNombre(), usuario.getNombre()+" "+usuario.getApellidos(), i.getRutaImagen());
             ventaService.saveVenta(venta);
             Producto producto = productoService.findByIdProducto(i.getIdProducto());
             producto.setExistencias(producto.getExistencias()-i.getCantidad());

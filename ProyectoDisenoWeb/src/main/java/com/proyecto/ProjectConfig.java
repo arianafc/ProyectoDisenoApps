@@ -17,14 +17,12 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -68,6 +66,10 @@ public class ProjectConfig implements WebMvcConfigurer {
                 ventaDao.deleteById(idVenta);
             }
 
+            @Override
+            public List<Venta> findByIdFactura(Long idFactura) {
+                return ventaDao.encontrarPorUsuario(idFactura);
+            }
         };
     }
 
@@ -98,6 +100,21 @@ public class ProjectConfig implements WebMvcConfigurer {
             @Override
             public List<Factura> findByIdUsuario(Long idUsuario) {
                 return facturaDao.encontrarPorUsuario(idUsuario);
+            }
+
+            @Override
+            public List<Factura> findByIdUsuarioYEstado(Long idUsuario, String estado) {
+                return facturaDao.encontrarPorUsuarioYEstado(idUsuario, estado);
+            }
+
+            @Override
+            public List<Factura> findByEstado(String estado) {
+                return facturaDao.encontrarEstado(estado);
+            }
+
+            @Override
+            public Factura findByIdFactura(Long idFactura) {
+                return facturaDao.findByIdFactura(idFactura);
             }
         };
     }
@@ -178,18 +195,22 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/categoria/nuevo", "/categoria/guardar",
                         "/categoria/modificar/**", "/categoria/eliminar/**",
                         "/usuario/nuevo", "/usuario/guardar", "/usuario/listado",
-                        "/usuario/modificar/*", "/usuario/modificarUsuario/*", "/usuario/eliminar/**", "/usuario/adminInicio", "/usuario/eliminarUsuario/*", "/usuario/modificarUsuario/*",
+                        "/usuario/modificar/*", "/usuario/modificarUsuario/*", "/usuario/eliminar/**", "/usuario/eliminarUsuario/*", "/usuario/modificarUsuario/*",
                         "/reportes/**", "/usuario/actualizarPassword", "/usuario/actualizarUsuario"
                 ).hasRole("ADMIN")
                 .requestMatchers(
                         "/producto/listado",
                         "/categoria/listado",
-                        "/usuario/listado"
+                        "/usuario/listado", "/usuario/adminInicio"
                 ).hasAnyRole("ADMIN", "VENDEDOR")
                 .requestMatchers(
-                        "/usuario/crearCuenta", "/carrito/listado","/usuario/dashboard", "/inicioSesion/**", "/usuario/miCuenta", "/usuario/actualizarPassword", "/usuario/guardarUsuario"
+                        "/pedidos/vendedor", "/pedidos/eliminar/**", "/pedidos/modificar/*", "/pedidos/guardar"
+                        
+                ).hasRole("VENDEDOR")
+                .requestMatchers(
+                        "/usuario/crearCuenta", "/carrito/listado", "/usuario/dashboard", "/inicioSesion/**", "/usuario/miCuenta", "/usuario/actualizarPassword", "/usuario/guardarUsuario", "/pedidos/rastrearPedido/*"
                 ).hasAnyRole("ADMIN", "VENDEDOR", "USER")
-                .requestMatchers("/facturar/carrito","/carrito/orden", "/index","/pedidos/listado", "/producto/vistaProducto/Mujer/Lifestyle", "/producto/vistaProducto/Hombre/*", "/producto/vistaProducto/Nin@",
+                .requestMatchers("/facturar/carrito", "/carrito/orden", "/index", "/pedidos/listado", "/producto/vistaProducto/Mujer/Lifestyle", "/producto/vistaProducto/Hombre/*", "/producto/vistaProducto/Nin@",
                         "/producto/guiaTallas", "/producto/vistaProductoDetalle/*", "/contacto/contacto", "/carrito/listado", "/usuario/guardarUsuario", "/producto/guardarComentario")
                 .hasRole("USER")
                 )

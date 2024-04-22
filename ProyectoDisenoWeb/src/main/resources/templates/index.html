@@ -6,7 +6,7 @@
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-        <div sec:authorize="hasRole('ROLE_ADMIN')" class="container-fluid">
+        <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')" class="container-fluid">
                 <div class="row">
                     <div class="col-md-2">
                         <aside th:replace="~{layout/plantillaAdmin :: sideBar}"/>

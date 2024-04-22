@@ -6,6 +6,7 @@ package com.proyecto.controller;
 
 import com.proyecto.domain.Rol;
 import com.proyecto.domain.Usuario;
+import com.proyecto.service.FacturaService;
 import com.proyecto.service.FirebaseStorageService;
 import com.proyecto.service.RolService;
 import com.proyecto.service.UsuarioService;
@@ -35,7 +36,9 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     @Autowired
     private RolService rolService;
-
+    @Autowired
+    private FacturaService facturaService;
+    
     @GetMapping("/inicio")
     private String inicio() {
         return "/usuario/inicio";
@@ -46,6 +49,14 @@ public class UsuarioController {
         String username = authentication.getName();
         Usuario usuario = usuarioService.getUsuarioPorUsername(username);
         model.addAttribute("usuario", usuario);
+        var facturas = facturaService.getRols();
+        var facturasPendientes = facturaService.findByEstado("Pendiente");
+        var facturasNuevas =  facturaService.findByEstado("Nueva Orden");
+        var facturasEntregadas =  facturaService.findByEstado("Entregada");
+        model.addAttribute("facturas", facturas);
+        model.addAttribute("totalFacturas", facturas.size());
+        model.addAttribute("totalFacturasPendientes", facturasPendientes.size()+facturasNuevas.size());
+        model.addAttribute("totalFacturasEntregadas", facturasEntregadas.size());
         return "/usuario/adminInicio";
     }
 
@@ -183,6 +194,14 @@ public class UsuarioController {
         String username = authentication.getName();
         Usuario usuario = usuarioService.getUsuarioPorUsername(username);
         model.addAttribute("usuario", usuario);
+        var facturas = facturaService.findByIdUsuario(usuario.getIdUsuario());
+        var facturasPendientes = facturaService.findByIdUsuarioYEstado(usuario.getIdUsuario(), "Pendiente");
+        var facturasNuevas = facturaService.findByIdUsuarioYEstado(usuario.getIdUsuario(), "Nueva Orden");
+        var facturasEntregadas = facturaService.findByIdUsuarioYEstado(usuario.getIdUsuario(), "Entregada");
+        model.addAttribute("facturas", facturas);
+        model.addAttribute("totalFacturas", facturas.size());
+        model.addAttribute("totalFacturasPendientes", facturasPendientes.size()+facturasNuevas.size());
+        model.addAttribute("totalFacturasEntregadas", facturasEntregadas.size());
         return "/usuario/dashboard";
     }
 }

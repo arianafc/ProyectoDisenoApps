@@ -21,4 +21,8 @@ public interface FacturaService {
     public void delete(Long idFactura);
     
     public List<Factura> findByIdUsuario(Long idUsuario);
+    public List<Factura> findByIdUsuarioYEstado(Long idUsuario, String estado);
+    public List<Factura> findByEstado(String estado);
+    public Factura findByIdFactura(Long idFactura);
+    
 }

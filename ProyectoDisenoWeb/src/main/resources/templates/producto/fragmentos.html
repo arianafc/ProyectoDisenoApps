@@ -9,14 +9,14 @@
         <section th:fragment="listadoProductos">
             <div class="row" style="text-align: right; flex-direction: row-reverse">
                 <div class="col mb-3" style="text-align: right">
-                    <div class="input-group rounded" style="align-content: right">
+                    <div sec:authorize="hasRole('ROLE_ADMIN')" class="input-group rounded" style="align-content: right">
                         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                         <span class="input-group-text border-0" id="search-addon">
                             <i class="fas fa-search"></i>
                         </span>
                     </div>
                 </div>
-                <div class="col">
+                <div sec:authorize="hasRole('ROLE_ADMIN')" class="col">
                     <button 
                         type="button" 
                         class="btn btn-dark" >
@@ -45,7 +45,7 @@
                                             <th>Categoria</th>
                                             <th>Estilo</th>
                                             <th>Imagen</th>
-                                            <th>Acciones</th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,13 +56,13 @@
                                             <td th:text="${producto.descripcion}"></td>
                                             <td th:text="${producto.marca}"></td>
                                             <td th:text="${producto.precio}"></td>
-                                            <td th:text="${producto.cantidad}"></td>
+                                            <td th:text="${producto.existencias}"></td>
                                             <td th:text="${producto.categoria.nombre}"></td>
                                             <td th:text="${producto.estilo.nombre}"></td>
                                             <td>
                                                 <img th:src="${producto.rutaImagen}" height="50" alt="Imagen del producto" />
                                             </td>
-                                            <td>
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')">
                                                 <a th:href="@{/producto/modificar/{idProducto}(idProducto=${producto.idProducto})}" style="color: #007bff; text-decoration: underline;">
                                                     [[#{accion.actualizar}]]
                                                 </a>
@@ -85,7 +85,7 @@
         </section>
 
 
-        <section th:fragment="agregarProducto">
+        <section sec:authorize="hasRole('ROLE_ADMIN')" th:fragment="agregarProducto">
             <div class="container mt-3" style="margin-left: 50px">
                 <div class="container mt-3" style="margin-left: 50px">
                     <div class="d-flex">

@@ -37,6 +37,9 @@ public class VentaServiceImpl implements VentaService {
     public void delete(Long idVenta) {
         ventaDao.deleteById(idVenta);
     }
-   
+    @Override
+    public List<Venta> findByIdFactura(Long idFactura) {
+        return ventaDao.encontrarPorUsuario(idFactura);
+    }
    
 }

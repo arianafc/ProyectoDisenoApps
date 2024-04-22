@@ -19,4 +19,6 @@ public interface VentaService {
     public void saveVenta(Venta venta);          
   
     public void delete(Long idVenta);
+
+    public List<Venta> findByIdFactura(Long idFactura);
 }

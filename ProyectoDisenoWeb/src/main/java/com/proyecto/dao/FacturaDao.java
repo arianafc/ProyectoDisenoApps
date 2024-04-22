@@ -18,4 +18,15 @@ public interface FacturaDao extends JpaRepository<Factura, Long>{
      @Query(nativeQuery = true,
             value = "SELECT * FROM factura where factura.id_usuario = :idUsuario")
     public List<Factura> encontrarPorUsuario(@Param("idUsuario") Long idUsuario);
+    
+    @Query(nativeQuery = true,
+            value = "SELECT * FROM factura where factura.id_usuario = :idUsuario AND factura.estado = :estado")
+    public List<Factura> encontrarPorUsuarioYEstado(@Param("idUsuario") Long idUsuario, @Param("estado") String estado);
+    
+    @Query(nativeQuery = true,
+            value = "SELECT * FROM factura where factura.estado = :estado")
+    public List<Factura> encontrarEstado(@Param("estado") String estado);
+    
+    public Factura findByIdFactura(Long idFactura);
+    
 }

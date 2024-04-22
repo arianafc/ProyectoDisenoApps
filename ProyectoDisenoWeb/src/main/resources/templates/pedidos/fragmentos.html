@@ -14,7 +14,7 @@
 
         <!-- 1 Sección para el inicio de sesión-->
         <section th:fragment="listado"class="vh-100" >
-           <div class="container">
+            <div class="container">
                 <div class="row">
                     <div class="col-md-12"> <!-- Ajustado para usar todo el ancho disponible -->
                         <div class="card">
@@ -27,23 +27,179 @@
                                         <tr>
                                             <th>ID Pedido</th>
                                             <th>Fecha</th>
+                                            <th>Dirección de Envío</th>
+                                            <th>Método de Pago</th>
                                             <th>Total</th>
                                             <th>Estado</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr th:each="producto, co : ${facturas}">
                                             <td th:text="${producto.idFactura}"></td>
                                             <td th:text="${producto.fecha}"></td>
+                                            <td th:text="${producto.direccion}"></td>
+                                            <td th:text="${producto.metodoPago}"></td>
                                             <td th:text="'$'+${producto.total}"></td>
                                             <td th:text="${producto.estado}"></td>
-                                            
+                                            <td>
+                                                <a th:href="@{/pedidos/rastrearPedido/{idFactura}(idFactura=${producto.idFactura})}" style="color: #007bff; text-decoration: underline;">
+                                                    [[#{accion.rastrear}]]
+                                                </a></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-        </section>
+                        </section>
 
-    </body>
-</html>
+
+                        <section th:fragment="listadoVentas" class="vh-100">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-9"> <!-- Ajustado para usar todo el ancho disponible -->
+                                        <div class="card">
+                                            <div class="card-header bg-light row">
+                                                <div class="col">
+                                                    <h3 th:text="'#Pedido: '+${factura.idFactura}"></h3>
+                                                    <p th:text="'Pedido Realizado: '+${factura.fecha}"></p>
+                                                    <h5 th:text="'Status: '+${factura.estado}" style="color: #2da5f3; font-weight: bold"></h5>
+
+                                                </div>
+                                                <div class="col text-end">
+                                                    <h2 th:text="'$'+${factura.total}"></h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                            <div class="card">
+                                                <div class="card-body mt-2" style="margin-left: 5px"><h3>Productos</h3></div>
+                                                <div class="card" th:each="p : ${ventas}">
+
+                                                    <div class="card-body row">
+                                                        <div class="col-md-2">
+                                                            <figure><img th:src="${p.rutaImagen}" 
+                                                                         class="card-img" alt="..."
+                                                                         width="150" height="150"/></a>
+                                                            </figure>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <h5 class="card-title">[[${p.nombreProducto}]]</h5>
+                                                            <h6 class="card-text">[[${p.cantidad}]][[' x $'+${p.precio}]]</h6> 
+
+                                                        </div>
+                                                        <div sec:authorize="hasRole('ROLE_VENDEDOR')" class="col-md-6">
+                                                            <h6 style="color: #009900" class="card-text">Cliente[[': '+${p.nombreUsuario}]]</h6> 
+                                                        </div>
+                                                    </div></div>
+                                            </div>
+
+                                    </div>
+
+                                    <div  class="col">
+                                        <div class="card">
+                                            <div class="card-body text-center">
+                                                <h3>DETALLES</h3>
+                                                <h5>
+                                                    Información de Envío
+                                                </h5>
+                                                <h6 sec:authorize="hasRole('ROLE_USER')" th:text="'Usuario: '+${usuario.nombre}+' '+${usuario.apellidos}"></h6>
+                                                <p th:text="'Dirección: '+${factura.direccion}"></p>
+                                                <p th:text="'Método de Pago: '+${factura.metodoPago}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+
+                        <section th:fragment="listadoVendedor"class="vh-100" >
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12"> <!-- Ajustado para usar todo el ancho disponible -->
+                                        <div class="card">
+                                            <div class="text-center card-header">
+                                                <h4>GESTIÓN DE ORDENES FAEJ</h4>
+                                            </div>
+                                            <div th:if="${facturas != null and !facturas.empty}">
+                                                <table class="table table-striped table-hover">
+                                                    <thead class="table-dark">
+                                                        <tr>
+                                                            <th>ID Pedido</th>
+                                                            <th>Fecha</th>
+                                                            <th>Dirección de Envío</th>
+                                                            <th>Método de Pago</th>
+                                                            <th>Total</th>
+                                                            <th>Estado</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr th:each="producto, co : ${facturas}">
+                                                            <td th:text="${producto.idFactura}"></td>
+                                                            <td th:text="${producto.fecha}"></td>
+                                                            <td th:text="${producto.direccion}"></td>
+                                                            <td th:text="${producto.metodoPago}"></td>
+                                                            <td th:text="'$'+${producto.total}"></td>
+                                                            <td th:text="${producto.estado}"></td>
+                                                            <td>
+                                                                <a th:href="@{/pedidos/rastrearPedido/{idFactura}(idFactura=${producto.idFactura})}" class="btn" style="color: #333333; text-decoration: underline;">
+                                                                    <b>[[#{accion.rastrear}]]</b>
+                                                                </a>
+                                                                <a th:href="@{/pedidos/eliminar/{idFactura}(idFactura=${producto.idFactura})}" class="btn" style="color: #cc0033; text-decoration: underline;">
+                                                                    <b>[[#{accion.eliminar}]]</b>
+                                                                </a>
+                                                                <a th:href="@{/pedidos/modificar/{idFactura}(idFactura=${producto.idFactura})}" class="btn" style="color: #cc0033; text-decoration: underline;">
+                                                                    <b>[[#{accion.actualizar}]]</b>
+                                                                </a>
+                                                            </td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        </section>
+
+
+                                        <section th:fragment="modificarPedido">
+                                            <div class="card mt-5" style="margin-left: 130px">
+                                                <h2 class="mt-2 card-body" style="text-align: center">Actualizar Pedido</h2>
+                                                <hr>
+                                                    <form th:action="@{/pedidos/guardar}" th:object="${factura}" method="POST" class="was-validated card-body " enctype="multipart/form-data">
+                                                        <input type="hidden" name="idFactura" th:field="*{idFactura}"/>
+                                                        <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
+                                                        <input type="hidden" name="fecha" th:field="*{fecha}"/>
+                                                        <input type="hidden" name="metodoPago" th:field="*{metodoPago}"/>
+                                                        <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group mb-3">
+                                                                    <label for="nombreProducto"><h5>Dirección de Envío</h5></label>
+                                                                    <input type="text" class="form-control" id="direccion" th:field="*{direccion}" style="height: 50px" required/>
+                                                                </div>
+                                                               
+                                                                <div class="form-group mb-3">
+                                                                    <label for="estado"><h5>Estado</h5></label>
+                                                                    <select style="height: 50px" name="estado" th:field ="*{estado}" class="form-control">
+                                                                        <option th:value="Nueva">Nueva Orden </option>
+                                                                        <option th:value="Pendiente">Pendiente</option>
+                                                                        <option th:value="Camino">En Camino</option>
+                                                                        <option th:value="Entregada">Entregada</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                            <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
+                                                        </div>
+                                                            </div>
+
+                                                            
+
+                                                        
+                                                    </form>
+
+                                            </div>
+                                        </section>
+                                        </body>
+                                        </html>

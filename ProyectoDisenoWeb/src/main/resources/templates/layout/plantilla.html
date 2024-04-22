@@ -221,8 +221,8 @@
                                     <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/login}">[[#{nav.login}]]</a></li>
 
                                     <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/registro/nuevo}">[[#{nav.registro}]]</a></li>
-                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" th:href="@{/usuario/miCuenta}">[[#{nav.cuenta}]]</a></li>
-                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" href="#">[[#{nav.ordenes}]]</a></li>
+                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" th:href="@{/usuario/dashboard}">[[#{nav.cuenta}]]</a></li>
+                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" th:href="@{/pedidos/listado}">[[#{nav.ordenes}]]</a></li>
                                     <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" href="#">[[#{nav.favoritos}]]</a></li>
                                     <hr sec:authorize="hasRole('ROLE_USER')">
                                         <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">

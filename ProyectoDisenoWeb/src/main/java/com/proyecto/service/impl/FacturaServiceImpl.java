@@ -42,4 +42,18 @@ public class FacturaServiceImpl implements FacturaService {
     public List<Factura> findByIdUsuario(Long idUsuario) {
        return facturaDao.encontrarPorUsuario(idUsuario);
     }
+    
+    @Override
+    public List<Factura> findByIdUsuarioYEstado(Long idUsuario, String estado) {
+       return facturaDao.encontrarPorUsuarioYEstado(idUsuario, estado);
+    }
+    @Override
+    public List<Factura> findByEstado( String estado) {
+       return facturaDao.encontrarEstado(estado);
+    }
+    
+    @Override
+    public Factura findByIdFactura(Long idFactura) {
+        return facturaDao.findByIdFactura(idFactura);
+    }
 }

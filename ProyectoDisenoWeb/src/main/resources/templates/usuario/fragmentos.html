@@ -243,7 +243,7 @@
                             <li> <a  th:href="@{/carrito/listado}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-shopping-cart"></i> Carrito de Compras</a> </li>
                             <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-heart"></i> Lista de Deseos</a> </li>
                             <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-cog"></i> Ajustes </a> </li>
-                            <li> <a th:href="@{/usuario/login}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-sign-in"></i> Cerrar Sesión </a> </li>
+                            
                         </ul>
                     </div>
             </div>
@@ -359,7 +359,7 @@
                                                 <img style=" width: 100px; height: 100px" src="https://cdn.builder.io/api/v1/image/assets/TEMP/86918e56bd72d68a849e56fbef7f286d4f8dcf62f0868a5e9fa01fd2c3b4a196?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Total Orders Icon" class="icon" />
                                             </div>
                                             <div class="col mb-3 mt-3 total-orders-info text-lg-start">
-                                                <h5 class="total-orders-count">154</h5>
+                                                <h5 class="total-orders-count">[[${totalFacturas}]]</h5>
                                                 <h6 class="total-orders-label">Ordenes Totales en la Página</h6>
                                             </div>
                                         </div>
@@ -371,7 +371,7 @@
                                                     <img style=" width: 100px; height: 100px" src="https://cdn.builder.io/api/v1/image/assets/TEMP/326c2a4d1209c95773eb057c3ed767f4ea06578c3db47ccc7a8c3428ae9afbc7?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Pending Orders Icon" class="icon" />
                                                 </div>
                                                 <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
-                                                    <h5 class="pending-orders-count">05</h5>
+                                                    <h5 class="pending-orders-count">[[${totalFacturasPendientes}]]</h5>
                                                     <h6 class="pending-orders-label">Ordenes Pendientes en la Página</h6>
                                                 </div>
                                             </div>
@@ -384,7 +384,7 @@
                                                         <img style=" width: 100px; height: 100px" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ae77913fa6f44c7ac47f22671bcdee5c5fe065ecd020993dbc569dc4e079b6fa?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Completed Orders Icon" class="icon" />
                                                     </div>
                                                     <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
-                                                        <h5 class="completed-orders-count">149</h5>
+                                                        <h5 class="completed-orders-count">[[${totalFacturasEntregadas}]]</h5>
                                                         <h6 class="completed-orders-label">Ordenes Completas en la Página</h6>
                                                     </div>
                                                 </div>

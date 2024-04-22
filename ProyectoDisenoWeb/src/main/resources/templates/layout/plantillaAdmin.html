@@ -72,21 +72,26 @@
                                         </li>
                                         <li>
                                             <a th:href="@{/producto/listado}" class="nav-link icon-link-hover py-3 border-bottom text-black">
-                                                <i class="fa fa-plus"></i> Registro de productos
+                                                <i class="fa fa-plus"></i> [[#{plantilla.productos}]]
                                             </a>
                                         </li>
-                                        <li>
+                                        <li sec:authorize="hasRole('ROLE_ADMIN')">
                                             <a href="#" class="nav-link py-3 border-bottom text-black">
                                                 <i class="fa fa-shopping-cart"></i> Control de ventas
                                             </a>
                                         </li>
-                                        <li>
+                                        <li sec:authorize="hasRole('ROLE_ADMIN')">
                                             <a th:href="@{/usuario/listado}" class="nav-link py-3 border-bottom text-black">
                                                 <i class="fa fa-spinner"></i> Gestión de Usuarios
                                             </a>
                                         </li>
+                                        <li sec:authorize="hasRole('ROLE_VENDEDOR')">
+                                            <a th:href="@{/pedidos/vendedor}" class="nav-link py-3 border-bottom text-black">
+                                                <i class="fa fa-spinner"></i> Gestión de Pedidos
+                                            </a>
+                                        </li>
                                         <li>
-                                            <a href="#" class="nav-link py-3 border-bottom text-black">
+                                            <a th:href="@{/usuario/miCuenta}" class="nav-link py-3 border-bottom text-black">
                                                 <i class="fa fa-cog"></i> Ajustes
                                             </a>
                                         </li>

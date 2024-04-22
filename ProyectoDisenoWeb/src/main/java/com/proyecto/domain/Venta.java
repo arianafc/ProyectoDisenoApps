@@ -27,14 +27,20 @@ public class Venta implements Serializable {
     private Long idProducto;    
     private double precio;
     private int cantidad;    
+    private String nombreProducto;
+    private String nombreUsuario;
+    private String rutaImagen;
     
     public Venta() {
     }
 
-    public Venta(Long idFactura, Long idProducto, double precio, int cantidad) {
+    public Venta(Long idFactura, Long idProducto, double precio, int cantidad, String nombreProducto, String nombreUsuario, String rutaImagen) {
         this.idFactura = idFactura;
         this.idProducto = idProducto;
         this.precio = precio;
         this.cantidad = cantidad;
+        this.nombreProducto=nombreProducto;
+        this.nombreUsuario=nombreUsuario;
+        this.rutaImagen=rutaImagen;
     }
 }

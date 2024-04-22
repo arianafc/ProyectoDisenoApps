@@ -241,7 +241,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 </div>
-                                                                                
+
                                                                                 <div class=" card col-md-3">
                                                                                     <div class=" mt-2 container d-flex"><h4>ORDEN FINAL</h4></div>
                                                                                     <hr>    
@@ -299,63 +299,71 @@
 
                                                                                                     </section>
                                                                                                     <section th:fragment="modificaItem">
-                                                                                                        <div class="row row-cols-6 p-3" >
-                                                                                                            <a th:href="@{/carrito/listado}" class="btn btn-primary">
-                                                                                                                <i class='fas fa-reply'></i> Regresar</a>
-                                                                                                        </div>
-                                                                                                        <div class="row row-cols-2">
-                                                                                                            <div class="card">
-                                                                                                                <div class="card-header">Producto</div>
-                                                                                                                <div class="card-body">
-                                                                                                                    <h5 class="card-title">[[${item.nombre}]]</h5>
-                                                                                                                    <h6 class="card-subtitle mb-2 text-muted text-end">
-                                                                                                                        [[${item.precio}+' ('+${item.existencias}+')']]</h6>
-                                                                                                                    <p class="card-text">[[${item.descripcion}]]</p>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <div class="card">                    
-                                                                                                                <div class="card-body">
-                                                                                                                    <figure><img th:src="@{${item.rutaImagen}}" height="200"/></figure>
-                                                                                                                    <div class="row">
-                                                                                                                        <form th:action="@{/carrito/guardar}"
-                                                                                                                              method="post"
-                                                                                                                              th:object="${item}" >
-                                                                                                                            <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
 
-                                                                                                                            <label for="cantidad">Cantidad:</label>
-                                                                                                                            <input type="number" name="cantidad" th:field="*{cantidad}" 
-                                                                                                                                   min='1' th:max="${item.existencias}"/>
-
-                                                                                                                            <button class="btn btn-success" type="submit" name="guardar">
-                                                                                                                                <i class='fas fa-save'></i> Guardar</button>
-                                                                                                                            <a th:href="@{/carrito/eliminar/}+${item.idProducto}"
-                                                                                                                               class="btn btn-danger">
-                                                                                                                                <i class='fas fa-trash'></i> Eliminar
-                                                                                                                            </a>
-                                                                                                                        </form>
-
+                                                                                                        
+                                                                                                        <div class="mt-5 container  justify-content-center">
+                                                                                                            <div class="row mt-2 justify-content-center">
+                                                                                                                <div class="col-md-3 "><h4>Producto</h4></div>
+                                                                                                            <div class="col-md-3  text-end " >
+                                                                                                                <a th:href="@{/carrito/listado}" class="btn text-white bg-dark">
+                                                                                                                    <i class='fas fa-reply'></i> Regresar</a>
+                                                                                                            </div></div>
+                                                                                                            <hr>
+                                                                                                            <div class="card-body">
+                                                                                                                <div class="row justify-content-center">
+                                                                                                                    <div class="col-md-3">
+                                                                                                                        <h5 class="card-title">[[${item.nombre}]]</h5>
+                                                                                                                        <p class="card-text">[[${item.descripcion}]]</p>
+                                                                                                                        <figure><img th:src="@{${item.rutaImagen}}" height="200"/></figure>
                                                                                                                     </div>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </section>
-        
-        <section th:fragment="orden">
-            <div class="container text-center mt-5 mb-5 justify-content-center">
-            <div class="justify-content-center">
-                <img class="text-center" src="https://cdn-icons-png.flaticon.com/512/5290/5290058.png" height="200px" width="200px" />
-                <h2>Tu orden ha sido enviada!</h2>
-                <h4>Muchas gracias por comprar en FAEJ</h4>
-                <br>
-                <div class="row text-center">
-                    <div class="col">
-                        <a th:href="@{/index}"><button type="button" class="btn bg-white text-black" style="border: #cccccc solid"><b>IR A INICIO</b></button></a><!-- comment -->
-                         <a href="#"><button type="button" class="btn bg-dark text-white">VER ORDENES</button></a>
-                           <br>
-                    </div>
-            </div>
-            </div>
-            </div>
-        </section>
-                                                                                                    </body>
+                                                                                                                    <div class="col-md-3 justify-content-center">
+
+                                                                                                                        <h6 class=" card-subtitle mb-2 text-muted ">
+                                                                                                                            [['$'+${item.precio}+' ('+${item.existencias}+')']]</h6>
+                                                                                                                        <br>
+                                                                                                                            <form th:action="@{/carrito/guardar}"
+                                                                                                                                  method="post"
+                                                                                                                                  th:object="${item}" >
+                                                                                                                                <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
+
+                                                                                                                                <label for="cantidad">Cantidad:</label>
+                                                                                                                                <input type="number" name="cantidad" th:field="*{cantidad}" 
+                                                                                                                                       min='1' th:max="${item.existencias}"/>
+                                                                                                                                <br> <br>
+                                                                                                                                        <button class="btn bg-dark text-white" type="submit" name="guardar">
+                                                                                                                                            <i class='fas fa-save'></i> [[#{accion.actualizar}]]</button>
+                                                                                                                                        <br><br>
+                                                                                                                                                <a th:href="@{/carrito/eliminar/}+${item.idProducto}"
+                                                                                                                                                   class="btn bg-dark text-white">
+                                                                                                                                                    <i class='fas fa-trash'></i> [[#{accion.eliminar}]]
+                                                                                                                                                </a>
+                                                                                                                                                </form>
+                                                                                                                                                </div>
+
+                                                                                                                                                </div>
+                                                                                                                                                </div>
+                                                                                                                                                </div>
+
+
+
+                                                                                                                                                </section>
+
+                                                                                                                                                <section th:fragment="orden">
+                                                                                                                                                    <div class="container text-center mt-5 mb-5 justify-content-center">
+                                                                                                                                                        <div class="justify-content-center">
+                                                                                                                                                            <img class="text-center" src="https://cdn-icons-png.flaticon.com/512/5290/5290058.png" height="200px" width="200px" />
+                                                                                                                                                            <h2>Tu orden ha sido enviada!</h2>
+                                                                                                                                                            <h4>Muchas gracias por comprar en FAEJ</h4>
+                                                                                                                                                            <br>
+                                                                                                                                                                <div class="row text-center">
+                                                                                                                                                                    <div class="col">
+                                                                                                                                                                        <a th:href="@{/index}"><button type="button" class="btn bg-white text-black" style="border: #cccccc solid"><b>IR A INICIO</b></button></a><!-- comment -->
+                                                                                                                                                                        <a href="#"><button type="button" class="btn bg-dark text-white">VER ORDENES</button></a>
+                                                                                                                                                                        <br>
+                                                                                                                                                                    </div>
+                                                                                                                                                                </div>
+                                                                                                                                                        </div>
+                                                                                                                                                    </div>
+                                                                                                                                                </section>
+                                                                                                                                                </body>
 

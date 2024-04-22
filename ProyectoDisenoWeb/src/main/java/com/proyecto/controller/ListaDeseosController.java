@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,5 +55,11 @@ public class ListaDeseosController {
         ListaDeseos nuevoItem = new ListaDeseos(producto, usuario);
         listaDeseosService.agregarProductoDeseado(nuevoItem);
         return "redirect:/producto/vistaProducto";
+    }
+    
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable("id") Long id) {
+        listaDeseosService.eliminarProductoDeseado(id);
+        return "redirect:/listaDeseos/listado";
     }
 }

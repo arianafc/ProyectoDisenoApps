@@ -401,7 +401,7 @@
                                                             <div class="col">
                                                                 <div class="card mb-3" style="max-width: 50rem; justify-content: start" >
 
-                                                                    <header class="card-header text-center"><strong>INFORMACIÓN DE LA CUENTA</strong></header>
+                                                                    <header class="card-header text-center"><strong>[[#{nav.cuenta}]]</strong></header>
                                                                     <div class="card-body text-center">
                                                                         <div class="card-text">
                                                                             <img th:src="@{${session.usuarioImagen}}" class="user-avatar text-center" height="100"alt="User avatar" />
@@ -410,12 +410,19 @@
 
                                                                                 <p class="user-location">Costa Rica </p>
                                                                                 <h6 th:text="'Email: '+${usuario.email}"></h6>
-                                                                                <h6 th:text="'Número de Teléfono: '+${usuario.telefono}"></h6>
-                                                                                <h6 th:text="'Dirección Registrada: '+${usuario.direccion}"></h6>
-                                                                                <hr>
+                                                                                <div class="row justify-content-center">
+                                                                                <h6 class="col-md-3">
+                                                                                    [[#{usuario.tel}]]
+                                                                                </h6><p class="col-md-2" th:text="${usuario.telefono}"></p>
+                                                                                </div>
+                                                                                <div class="row justify-content-center">
+                                                                                <h6 class="col-md-3">
+                                                                                    [[#{usuario.direccion}]]
+                                                                                </h6><p class="col-md-2" th:text="${usuario.direccion}"></p>
+                                                                                </div>                                                                                <hr>
                                                                             </div>
                                                                         </div>
-                                                                        <button class="btn" style="color: #333333; border: #333333 solid; justify-content: start"><strong><a th:href="@{/usuario/miCuenta}">Editar Cuenta</a></strong></button>
+                                                                        <button class="btn" style="color: #333333; border: #333333 solid; justify-content: start"><strong><a th:href="@{/usuario/miCuenta}">[[#{accion.actualizar}]]</a></strong></button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -468,7 +475,7 @@
                                                                                     <div  class="row">
                                                                                         <div class="col mb-3">
 
-                                                                                            <h4 class="order-history-title">HISTORIAL DE PEDIDOS EN LA PAGINA</h4>
+                                                                                            <h4 class="order-history-title">[[#{pedidos.h}]]</h4>
                                                                                             <section sec:authorize="hasRole('ROLE_ADMIN')" th:replace="~{pedidos/fragmentos :: listado}"/>  
                                                                                             <section sec:authorize="hasRole('ROLE_VENDEDOR')" th:replace="~{pedidos/fragmentos :: listado}"/>  
                                                                                         </div>

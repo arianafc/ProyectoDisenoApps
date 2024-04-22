@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-md-9" style="border-right:1px solid; border-color: #cccccc">
                             <div class="container d-flex justify-content-between">
-                                <h4>PRODUCTO</h4>
+                                <h4>[[#{p.p}]]</h4>
                                 <h4 style="text-align: end">SUBTOTAL</h4>
                             </div>
 
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <div class="container d-flex"><h4>TU CARRITO</h4></div>
+                            <div class="container d-flex"><h4>[[#{p.c}]]</h4></div>
                             <hr>    
                                 <div class="container d-flex justify-content-between">
                                     <p>SUBTOTAL</p>
@@ -89,7 +89,7 @@
                                 </div>
                                 <hr>
                                     <div class="container d-flex justify-content-between">
-                                        <p>ENVÍO</p>
+                                        <p>[[#{p.e}]]</p>
                                         <p style="text-align: end; font-weight: bold">$0</p>
                                     </div>
                                     <hr>
@@ -133,13 +133,13 @@
                                                                         <div class="row">
                                                                             <div class="col">
                                                                                 <div class="form-outline mb-2">
-                                                                                    <label for="nombre"><h6>Nombre</h6></label>
+                                                                                    <label for="nombre"><h6>[[#{usuario.nombre}]]</h6></label>
                                                                                     <input type="text" class="form-control" id="nombre" name="nombre" th:field="${usuario.nombre}" required>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col">
                                                                                 <div class="form-outline mb-2">
-                                                                                    <label for="apellido"><h6>Apellido</h6></label>
+                                                                                    <label for="apellido"><h6>[[#{usuario.apellidos}]]</h6></label>
                                                                                     <input type="text" class="form-control" id="apellido" name="apellido" th:field="${usuario.apellidos}" required>
                                                                                 </div>
                                                                             </div>
@@ -147,7 +147,7 @@
                                                                         <div class="row">
                                                                             <div class="col">
                                                                                 <div class="form-outline mb-2">
-                                                                                    <label for="pais"><h6>País</h6></label>
+                                                                                    <label for="pais"><h6>[[#{usuario.pais}]]</h6></label>
                                                                                     <input type="text" class="form-control" id="pais" name="pais" required>
                                                                                 </div>
                                                                             </div>

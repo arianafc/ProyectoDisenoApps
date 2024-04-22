@@ -38,19 +38,19 @@
                                             <td th:text="${deseo.categoria}"></td>
 
                                             <td th:text="${deseo.estilo}"></td>
-                                            
-
                                             <td>
                                                 <form>
-
-
                                                     <input type="hidden" name="texto" th:value="${deseo.idProducto}"/>
                                                     <input type="hidden" name="texto" th:value="${deseo.existencias}"/>
                                                     <div >
                                                         <button class="btn text-white bg-dark" id="addCar" name="addCar" type="button" onclick="addCard(this.form)" style=" border-radius: 0"><i class="fas fa-shopping-cart"></i> Añadir al carrito</button>
-
+                                                        <a th:href="@{/listaDeseos/eliminar/{id}(id=${deseo.id})}" class="btn text-white" style="background-color: #cc0033; text-decoration: underline; border-radius: 0">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
                                                     </div>
                                                 </form>
+                                                <br>
+
                                             </td>
                                         </tr>
                                     </tbody>

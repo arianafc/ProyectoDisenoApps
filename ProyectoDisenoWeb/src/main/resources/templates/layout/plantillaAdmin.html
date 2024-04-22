@@ -77,28 +77,28 @@
                                         </li>
                                         <li sec:authorize="hasRole('ROLE_ADMIN')">
                                             <a th:href="@{/reportes/controlVentas}" class="nav-link py-3 border-bottom text-black">
-                                                <i class="fa fa-shopping-cart"></i> Control de ventas
+                                                <i class="fa fa-shopping-cart"></i> [[#{admin.ventas}]]
                                             </a>
                                         </li>
                                         <li sec:authorize="hasRole('ROLE_ADMIN')">
                                             <a th:href="@{/usuario/listado}" class="nav-link py-3 border-bottom text-black">
-                                                <i class="fa fa-spinner"></i> Gestión de Usuarios
+                                                <i class="fa fa-spinner"></i> [[#{admin.user}]]
                                             </a>
                                         </li>
                                         <li sec:authorize="hasRole('ROLE_VENDEDOR')">
                                             <a th:href="@{/pedidos/vendedor}" class="nav-link py-3 border-bottom text-black">
-                                                <i class="fa fa-spinner"></i> Gestión de Pedidos
+                                                <i class="fa fa-spinner"></i> [[#{vend.pedidos}]]
                                             </a>
                                         </li>
                                         <li>
                                             <a th:href="@{/usuario/miCuenta}" class="nav-link py-3 border-bottom text-black">
-                                                <i class="fa fa-cog"></i> Ajustes
+                                                <i class="fa fa-cog"></i> [[#{user.settings}]]
                                             </a>
                                         </li>
                                         <li>
                                             <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
                                                 <button class="btn">
-                                                    <i class="fa fa-user"></i> Cerrar Sesión
+                                                    <i class="fa fa-user"></i> [[#{nav.logout}]]
                                                 </button>
                                             </form>
                                         </li>

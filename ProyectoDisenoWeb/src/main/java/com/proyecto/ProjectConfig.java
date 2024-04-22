@@ -214,8 +214,8 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .requestMatchers(
                         "/usuario/crearCuenta", "/carrito/listado", "/usuario/dashboard", "/inicioSesion/**", "/usuario/miCuenta", "/usuario/actualizarPassword", "/usuario/guardarUsuario", "/pedidos/rastrearPedido/*"
                 ).hasAnyRole("ADMIN", "VENDEDOR", "USER")
-                .requestMatchers("/facturar/carrito", "/carrito/orden", "/index", "/pedidos/listado", "/producto/vistaProducto/Mujer/Lifestyle", "/producto/vistaProducto/Hombre/*", "/producto/vistaProducto/Nin@",
-                        "/producto/guiaTallas", "/producto/vistaProductoDetalle/*", "/contacto/contacto", "/carrito/listado", "/usuario/guardarUsuario", "/producto/guardarComentario")
+                .requestMatchers("/facturar/carrito", "/carrito/orden", "/index", "/pedidos/listado", "/listaDeseos/listado","/producto/vistaProducto/Mujer/Lifestyle", "/producto/vistaProducto/Hombre/*", "/producto/vistaProducto/Nin@",
+                        "/producto/guiaTallas", "/contacto/politica","/producto/vistaProductoDetalle/*", "/contacto/contacto", "/carrito/listado", "/usuario/guardarUsuario", "/producto/guardarComentario", "/listaDeseos/guardar")
                 .hasRole("USER")
                 )
                 .formLogin((form) -> form

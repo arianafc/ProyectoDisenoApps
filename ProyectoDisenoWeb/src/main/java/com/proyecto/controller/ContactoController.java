@@ -29,4 +29,9 @@ public class ContactoController {
     private String Contacto() {
         return "/contacto/contacto";
     }
+    
+     @GetMapping("/politica")
+    private String politica() {
+        return "/contacto/politica";
+    }
 }

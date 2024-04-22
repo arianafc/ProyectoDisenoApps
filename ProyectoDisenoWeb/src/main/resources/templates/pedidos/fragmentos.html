@@ -19,18 +19,18 @@
                     <div class="col-md-12"> <!-- Ajustado para usar todo el ancho disponible -->
                         <div class="card">
                             <div sec:authorize="hasRole('ROLE_USER')" class="card-header">
-                                <h4>Mis Pedidos</h4>
+                                <h4>[[#{nav.ordenes}]]</h4>
                             </div>
                             <div th:if="${facturas != null and !facturas.empty}">
                                 <table class="table table-striped table-hover">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>ID Pedido</th>
-                                            <th>Fecha</th>
-                                            <th>Dirección de Envío</th>
-                                            <th>Método de Pago</th>
+                                            <th>ID</th>
+                                            <th>[[#{ped.fecha}]]</th>
+                                            <th>[[#{ped.direccion}]]</th>
+                                            <th>[[#{ped.pago}]]</th>
                                             <th>Total</th>
-                                            <th>Estado</th>
+                                            <th>Status</th>
                                             <th sec:authorize="hasRole('ROLE_USER')"></th>
                                         </tr>
                                     </thead>
@@ -61,8 +61,8 @@
                                         <div class="card">
                                             <div class="card-header bg-light row">
                                                 <div class="col">
-                                                    <h3 th:text="'#Pedido: '+${factura.idFactura}"></h3>
-                                                    <p th:text="'Pedido Realizado: '+${factura.fecha}"></p>
+                                                    <h3 th:text="'#Order: '+${factura.idFactura}"></h3>
+                                                    <b>[[#{ped.fecha}]]</b><p th:text="''+${factura.fecha}"></p>
                                                     <h5 th:text="'Status: '+${factura.estado}" style="color: #2da5f3; font-weight: bold"></h5>
 
                                                 </div>
@@ -73,7 +73,7 @@
                                         </div>
                                         <br>
                                             <div class="card">
-                                                <div class="card-body mt-2" style="margin-left: 5px"><h3>Productos</h3></div>
+                                                <div class="card-body mt-2" style="margin-left: 5px"><h3>[[#{producto.producto}]]</h3></div>
                                                 <div class="card" th:each="p : ${ventas}">
 
                                                     <div class="card-body row">
@@ -99,13 +99,15 @@
                                     <div  class="col">
                                         <div class="card">
                                             <div class="card-body text-center">
-                                                <h3>DETALLES</h3>
+                                                <h3>[[#{ped.det}]]</h3>
                                                 <h5>
-                                                    Información de Envío
+                                                    [[#{ped.info}]]
                                                 </h5>
                                                 <h6 sec:authorize="hasRole('ROLE_USER')" th:text="'Usuario: '+${usuario.nombre}+' '+${usuario.apellidos}"></h6>
-                                                <p th:text="'Dirección: '+${factura.direccion}"></p>
-                                                <p th:text="'Método de Pago: '+${factura.metodoPago}"></p>
+                                                <div class="row">
+                                                    <h6 class="col">[[#{ped.direccion}]]</h6><p class="col" th:text="${factura.direccion}"></p></div>
+                                                <div class="row">
+                                                    <h6 class="col">[[#{ped.pago}]]</h6><p class="col" th:text="${factura.metodoPago}"></p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -126,12 +128,12 @@
                                                 <table class="table table-striped table-hover">
                                                     <thead class="table-dark">
                                                         <tr>
-                                                            <th>ID Pedido</th>
-                                                            <th>Fecha</th>
-                                                            <th>Dirección de Envío</th>
-                                                            <th>Método de Pago</th>
+                                                            <th>ID</th>
+                                                            <th>[[#{ped.fecha}]]</th>
+                                                            <th>[[#{ped.direccion}]]</th>
+                                                            <th>[[#{ped.pago}]]</th>
                                                             <th>Total</th>
-                                                            <th>Estado</th>
+                                                            <th>Status</th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
@@ -176,21 +178,21 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="nombreProducto"><h5>Dirección de Envío</h5></label>
+                                                                    <label for="nombreProducto"><h5>[[#{ped.direccion}]]</h5></label>
                                                                     <input type="text" class="form-control" id="direccion" th:field="*{direccion}" style="height: 50px" required/>
                                                                 </div>
 
                                                                 <div class="form-group mb-3">
-                                                                    <label for="estado"><h5>Estado</h5></label>
+                                                                    <label for="estado"><h5>Status</h5></label>
                                                                     <select style="height: 50px" name="estado" th:field ="*{estado}" class="form-control">
-                                                                        <option th:value="Nueva">Nueva Orden </option>
-                                                                        <option th:value="Pendiente">Pendiente</option>
-                                                                        <option th:value="Camino">En Camino</option>
-                                                                        <option th:value="Entregada">Entregada</option>
+                                                                        <option th:value="Nueva">[[#{ped.n}]] </option>
+                                                                        <option th:value="Pendiente">[[#{ped.p}]]</option>
+                                                                        <option th:value="Camino">[[#{ped.c}]]</option>
+                                                                        <option th:value="Entregada">[[#{ped.e}]]</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button class="btn bg-dark text-white" type="submit"><h5>Guardar</h5></button>
+                                                                    <button class="btn bg-dark text-white" type="submit"><h5>[[#{accion.guardar}]]</h5></button>
                                                                 </div>
                                                             </div>
                                                         </div>

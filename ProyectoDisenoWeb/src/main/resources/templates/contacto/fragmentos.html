@@ -7,7 +7,7 @@
     </head>
     <body>
         <section th:fragment="principal" id="productos">
-            <h2 class="text-center mt-3">Preguntas Frecuentes</h2>
+            <h2 class="text-center mt-3">[[#{con.p6}]]</h2>
             <p></p>
             <style>
                 .accordion-button:focus,
@@ -28,57 +28,36 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    ¿Cómo realizo mi pedido?
+                                     [[#{contacto.p1}]]
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-
-                                    ¡Claro! Aquí te explicamos cómo realizar tu pedido en nuestra tienda online de sneakers FAEJ:
-
-                                    Navega por nuestro catálogo: Explora nuestra amplia selección de sneakers disponibles en nuestro sitio web. Puedes filtrar por marca, estilo, color y tamaño para encontrar el par perfecto que se adapte a tu estilo.
-                                    Selecciona tu producto: Una vez que hayas encontrado el sneaker que te gusta, haz clic en él para ver más detalles, como imágenes adicionales, descripción del producto y disponibilidad de tallas.
-                                    Añade al carrito: Cuando estés listo para comprar, selecciona la talla y cantidad que deseas y haz clic en el botón "Agregar al carrito".
-                                    Revisa tu pedido: Una vez que hayas terminado de agregar productos a tu carrito, haz clic en el icono del carrito en la esquina superior derecha de la página para revisar tu pedido. Aquí podrás ver todos los artículos que has seleccionado, su precio y la cantidad.
-                                    Proceso de pago: Una vez que estés satisfecho con tu selección, haz clic en el botón "Pagar ahora" para proceder al proceso de pago. Aquí ingresarás tu información de envío y facturación, así como tu método de pago preferido.
-                                    Confirmación del pedido: Después de completar el pago, recibirás una confirmación de tu pedido por correo electrónico. Este correo electrónico incluirá todos los detalles de tu compra, incluido el número de seguimiento una vez que tu pedido haya sido enviado.
-                                    ¡Y eso es todo! Una vez que hayas seguido estos pasos, tu pedido estará en camino hacia ti. Si tienes alguna pregunta adicional o necesitas ayuda durante el proceso de compra, no dudes en ponerte en contacto con nuestro equipo de atención al cliente. ¡Estaremos encantados de ayudarte!
-                                </div>
+                                    [[#{contacto.r1}]]
+                                    </div>
                             </div>
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    ¿Cuánto tiempo tarda un pedido en llegar?
+                                     [[#{contacto.p2}]]
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    ¡Gracias por tu interés en FAEJ! El tiempo de entrega de tu pedido puede variar según varios factores, como tu ubicación, el método de envío seleccionado y la disponibilidad del producto.
-
-                                    Por lo general, una vez que tu pedido ha sido procesado y enviado, el tiempo estimado de entrega es de 3 a 5 días laborables para envíos dentro de Costa Rica. Sin embargo, ten en cuenta que pueden surgir demoras inesperadas debido a condiciones climáticas, problemas logísticos o situaciones excepcionales.
-
-                                    Para obtener una estimación más precisa del tiempo de entrega para tu pedido específico, te recomendamos revisar la información proporcionada durante el proceso de compra, ya que allí podrás encontrar detalles sobre los tiempos de envío estimados según tu ubicación y el método de envío seleccionado.
-
-                                    Si ya has realizado tu pedido y deseas conocer el estado de entrega o tener más detalles sobre el tiempo estimado de llegada, no dudes en ponerte en contacto con nuestro equipo de atención al cliente. Ellos estarán encantados de brindarte información actualizada sobre tu envío y responder cualquier pregunta que puedas tener. ¡Gracias por elegir FAEJ para tus sneakers!
+                               [[#{contacto.r2}]]
                                 </div>
                             </div>
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingThree">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    ¿Qué hago si no me queda la talla que solicité?
+                                    [[#{contacto.p3}]]
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Si la talla que solicitaste no está disponible, no te preocupes, estamos aquí para ayudarte a encontrar una solución. Aquí hay algunas opciones que puedes considerar:
-
-                                    Notificación de disponibilidad: Si el producto está agotado en la talla que necesitas, puedes optar por recibir una notificación cuando el artículo vuelva a estar disponible. En muchos casos, ofrecemos la opción de recibir alertas por correo electrónico o mensajes cuando se reponga el stock. De esta manera, serás uno de los primeros en enterarte cuando vuelva a estar disponible en tu talla.
-                                    Buscar alternativas: A veces, un modelo similar o un sneaker de otra marca puede cumplir con tus expectativas. Navega por nuestro catálogo para ver si hay otros productos que te interesen y que estén disponibles en tu talla.
-                                    Consultar con el servicio al cliente: No dudes en ponerte en contacto con nuestro equipo de atención al cliente para obtener ayuda. Puedes comunicarte con nosotros a través de nuestros números de teléfono indicados en nuestro sitio web. Por favor, proporciona la información de tu pedido para que podamos ayudarte de manera más eficiente.
-                                    Guardar para más tarde: Si el sneaker que deseas no está disponible en este momento, considera guardarlo en tu lista de deseos o marcadores en tu cuenta de usuario. De esta manera, podrás revisarlo fácilmente en el futuro y verificar si hay disponibilidad en tu talla.
-                                    En FAEJ, queremos asegurarnos de que encuentres el sneaker perfecto para ti, así que no dudes en explorar estas opciones y comunicarte con nosotros a través de nuestros números de teléfono si necesitas ayuda adicional. Estamos aquí para hacer que tu experiencia de compra sea lo más satisfactoria posible.
+                                [[#{contacto.r3}]]
                                 </div>
                             </div>
                         </div>
@@ -88,26 +67,26 @@
                     <form th:action="@{/usuario/guardarAdmin}"  th:object="${usuario}"  method="POST"  class="card-body was-validated" 
                           >
 
-                        <h5 class="fw-normal" style="letter-spacing: 1px;"><h5>No encuentras la respuesta.</h5></h5>
-                        <h6>Contáctanos!</h6>
+                        <h5 class="fw-normal" style="letter-spacing: 1px;"><h5>[[#{pregunta.p1}]]</h5></h5>
+                        <h6>[[#{pregunta.p2}]]</h6>
                         <p></p>
 
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="email">Correo Electrónico</label>
+                            <label class="form-label" for="email">[[#{usuario.correo}]]</label>
                             <input type="email" id="email" th:name="email" class="form-control form-control-lg" style="border-radius: 0" required="true" />
                         </div>
 
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="telefono">Sujeto</label>
+                            <label class="form-label" for="telefono">[[#{pregunta.p3}]]</label>
                             <input type="text" id="telefono" th:name="telefono" class="form-control form-control-lg" style="border-radius: 0" required="true" />
                         </div>
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="telefono">Mensaje</label>
+                            <label class="form-label" for="telefono">[[#{pregunta.p4}]]</label>
                             <textarea type="text" id="telefono" th:name="telefono" class="form-control form-control-lg" style="border-radius: 0" required="true"></textarea>
                         </div>
 
                         <div class="pt-2 mb-4">
-                            <button class="btn btn-lg btn-block text-white" name="btnIngresar" type="submit" style="width: 150px; background-color: #333333; border-radius: 0">Envíar <i class="fas fa-angle-right"></i></button>
+                            <button class="btn btn-lg btn-block text-white" name="btnIngresar" type="submit" style="width: 150px; background-color: #333333; border-radius: 0">[[#{pregunta.p5}]] <i class="fas fa-angle-right"></i></button>
                         </div>     
                     </form>
                 </div>
@@ -116,12 +95,12 @@
         <section th:fragment="ayudas" id="productos">
             <p></p>
             <br></br>
-            <h2 class="text-center">¿Cómo podemos ayudarte hoy?</h2>
+            <h2 class="text-center">[[#{con.p1}]]</h2>
             <div class="row mx-auto" style="margin-top: 2rem;">
                 <div class="col-md-4">
                     <div class="card text-center">
                         <div class="card-body">   
-                            <a th:href="@{/pedidos/listado}"><h5 class="btn card-title text-dark"><i class="fas fa-truck" ></i> Rastrear Orden</h5></a>
+                            <a th:href="@{/pedidos/listado}"><h5 class="btn card-title text-dark"><i class="fas fa-truck" ></i> [[#{nav.ordenes}]]</h5></a>
                         </div>
                     </div>
                 </div>
@@ -129,14 +108,14 @@
                 <div class="col-md-4">
                     <div class="card text-center">
                         <div class="card-body">      
-                            <a th:href="@{/usuario/miCuenta}"><h5 class="btn card-title text-dark" style="text-decoration: none"> <i class="fas fa-user"></i> Mi Cuenta</h5></a>
+                            <a th:href="@{/usuario/miCuenta}"><h5 class="btn card-title text-dark" style="text-decoration: none"> <i class="fas fa-user"></i> [[#{nav.cuenta}]]</h5></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card text-center">
                         <div class="card-body">                    
-                            <h5 class="btn card-title text-dark"><i class="fas fa-heart"></i> Lista de Deseos</h5>
+                            <a th:href="@{/listaDeseos/listado}"><h5 class="btn card-title text-dark" style="text-decoration: none"> <i class="fas fa-heart"></i> [[#{nav.favoritos}]]</h5></a>
                         </div>
                     </div>
                 </div>
@@ -145,7 +124,7 @@
         <br></br>
         <section th:fragment="contacto" id="productos" style="background: #f2f4f5">
             <br></br>
-            <h2 class="text-center">Nuestros centros de contacto!</h2>
+            <h2 class="text-center">[[#{con.p2}]]</h2>
             <div class="row mx-auto" style="margin-top: 2rem;justify-content: center">
                 <div class="col-md-3">
                     <div class="card text-center">
@@ -155,10 +134,10 @@
                                     <i class="fas fa-phone fa-4x" style="color: #2da5f3"></i> 
                                 </div>
                                 <div class="col-md-8">
-                                    <h5 class="card-title">Llamanos ahora!</h5>
-                                    <p>Horario: L-D 8 AM - 7 PM</p>
+                                    <h5 class="card-title">[[#{con.p3}]]</h5>
+                                    <p>[[#{footer.horario}]]: L-D 8 AM - 7 PM</p>
                                     <h4>+506 748475896</h4>
-                                    <button class="btn btn-lg btn-block text-white" name="btnIngresar" type="submit" style="width: 150px; background-color: #2da5f3; border-radius: 0">Llamar <i class="fas fa-angle-right"></i></button>
+                                    <button class="btn btn-lg btn-block text-white" name="btnIngresar" type="submit" style="width: 150px; background-color: #2da5f3; border-radius: 0">[[#{con.p5}]] <i class="fas fa-angle-right"></i></button>
                                 </div>                    </div>
                         </div>
                     </div>
@@ -171,8 +150,8 @@
                                     <i class="fa fa-comments fa-4x" style="color: #009900"></i> 
                                 </div>
                                 <div class="col-md-8">
-                                    <h5 class="card-title">Chatea con nosotros</h5>
-                                    <p>Horario: L-D 8 AM - 7 PM</p>
+                                    <h5 class="card-title">[[#{con.p4}]]</h5>
+                                    <p>[[#{footer.horario}]]: L-D 8 AM - 7 PM</p>
                                     <h4>+506 748475896</h4>
                                     <button class="btn btn-lg btn-block text-white" name="btnIngresar" type="submit" style="width: 150px; background-color: #009900; border-radius: 0">Whatsapp <i class="fas fa-angle-right"></i></button>
                                 </div>                    </div>

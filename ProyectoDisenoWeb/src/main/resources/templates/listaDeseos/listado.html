@@ -5,36 +5,63 @@
         <title>Tu Cuenta > Lista de Deseos</title>
     </head>
     <body>
-        <header th:replace="~{layout/plantillaAdmin :: header}"/>
-        <section class="container d-flex" style="margin: 0px">
-            <div th:replace="~{layout/plantillaAdmin :: sideBar}"/>
-            <div style="width: 90%; padding: 20px">
-                <h2>Lista de Deseos</h2>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="deseo : ${deseos}">
-                            <td><img th:src="${deseo.producto.rutaImagen}" alt="Imagen Producto" width="50"/></td>
-                            <td th:text="${deseo.producto.nombre}"></td>
-                            <td th:text="${deseo.producto.precio}"></td>
-                            <td th:text="${deseo.producto.status}"></td>
-                            <td>
-                                <button type="button" class="btn btn-dark" th:onclick="'addToCart(' + ${deseo.producto.id} + ')'">Add to Cart</button>
-                                <button type="button" class="btn btn-danger" th:onclick="'removeFromWishlist(' + ${deseo.producto.id} + ')'"><i class="fas fa-times"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        <header th:replace="~{layout/plantilla:: header}"/>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    <aside sec:authorize="hasRole('ROLE_USER')"  th:replace="~{usuario/fragmentos :: opciones}"/>
+                </div>
+                <div class="col-md-9">
+                    <br>
+                        <section class="card container d-flex" style="margin: 0px">
+
+                            <div >
+                                <h2 class="card-header" >Mis Favoritos</h2>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Categoría</th>
+                                            <th scope="col">Estilo</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="deseo, co : ${deseos}">
+                                            <td><img th:src="${deseo.rutaImagen}" alt="Imagen Producto" width="100"/></td>
+                                            <td th:text="${deseo.nombreProducto}"></td>
+                                            <td th:text="${deseo.descripcion}"></td>
+                                            <td th:text="'$'+${deseo.precio}"></td>
+                                            <td th:text="${deseo.categoria}"></td>
+
+                                            <td th:text="${deseo.estilo}"></td>
+                                            
+
+                                            <td>
+                                                <form>
+
+
+                                                    <input type="hidden" name="texto" th:value="${deseo.idProducto}"/>
+                                                    <input type="hidden" name="texto" th:value="${deseo.existencias}"/>
+                                                    <div >
+                                                        <button class="btn text-white bg-dark" id="addCar" name="addCar" type="button" onclick="addCard(this.form)" style=" border-radius: 0"><i class="fas fa-shopping-cart"></i> Añadir al carrito</button>
+
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>    
+                </div>
             </div>
-        </section>    
-        <footer th:replace="~{layout/plantillaAdmin :: footer}"/>      
+        </div>
+        <br>
+            <footer th:replace="~{layout/plantilla :: footer }"/>          
     </body>
+
 </html>

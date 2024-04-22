@@ -198,11 +198,7 @@
                     </div>
 
                     <ul class="navbar-nav d-flex flex-row">
-                        <li sec:authorize="hasRole('ROLE_USER')" class="nav-item me-3 me-lg-0">
-                            <a class="nav-link" th:href="@{/producto/busquedaProducto}">
-                                <i class="fas fa-magnifying-glass"></i>
-                            </a>
-                        </li>
+                        
                         <ul class="navbar-nav" sec:authorize="hasRole('ROLE_USER') or !isAuthenticated()" >
                             <li class="nav-item dropstart">
                                 
@@ -219,7 +215,7 @@
                                     <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/registro/nuevo}">[[#{nav.registro}]]</a></li>
                                     <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" th:href="@{/usuario/dashboard}">[[#{nav.cuenta}]]</a></li>
                                     <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" th:href="@{/pedidos/listado}">[[#{nav.ordenes}]]</a></li>
-                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" href="#">[[#{nav.favoritos}]]</a></li>
+                                    <li><a sec:authorize="hasRole('ROLE_USER')" class="dropdown-item" th:href="@{/listaDeseos/listado}">[[#{nav.favoritos}]]</a></li>
                                     <hr sec:authorize="hasRole('ROLE_USER')">
                                         <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
                                             <button class="btn">
@@ -230,7 +226,7 @@
                             </li>
                         </ul>
                         <li sec:authorize="hasRole('ROLE_USER')" class="nav-item me-4 me-lg-0">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" th:href="@{/listaDeseos/listado}">
                                 <i class="far fa-heart"></i>
                             </a>
                         </li>
@@ -310,7 +306,7 @@
                                     <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/producto/guiaTallas}" class="text-reset">[[#{footer.tallas}]]</a>
                                 </p>
                                 <p>
-                                    <a href="#!" class="text-reset">[[#{footer.politica}]]</a>
+                                    <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/contacto/politica}" class="text-reset">[[#{footer.politica}]]</a>
                                 </p>
                             </div>
                             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-1 mt-1">
@@ -334,7 +330,7 @@
                 <hr></hr>
                 <div class="row mx-auto">
                     <div class="col">
-                        <p style="margin-left: 10px">Derechos Reservados FAEJ © 2024</p></div>
+                        <p style="margin-left: 10px">[[#{footer.derechos}]]</p></div>
                     <div class="col">
                         <p class="text-right" style="justify-content: end; align-content: end"><a class="text-white" th:href="@{/(lang=es)}">ES </a><a class="text-white" th:href="@{/(lang=en)}">EN</a></p>
                     </div>

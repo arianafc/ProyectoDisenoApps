@@ -12,12 +12,14 @@ import com.proyecto.domain.ListaDeseos;
 import java.util.List;
 
 public interface ListaDeseosService {
+
     // Este método ahora reflejará la obtención de todas las listas de deseos sin filtrar por usuario
     List<ListaDeseos> obtenerTodasLasListasDeseos();
 
-    void agregarProductoDeseado(Long idUsuario, Long idProducto);
+    void agregarProductoDeseado(ListaDeseos listaDeseos);
 
-    void eliminarProductoDeseado(Long idUsuario, Long idProducto);
+    void eliminarProductoDeseado(Long id);
 
-    void transferirProductoACarrito(Long idUsuario, Long idProducto);
+    List<ListaDeseos> findByIdUsuario(Long idUsuario);
+
 }

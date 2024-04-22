@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>FAEJ</title>
+    </head>
+    <body>
+
+         <header th:replace="~{layout/plantilla :: header}"/>
+
+         <div class="card">
+             <section class="card-body" id="Privacidad">
+                <h2>[[#{politica.p3}]]</h2>
+                <p>[[#{politica.p1}]]</p>
+
+            </section>
+
+            <section class="card-body"  id="Devoluciones">
+                <h2>[[#{politica.p4}]]</h2>
+                <p>[[#{politica.p2}]]</p>
+            </section>
+        </div>
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+
+    </body>
+</html>

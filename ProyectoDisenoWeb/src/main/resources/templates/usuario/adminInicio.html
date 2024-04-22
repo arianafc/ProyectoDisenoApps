@@ -23,7 +23,7 @@
                         <div class="col">
                             <div class="card mb-3" style="max-width: 50rem; justify-content: start" >
 
-                                <header class="card-header text-center"><strong>INFORMACIÓN DE LA CUENTA</strong></header>
+                                <header class="card-header text-center"><strong>[[#{nav.cuenta}]]</strong></header>
                                 <div class="card-body text-center">
                                     <div class="card-text">
                                         <img th:src="@{${session.usuarioImagen}}" class="user-avatar text-center" height="100"alt="User avatar" />
@@ -51,7 +51,7 @@
                                             </div>
                                             <div class="col mb-3 mt-3 total-orders-info text-lg-start">
                                                 <h5 class="total-orders-count">[[${totalFacturas}]]</h5>
-                                                <h6 class="total-orders-label">Ordenes Totales en la Página</h6>
+                                                <h6 class="total-orders-label">[[#{ord.p1}]]</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -63,7 +63,7 @@
                                                 </div>
                                                 <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
                                                     <h5 class="pending-orders-count">[[${totalFacturasPendientes}]]</h5>
-                                                    <h6 class="pending-orders-label">Ordenes Pendientes en la Página</h6>
+                                                    <h6 class="pending-orders-label">[[#{ord.p2}]]</h6>
                                                 </div>
                                             </div>
 
@@ -76,7 +76,7 @@
                                                     </div>
                                                     <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
                                                         <h5 class="completed-orders-count">[[${totalFacturasEntregadas}]]</h5>
-                                                        <h6 class="completed-orders-label">Ordenes Completas en la Página</h6>
+                                                        <h6 class="completed-orders-label">[[#{ord.p3}]]</h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -84,8 +84,8 @@
                                             </div>
                                             </div>
                                             </div>
-                    <hr sec:authorize="hasRole('ROLE_ADMIN')" >
-                                            <!-- grafico de ventas y lo mas vendido -->
+                                            <hr sec:authorize="hasRole('ROLE_ADMIN')" >
+                                                <!-- grafico de ventas y lo mas vendido -->
                                                 <div sec:authorize="hasRole('ROLE_ADMIN')" class="row">
                                                     <div class="col mb-3">
                                                         <section class="order-history">
@@ -93,11 +93,11 @@
 
                                                     </div>
                                                 </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            </section>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </section>
 
-                                            <footer th:replace="~{layout/plantillaAdmin :: footer }"/>          
-                                            </body>
-                                            </html>
+                                                <footer th:replace="~{layout/plantillaAdmin :: footer }"/>          
+                                                </body>
+                                                </html>

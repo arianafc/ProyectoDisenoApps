@@ -8,58 +8,46 @@ package com.proyecto.domain;
  *
  * @author jorge
  */
-
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.util.List;
+import lombok.Data;
 
+@Data
 @Entity
-@Table(name = "deseos", schema = "FAEJ")
-public class ListaDeseos {
+@Table(name = "deseos")
+public class ListaDeseos implements Serializable {    
+    private static final long serialVersionUID = 1L; 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-    
-    @OneToMany(mappedBy = "listaDeseos")
-    private List<Producto> productos;
+    private Long idUsuario;
+    private Long idProducto;
+    private String nombreProducto;
+    private String descripcion;
+    private String marca;
+    private String rutaImagen;
+    private double precio;
+    private String categoria;
+    private String estilo;
+    private int existencias;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
-
-    @ManyToOne
-    @JoinColumn(name = "id_producto")
-    private Producto producto;
-
-    public Long getId() {
-        return id;
+    public ListaDeseos(Producto producto, Usuario usuario) {
+        this.nombreProducto = producto.getNombre();
+        this.descripcion = producto.getDescripcion();
+        this.marca = producto.getMarca();
+        this.rutaImagen = producto.getRutaImagen();
+        this.precio = producto.getPrecio();
+        this.categoria = producto.getCategoria().getNombre();
+        this.estilo = producto.getEstilo().getNombre();
+        this.idProducto = producto.getIdProducto();
+        this.idUsuario = usuario.getIdUsuario();
+        this.existencias= producto.getExistencias();
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public ListaDeseos() {
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-    
-    public List<Producto> getProductos() {
-        return productos;
-    }
-    
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
-    }
 }

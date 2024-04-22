@@ -23,27 +23,27 @@
                     <div class="col-sm-6 text-black" style="align-items: center">
                         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5" style="justify-content: center">
                             <form method="POST" th:action="@{/login}">
-                                <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;"><h2>Iniciar Sesión</h2></h3>
-                                <div style="text-align: end; color: black"><a th:href="@{/registro/recordar}" >Olvidé mi contraseña</a></div>
+                                <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;"><h2>[[#{nav.login}]]</h2></h3>
+                                <div style="text-align: end; color: black"><a th:href="@{/registro/recordar}" >[[#{login.olvidar}]]</a></div>
                                 <p></p>
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="username">Usuario</label>
+                                    <label class="form-label" for="username">[[#{usuario.username}]]</label>
                                     <input type="text" id="username" name="username" class="form-control form-control-lg" required="true" />
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="password">Contraseña</label>
+                                    <label class="form-label" for="password">[[#{usuario.password}]]</label>
                                     <input type="password" name="password" id="password" class="form-control form-control-lg" required="true"/>
                                 </div>
 
                                 <div class="pt-2 mb-4">
-                                    <button class="btn btn-lg btn-block" name="btnIngresar" type="submit" style="width: 368px; background-color: #cccccc">Iniciar Sesión</button>
+                                    <button class="btn btn-lg btn-block" name="btnIngresar" type="submit" style="width: 368px; background-color: #cccccc">[[#{nav.login}]]</button>
                                 </div>
 
                                 <hr></hr>
-                                <p style="text-align: center">No tienes una cuenta? </p>
+                                <p style="text-align: center">[[#{login.crear}]] </p>
                                 <div style="text-align: center" class="pt-1 mb-4" >
-                                    <button class="btn btn-lg" type="button" style="background: black; color: white; text-align: center; font-size: 17px"><a th:href="@{/registro/nuevo}" style="color: white">Crear Cuenta</a></button>
+                                    <button class="btn btn-lg" type="button" style="background: black; color: white; text-align: center; font-size: 17px"><a th:href="@{/registro/nuevo}" style="color: white">[[#{nav.registro}]]</a></button>
                                 </div>
                             </form>
                         </div>
@@ -76,11 +76,11 @@
                                 </div>
                                 <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
                                     <div>
-                                        <h4 style="font-size: 16px">LO MEJOR EN SNEAKERS</h4>
-                                        <h1><b>CONOCÉ LOS NUEVOS</b></h1>
-                                        <h1 style="font-size: 62px"><b>ESTILOS DISPONIBLES</b></h1>
+                                        <h4 style="font-size: 16px">[[#{carrusel.uno1}]]</h4>
+                                        <h1><b>[[#{carrusel.uno2}]]</b></h1>
+                                        <h1 style="font-size: 62px"><b>[[#{carrusel.uno3}]]</b></h1>
                                         <p></p>
-                                        <h5 style="font-size: 18px">Con acabados únicos y un diseño excepcional</h5>
+                                        <h5 style="font-size: 18px">[[#{carrusel.uno4}]]</h5>
                                     </div>
                                 </div>
                             </div>
@@ -97,11 +97,11 @@
                                 </div>
                                 <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
                                     <div>
-                                        <h4 style="font-size: 16px">TE GUSTA ESTAR A LA MODA?</h4>
-                                        <h2><b>FAEJ TIENE LO MEJOR PARA TI</b></h2>
-                                        <h1 style="font-size: 50px"><b>CONOCÉ TODOS NUESTROS ESTILOS DISPONIBLES</b></h1>
+                                        <h4 style="font-size: 16px">[[#{carrusel.dos1}]]</h4>
+                                        <h2><b>[[#{carrusel.dos2}]]</b></h2>
+                                        <h1 style="font-size: 50px"><b>[[#{carrusel.dos3}]]</b></h1>
                                         <p></p>
-                                        <h5 style="font-size: 18px">FAEJ lo mejor para tu vida!</h5>
+                                        <h5 style="font-size: 18px">[[#{carrusel.dos4}]]</h5>
                                     </div>
                                 </div>
                             </div>
@@ -118,11 +118,11 @@
                                 </div>
                                 <div class="col-md-8 col-lg-6 order-lg-last d-flex align-items-center" style="align-content: center; justify-content: center; object-fit: fill">
                                     <div>
-                                        <h4 style="font-size: 16px">TE GUSTA EL DEPORTE?</h4>
-                                        <h1><b>LAS MEJORES MARCAS DEPORTIVAS</b></h1>
-                                        <h1 style="font-size: 62px"><b>PARA QUE DISFRUTES HACIENDO LO QUE TE APASIONA</b></h1>
+                                        <h4 style="font-size: 16px">[[#{carrusel.tres1}]]</h4>
+                                        <h1><b>[[#{carrusel.tres2}]]</b></h1>
+                                        <h1 style="font-size: 62px"><b>[[#{carrusel.tres3}]]</b></h1>
                                         <p></p>
-                                        <h5 style="font-size: 18px">Conocé los productos que tenemos para vos!</h5>
+                                        <h5 style="font-size: 18px">[[#{carrusel.tres4}]]</h5>
                                     </div>
                                 </div>
                             </div>
@@ -239,10 +239,10 @@
 
                         <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" >
                             <li class="nav-item text-black"> <a th:href="@{/usuario/dashboard}" class="nav-link active py-3 border-bottom text-white bg-dark"> <i class="fa fa-dashboard"></i> <b>Dashboard</b> </a> </li>             
-                            <li> <a th:href="@{/pedidos/listado}" class="nav-link icon-link-hover py-3 border-bottom text-black"> <i class="fa fa-server"></i> Mis Pedidos </a> </li>
-                            <li> <a  th:href="@{/carrito/listado}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-shopping-cart"></i> Carrito de Compras</a> </li>
-                            <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-heart"></i> Lista de Deseos</a> </li>
-                            <li> <a href="#" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-cog"></i> Ajustes </a> </li>
+                            <li> <a th:href="@{/pedidos/listado}" class="nav-link icon-link-hover py-3 border-bottom text-black"> <i class="fa fa-server"></i> [[#{nav.ordenes}]] </a> </li>
+                            <li> <a  th:href="@{/carrito/listado}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-shopping-cart"></i>  [[#{user.cart}]]</a> </li>
+                            <li> <a th:href="@{/listaDeseos/listado}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-heart"></i> [[#{nav.favoritos}]]</a> </li>
+                            <li> <a th:href="@{/usuario/miCuenta}" class="nav-link py-3 border-bottom text-black"> <i class="fa fa-cog"></i> [[#{user.settings}]] </a> </li>
 
                         </ul>
                     </div>
@@ -332,7 +332,7 @@
                         <div class="col">
                             <div class="card mb-3" style="max-width: 50rem; justify-content: start" >
 
-                                <header class="card-header text-center"><strong>INFORMACIÓN DE LA CUENTA</strong></header>
+                                <header class="card-header text-center"><strong>[[#{nav.cuenta}]]</strong></header>
                                 <div class="card-body text-center">
                                     <div class="card-text">
                                         <img th:src="@{${session.usuarioImagen}}" class="user-avatar text-center" height="100"alt="User avatar" />
@@ -346,7 +346,7 @@
                                             <hr>
                                         </div>
                                     </div>
-                                    <button class="btn" style="color: #333333; border: #333333 solid; justify-content: start"><strong><a th:href="@{/usuario/miCuenta}">Editar Cuenta</a></strong></button>
+                                    <button class="btn" style="color: #333333; border: #333333 solid; justify-content: start"><strong><a th:href="@{/usuario/miCuenta}">[[#{accion.actualizar}]]</a></strong></button>
                                 </div>
                             </div>
                         </div>
@@ -360,7 +360,7 @@
                                             </div>
                                             <div class="col mb-3 mt-3 total-orders-info text-lg-start">
                                                 <h5 class="total-orders-count">[[${totalFacturas}]]</h5>
-                                                <h6 class="total-orders-label">Ordenes Totales en la Página</h6>
+                                                <h6 class="total-orders-label">[[#{ord.p1}]]</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -372,7 +372,7 @@
                                                 </div>
                                                 <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
                                                     <h5 class="pending-orders-count">[[${totalFacturasPendientes}]]</h5>
-                                                    <h6 class="pending-orders-label">Ordenes Pendientes en la Página</h6>
+                                                    <h6 class="pending-orders-label">[[#{ord.p2}]]</h6>
                                                 </div>
                                             </div>
 
@@ -385,7 +385,7 @@
                                                     </div>
                                                     <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
                                                         <h5 class="completed-orders-count">[[${totalFacturasEntregadas}]]</h5>
-                                                        <h6 class="completed-orders-label">Ordenes Completas en la Página</h6>
+                                                        <h6 class="completed-orders-label">[[#{ord.p3}]]</h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -429,7 +429,7 @@
                                                                                 </div>
                                                                                 <div class="col mb-3 mt-3 total-orders-info text-lg-start">
                                                                                     <h5 class="total-orders-count">[[${totalFacturas}]]</h5>
-                                                                                    <h6 class="total-orders-label">Ordenes Totales en la Página</h6>
+                                                                                    <h6 class="total-orders-label">[[#{ord.p1}]]</h6>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -441,7 +441,7 @@
                                                                                     </div>
                                                                                     <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
                                                                                         <h5 class="pending-orders-count">[[${totalFacturasPendientes}]]</h5>
-                                                                                        <h6 class="pending-orders-label">Ordenes Pendientes en la Página</h6>
+                                                                                        <h6 class="pending-orders-label">[[#{ord.p2}]]</h6>
                                                                                     </div>
                                                                                 </div>
 
@@ -454,7 +454,7 @@
                                                                                         </div>
                                                                                         <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
                                                                                             <h5 class="completed-orders-count">[[${totalFacturasEntregadas}]]</h5>
-                                                                                            <h6 class="completed-orders-label">Ordenes Completas en la Página</h6>
+                                                                                            <h6 class="completed-orders-label">[[#{ord.p3}]]</h6>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>

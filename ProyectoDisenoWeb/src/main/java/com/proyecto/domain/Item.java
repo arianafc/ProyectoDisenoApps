@@ -21,7 +21,6 @@ public class Item extends Producto {
         super.setNombre(producto.getNombre());
         super.setIdProducto(producto.getIdProducto());
         super.setMarca(producto.getMarca());
-        super.setListaDeseos(producto.getListaDeseos());
         super.setCategoria(producto.getCategoria());
         super.setDescripcion(producto.getDescripcion());
         super.setEstilo(producto.getEstilo());

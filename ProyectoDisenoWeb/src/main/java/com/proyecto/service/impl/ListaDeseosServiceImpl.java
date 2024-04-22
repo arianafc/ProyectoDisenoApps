@@ -29,21 +29,22 @@ public class ListaDeseosServiceImpl implements ListaDeseosService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<ListaDeseos> findByIdUsuario(Long idUsuario) {
+        return listaDeseosDao.findByIdUsuario(idUsuario);
+    }
+    
+    @Override
     @Transactional
-    public void agregarProductoDeseado(Long idUsuario, Long idProducto) {
-        // Implementación pendiente
+    public void agregarProductoDeseado(ListaDeseos listaDeseos) {
+       listaDeseosDao.save(listaDeseos);
     }
 
     @Override
     @Transactional
-    public void eliminarProductoDeseado(Long idUsuario, Long idProducto) {
-        // Implementación pendiente
+    public void eliminarProductoDeseado(Long id) {
+       listaDeseosDao.deleteById(id);
     }
 
-    @Override
-    @Transactional
-    public void transferirProductoACarrito(Long idUsuario, Long idProducto) {
-        // Implementación específica dependiendo de cómo se maneje el carrito de compras
-    }
 
 }

@@ -19,9 +19,7 @@ import java.util.Optional;
 @Repository
 public interface ListaDeseosDao extends JpaRepository<ListaDeseos, Long> {
 
-    List<ListaDeseos> findByUsuario(Usuario usuario);
+    List<ListaDeseos> findByIdUsuario(Long idUsuario);
 
-    Optional<ListaDeseos> findByUsuarioAndProducto(Usuario usuario, Producto producto);
-
-    void deleteByUsuarioAndProducto(Usuario usuario, Producto producto);
+   
 }

@@ -63,7 +63,7 @@
                         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5" style="justify-content: center">
 
                             <form method="POST" th:action="@{/registro/crearUsuario}" th:object="${usuario}" class="was-validated" style="width: 23rem">
-                                <h3 class="fw-normal " style="letter-spacing: 1px;"><h2>Crear Cuenta</h2></h3>
+                                <h3 class="fw-normal " style="letter-spacing: 1px;"><h2>[[#{usuario.agregar}]]</h2></h3>
                                 <input type="hidden" id="direccion" th:name="direccion" class="form-control form-control-lg" value="" />
                                 <p></p>
                                 <div class="row">

@@ -120,7 +120,7 @@
                                     <div class="row">
 
                                         <div class="col form-outline mb-3">
-                                            <label style="font-size: 20px" for="estilo" class="mb-1"><h5>[[#{filtros.estilo]]</h5></label>
+                                            <label style="font-size: 20px" for="estilo" class="mb-1"><h5>[[#{filtros.estilo}]]</h5></label>
                                             <select name="estilo" th:field="*{estilo}" class="form-control" style="height: 50px">
                                                 <option th:each="item : ${estilos}" th:value="${item.idEstilo}">
                                                     [[${item.nombre}]]
@@ -148,7 +148,7 @@
                                     <div class="row">
                                         <div class="col form-outline mb-3">
                                             <label for="cantidad"  class="mb-1" style="font-size: 20px" ><h5>[[#{producto.existencias}]]</h5></label>
-                                            <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required style="height: 50px"/>
+                                            <input type="number" class="form-control" id="existencias" th:field="*{existencias}" required style="height: 50px"/>
                                         </div>
                                         <div class="col form-outline mb-3">
                                             <label for="status"><h5>Status</h5></label>
@@ -161,7 +161,7 @@
                                         </div>
 
                                         <div class="col form-outline mb-3">
-                                            <label for="imagen"><h5> [[#{categoria.imagen}]]</h5></label>
+                                            <label for="imagen"><h5> Imagen</h5></label>
                                             <input class="form-control" type="file" name="imagenFile"  style="height: 70px" onchange="readURL(this);"/>
                                             <p></p>                         
                                         </div>
@@ -204,7 +204,7 @@
 
                                                                 <div class="form-group mb-3">
                                                                     <label for="cantidad"><h5>[[#{producto.existencias}]]</h5></label>
-                                                                    <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}"  style="height: 50px" required/>
+                                                                    <input type="number" class="form-control" id="existencias" th:field="*{existencias}"  style="height: 50px" required/>
                                                                 </div>
 
                                                                 <div class="form-group mb-3">
@@ -224,7 +224,7 @@
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group mb-3">
-                                                                    <label for="estilo"><h5>[[#{producto.marca}]]</h5></label>
+                                                                    <label for="estilo"><h5>[[#{filtros.marca}]]</h5></label>
                                                                     <select style="height: 50px" name="marca" th:field ="*{marca}" class="form-control">
                                                                         <option th:value="Nike">Nike </option>
                                                                         <option th:value="Adidas">Adidas</option>
@@ -238,16 +238,16 @@
                                                                     <label for="status"><h5>Status</h5></label>
                                                                     <select style="height: 50px" name="status" th:field ="*{status}" class="form-control">
                                                                         <option th:value="Activo">
-                                                                            [[#{producto.activo]]
+                                                                            [[#{producto.activo}]]
                                                                         </option>
-                                                                        <<option th:value="Inactivo">[[#{producto.inactivo]]</option>
+                                                                        <<option th:value="Inactivo">[[#{producto.inactivo}]]</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="imagen"><h5>[[#{categoria.imagen}]]</h5></label>
+                                                                    <label for="imagen"><h5>Imagen</h5></label>
                                                                     <input class="form-control" type="file" name="imagenFile"  style="height: 70px" onchange="readURL(this);"/>
                                                                     <p></p>
                                                                     <img class="mb-1" id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" width="400" height="400"/>

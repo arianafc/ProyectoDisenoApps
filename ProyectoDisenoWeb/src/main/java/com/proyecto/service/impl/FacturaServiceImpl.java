@@ -56,4 +56,9 @@ public class FacturaServiceImpl implements FacturaService {
     public Factura findByIdFactura(Long idFactura) {
         return facturaDao.findByIdFactura(idFactura);
     }
+
+    @Override
+    public Double findTotal() {
+       return facturaDao.findTotal();
+    }
 }

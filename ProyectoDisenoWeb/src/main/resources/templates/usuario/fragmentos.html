@@ -140,7 +140,7 @@
                 </a>
             </div>
             <hr>
-                
+
         </section>
 
         <section th:fragment="marcas"class="vh-100" style="margin-bottom: 50%">
@@ -394,7 +394,7 @@
                                             </div>
                                             </div>
                                             </section>
-                 <section th:fragment="inicio">
+                                            <section th:fragment="inicio">
                                                 <div class="mt-5 col-md-9 text-center d-flex justify-content-center mx-auto"style="width: 100%; margin-left: 30px">
                                                     <div class="container">
                                                         <div class="row justify-content-between">
@@ -458,6 +458,7 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
+                                                                                
                                                                                 </div>
                                                                                 </div>
                                                                                 </div>
@@ -466,13 +467,27 @@
                                                                                     <!-- grafico de ventas y lo mas vendido -->
                                                                                     <div  class="row">
                                                                                         <div class="col mb-3">
+
+                                                                                            <h4 class="order-history-title">HISTORIAL DE PEDIDOS EN LA PAGINA</h4>
+                                                                                            <section sec:authorize="hasRole('ROLE_ADMIN')" th:replace="~{pedidos/fragmentos :: listado}"/>  
+                                                                                            <section sec:authorize="hasRole('ROLE_VENDEDOR')" th:replace="~{pedidos/fragmentos :: listado}"/>  
+                                                                                        </div>
+                                                                                        <div sec:authorize="hasRole('ROLE_ADMIN')" class="col-md-3">
+                                                                                            <div class="container-fluid" >
+                                                                                    <div class="row card text-center">
+                                                                                        <div class="col mt-3 text-lg-start">
+                                                                                            <img style=" width: 100px; height: 100px" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ae77913fa6f44c7ac47f22671bcdee5c5fe065ecd020993dbc569dc4e079b6fa?apiKey=3985c52de56d473dbef26e6c027f5b71&" alt="Completed Orders Icon" class="icon" />
+                                                                                        </div>
+                                                                                        <div class="col mb-3 mt-3 pending-orders-info text-lg-start">
+                                                                                            <h3>Ganancias Totales</h3>
+                                                                                            <h1 class="completed-orders-count">$[[${total}]]</h1>
                                                                                             
-                                                                                                <h4 class="order-history-title">HISTORIAL DE PEDIDOS EN LA PAGINA</h4>
-                                                                                                 <section sec:authorize="hasRole('ROLE_ADMIN')" th:replace="~{pedidos/fragmentos :: listadoVendedor}"/>  
-                                                                                                 <section sec:authorize="hasRole('ROLE_VENDEDOR')" th:replace="~{pedidos/fragmentos :: listado}"/>  
                                                                                         </div>
                                                                                     </div>
-                                                                                    
+                                                                                </div>
+                                                                                        </div>
+                                                                                    </div>
+
                                                                                     </div>
                                                                                     </div>
 

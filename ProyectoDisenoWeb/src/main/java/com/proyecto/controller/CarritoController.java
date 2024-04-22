@@ -46,20 +46,29 @@ public class CarritoController {
     private VentaService ventaService;
 
     @GetMapping("/")
-    private String listado(Model model, Principal principal) {
+    private String listado(Model model) {
+        Double total = facturaService.findTotal();
         var productos = productoService.getProductos();
         model.addAttribute("productos", productos);
-         String username = principal.getName();
-        Usuario usuario = usuarioService.getUsuarioPorUsername(username);
-        model.addAttribute("usuario", usuario);
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // Agrega el usuario al modelo
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails) principal).getUsername();
+            Usuario usuario = usuarioService.getUsuarioPorUsername(username);
+            model.addAttribute("usuario", usuario);
+        } else {
+            model.addAttribute("usuario", "Anónimo");
+        }
         var facturas = facturaService.getRols();
         var facturasPendientes = facturaService.findByEstado("Pendiente");
-        var facturasNuevas =  facturaService.findByEstado("Nueva");
-        var facturasCamino =  facturaService.findByEstado("Camino");
-        var facturasEntregadas =  facturaService.findByEstado("Entregada");
+        var facturasNuevas = facturaService.findByEstado("Nueva");
+        var facturasCamino = facturaService.findByEstado("Camino");
+        var facturasEntregadas = facturaService.findByEstado("Entregada");
+        model.addAttribute("total", total);
         model.addAttribute("facturas", facturas);
         model.addAttribute("totalFacturas", facturas.size());
-        model.addAttribute("totalFacturasPendientes", facturasPendientes.size()+facturasNuevas.size()+facturasCamino.size());
+        model.addAttribute("totalFacturasPendientes", facturasPendientes.size() + facturasNuevas.size() + facturasCamino.size());
         model.addAttribute("totalFacturasEntregadas", facturasEntregadas.size());
         return "/index";
     }
@@ -126,11 +135,12 @@ public class CarritoController {
     }
     @Autowired
     FirebaseStorageService firebaseStorageService;
+
     //Para facturar los productos del carrito... no implementado...
     @PostMapping("/facturar/carrito")
-    public String facturarCarrito(@RequestParam("direccion") String direccion, @RequestParam("metodoPago") String metodoPago,  
-            @RequestParam(value="imagenFile", required = false) MultipartFile imagenFile) throws ParseException {
-       
+    public String facturarCarrito(@RequestParam("direccion") String direccion, @RequestParam("metodoPago") String metodoPago,
+            @RequestParam(value = "imagenFile", required = false) MultipartFile imagenFile) throws ParseException {
+
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails userDetails) {
@@ -151,24 +161,24 @@ public class CarritoController {
 
         Factura factura = new Factura(usuario.getIdUsuario(), direccion, metodoPago);
         facturaService.save(factura);
-        
+
         if (!imagenFile.isEmpty()) {
-                // Actualizar la ruta de la imagen y guardar la imagen
-                factura.setRutaImagen(firebaseStorageService.cargaImagen(
-                        imagenFile, "facturas", factura.getIdFactura()));
-            } else {
+            // Actualizar la ruta de la imagen y guardar la imagen
+            factura.setRutaImagen(firebaseStorageService.cargaImagen(
+                    imagenFile, "facturas", factura.getIdFactura()));
+        } else {
             factura.setRutaImagen("");
         }
-        
+
         double total = 0;
         for (Item i : listaItems) {
             System.out.println("Producto: " + i.getDescripcion()
                     + " Cantidad: " + i.getCantidad()
                     + " Total: " + i.getPrecio() * i.getCantidad());
-            Venta venta = new Venta(factura.getIdFactura(), i.getIdProducto(), i.getPrecio(), i.getCantidad(), i.getNombre(), usuario.getNombre()+" "+usuario.getApellidos(), i.getRutaImagen());
+            Venta venta = new Venta(factura.getIdFactura(), i.getIdProducto(), i.getPrecio(), i.getCantidad(), i.getNombre(), usuario.getNombre() + " " + usuario.getApellidos(), i.getRutaImagen());
             ventaService.saveVenta(venta);
             Producto producto = productoService.findByIdProducto(i.getIdProducto());
-            producto.setExistencias(producto.getExistencias()-i.getCantidad());
+            producto.setExistencias(producto.getExistencias() - i.getCantidad());
             productoService.save(producto);
             total += i.getPrecio() * i.getCantidad();
         }
@@ -177,7 +187,7 @@ public class CarritoController {
         listaItems.clear();
         return "redirect:/carrito/orden";
     }
-    
+
     @GetMapping("/carrito/checkout")
     public String checkout(Model model, Principal principal) {
         String username = principal.getName();
@@ -193,7 +203,7 @@ public class CarritoController {
                 carritoTotalVenta);
         return "/carrito/checkout";
     }
-    
+
     @GetMapping("/carrito/orden")
     public String orden(Model model, Principal principal) {
         return "/carrito/orden";

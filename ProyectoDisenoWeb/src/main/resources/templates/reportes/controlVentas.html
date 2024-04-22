@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <html xmlns:th="http://www.thymeleaf.org"
+          xmlns="http://www.w3.org/1999/xhtml">
+        <head th:replace="~{layout/plantilla :: head}">
+            <title>FAEJ</title>        
+        </head>
+        <body>
+            <header th:replace="~{layout/plantilla:: header}"/>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2">
+                        <aside sec:authorize="hasRole('ROLE_USER')"  th:replace="~{usuario/fragmentos :: opciones}"/>
+                        <aside sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')"  th:replace="~{layout/plantillaAdmin :: sideBar}"/>
+                    </div>
+                    <div class="col-md-9">
+                        <br>
+                          <section th:replace="~{reportes/fragmentos :: reportes}"/>  
+                    </div>
+                </div>
+            </div>
+            <br>
+            <footer th:replace="~{layout/plantilla :: footer }"/>          
+        </body>
+    </html>

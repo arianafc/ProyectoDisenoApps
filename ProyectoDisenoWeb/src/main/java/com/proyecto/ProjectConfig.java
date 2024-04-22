@@ -116,6 +116,11 @@ public class ProjectConfig implements WebMvcConfigurer {
             public Factura findByIdFactura(Long idFactura) {
                 return facturaDao.findByIdFactura(idFactura);
             }
+
+            @Override
+            public Double findTotal() {
+                return facturaDao.findTotal();
+            }
         };
     }
 
@@ -186,7 +191,7 @@ public class ProjectConfig implements WebMvcConfigurer {
         http
                 .authorizeHttpRequests((request) -> request
                 .requestMatchers("/", "/index", "/errores/**",
-                        "/producto/**",
+                        "/producto/**", "/reportes/**",
                         "/registro/**", "/carrito/**", "/inicioSesion/**", "/js/**", "/webjars/**")
                 .permitAll()
                 .requestMatchers(
@@ -205,7 +210,6 @@ public class ProjectConfig implements WebMvcConfigurer {
                 ).hasAnyRole("ADMIN", "VENDEDOR")
                 .requestMatchers(
                         "/pedidos/vendedor", "/pedidos/eliminar/**", "/pedidos/modificar/*", "/pedidos/guardar"
-                        
                 ).hasRole("VENDEDOR")
                 .requestMatchers(
                         "/usuario/crearCuenta", "/carrito/listado", "/usuario/dashboard", "/inicioSesion/**", "/usuario/miCuenta", "/usuario/actualizarPassword", "/usuario/guardarUsuario", "/pedidos/rastrearPedido/*"

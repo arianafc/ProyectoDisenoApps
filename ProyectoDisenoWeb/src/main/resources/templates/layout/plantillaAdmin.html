@@ -66,7 +66,7 @@
                                 <div class="d-flex flex-column flex-shrink-0 vh-100 shadow collapse" style="margin-left: -11px">
                                     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                                         <li>
-                                            <a th:href="@{/usuario/adminInicio}" class="nav-link icon-link-hover py-3 border-bottom text-black">
+                                            <a th:href="@{/}" class="nav-link icon-link-hover py-3 border-bottom text-black">
                                                 <i class="fa fa-dashboard"></i> Dashboard
                                             </a>
                                         </li>
@@ -76,7 +76,7 @@
                                             </a>
                                         </li>
                                         <li sec:authorize="hasRole('ROLE_ADMIN')">
-                                            <a href="#" class="nav-link py-3 border-bottom text-black">
+                                            <a th:href="@{/reportes/controlVentas}" class="nav-link py-3 border-bottom text-black">
                                                 <i class="fa fa-shopping-cart"></i> Control de ventas
                                             </a>
                                         </li>

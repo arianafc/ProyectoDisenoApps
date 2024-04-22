@@ -29,4 +29,6 @@ public interface FacturaDao extends JpaRepository<Factura, Long>{
     
     public Factura findByIdFactura(Long idFactura);
     
+     @Query("SELECT SUM(f.total) FROM Factura f")
+    Double findTotal();
 }

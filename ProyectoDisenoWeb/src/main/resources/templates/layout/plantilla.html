@@ -17,7 +17,7 @@
         <header th:fragment="header" class="header">
             <nav class="navbar navbar-expand-lg shadow mx-auto">
                 <div class="container-fluid">
-                    <a style="margin-left: 100px" class="navbar-brand" th:href="@{/index}">
+                    <a style="margin-left: 100px" class="navbar-brand" th:href="@{/}">
                         <!--<img src="FAEJ-NEGRO.png" alt="" width="100px"/> </a>-->
                         <h1 class="text-uppercase fw-bold mt-1" style="font-size: 30px; color: black">
                             FAEJ
@@ -181,15 +181,11 @@
                                 </div>
                         </ul>
                         <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a sec:authorize="hasRole('ROLE_USER')" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <li class="nav-item ">
+                                <a sec:authorize="hasRole('ROLE_USER')" class="nav-link dropdown-toggle" href="#" role="button"  aria-expanded="false">
                                     [[#{nav.nosotros}]]
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
+                               
                             </li>
                         </ul>
                         <ul class="navbar-nav">
@@ -227,7 +223,7 @@
                                     <hr sec:authorize="hasRole('ROLE_USER')">
                                         <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
                                             <button class="btn">
-                                                Cerrar Sesión
+                                               [[#{nav.logout}]]
                                             </button>
                                         </form>
                                 </ul>
